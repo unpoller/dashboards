@@ -1,4 +1,9 @@
-script: deploy-dashboards.sh
+deploy:
+  - provider: script
+    script: deploy-dashboards.sh
+    on:
+      branch: master
+
 env:
   matrix:
     secure: "JR1XtNTutuh+z+3gkuvwMV2et2iP9YjqFi1CEUJW1thU0byoSAcoMBev12BqIe6eAwd0Y0JvQ62IX46+lygkGmsAclLHHjnLiwXIIJCfUPKTKV+J2WkV0xs6VbNIfXCrJtYN270UZNUswjyR2zkZpkkylEXitqUc9rWDWbxV/3IXpW4/yjUNK+bEP2ZFot8Gg3jqh/HMLEnCI6nXfdIQjGC2WLxlZSdxM27UMKwMQ+4/j2VQM/c0ZL+M/6rz6KMFlmcMoir4AJezGqghPSYnO3YlRAh2Do/6TZiWxKVAeL2i5akZirwAYEfTNh2no5RpPPHNoM9YB/rJ5fwQ2FSRbR4Xk1H35JsNypuqRD5AvErL6CQDRLGeEPQFhHyZGsBtg0qCwxjnKxIWLZc4Ig3v+MpqCE/mvESS/UIyv8nO9+a+8/ZBpiJIP42vEH3RtHFJMoGf85a00Nf/yU27wbMRMBesnSawmEFSFoo4R1MVjevh0QQjzZt703pVT8JEhZdNYAw/AAdSKmBKQBkPl5XVDQ4Vt+/DQhu7KhD8BQoBhz4BKiT8vZa8WczwCowFADlmKcrXTuoh0SwAuIDgFCayhTPO447yaSXFfZG8wO6RulhzsybiOS+oieaTtWVy1ODX4/bd6BqkksR/UwJ3SNeOeLV1SYU2+vAI8poYRK6the4="

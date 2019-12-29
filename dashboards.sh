@@ -18,16 +18,19 @@ DASHMAP[11310]="UniFi-Poller_ Client DPI - Prometheus.json"
 
 # Simple function to make sure no stray files got uploaded.
 function check {
+  echo -n "Checking dashboards in: "
+  pushd "${WHERE}"
   SAVEIFS=$IFS
   # unobtainium
   IFS=$(echo -en "\n\b")
 
-  for file in ${WHERE}*; do
+  for file in *; do
     found=0
-    [ "$file" != "${WHERE}README.md" ] || continue
+    [ "$file" != "README.md" ] || continue
 
+    # Check for this file's existence in the DASHMAP variable.
     for i in ${!DASHMAP[@]}; do
-      if [ "${WHERE}${DASHMAP[$i]}" == "$file" ]; then
+      if [ "${DASHMAP[$i]}" == "$file" ]; then
         found=1
         echo "found! $file -> $i"
         break
@@ -37,10 +40,12 @@ function check {
     if [ "$found" = "0" ]; then
       IFS=$SAVEIFS
       echo "uh oh. file not found in DASHMAP: $file"
+      popd >> /dev/null
       exit 2
     fi
 
   done
+  popd >> /dev/null
   IFS=$SAVEIFS
 }
 

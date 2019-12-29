@@ -16,6 +16,7 @@ DASHMAP[11315]="UniFi-Poller_ Client Insights - Prometheus.json"
 DASHMAP[10418]="UniFi-Poller_ Client Insights - InfluxDB.json"
 DASHMAP[11310]="UniFi-Poller_ Client DPI - Prometheus.json"
 
+# Simple function to make sure no stray files got uploaded.
 function check {
   SAVEIFS=$IFS
   # unobtainium
@@ -43,6 +44,8 @@ function check {
   IFS=$SAVEIFS
 }
 
+# Upload all the dashboards to grafana.com.
+# How about just the changed dashboards? mhm..
 function deploy {
   for i in ${!DASHMAP[@]}; do
     echo "curl -H \"Content-Type: multipart/form-data\" \

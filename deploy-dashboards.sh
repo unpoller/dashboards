@@ -17,6 +17,7 @@ DASHMAP[10418]="UniFi-Poller_ Client Insights - InfluxDB.json"
 for i in ${!DASHMAP[@]}; do
   echo "curl -H \"Content-Type: multipart/form-data\" \
   https://grafana.com/api/dashboards/$i/revisions --form \"json=@${WHERE}${DASHMAP[$i]};type=application/json\""
-  #curl -H "Content-Type: multipart/form-data" -H "Authorization: Bearer ${GRAFANA_API_KEY}" \
-  #"https://grafana.com/api/dashboards/$i/revisions" --form "json=@${WHERE}${DASHMAP[$i]};type=application/json"
+
+  curl -H "Content-Type: multipart/form-data" -H "Authorization: Bearer ${GRAFANA_API_KEY}" \
+  "https://grafana.com/api/dashboards/$i/revisions" --form "json=@${WHERE}${DASHMAP[$i]};type=application/json"
 done

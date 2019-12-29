@@ -1,3 +1,5 @@
 # UniFi Poller Dashboards
 
-...will end up here. Travis-CI will push them to Grafana.com.
+Dashboards for UniFi Poller live in this repo.
+
+They are deployed to Grafana.com when a change to `master` is detected.

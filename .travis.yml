@@ -1,3 +1,4 @@
+script: echo
 deploy:
   - provider: script
     script: ./deploy-dashboards.sh

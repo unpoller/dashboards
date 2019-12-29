@@ -1,6 +1,6 @@
 deploy:
   - provider: script
-    script: deploy-dashboards.sh
+    script: ./deploy-dashboards.sh
     on:
       branch: master
 

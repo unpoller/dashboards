@@ -15,6 +15,7 @@ DASHMAP[10414]="UniFi-Poller_ Network Sites - InfluxDB.json"
 DASHMAP[11315]="UniFi-Poller_ Client Insights - Prometheus.json"
 DASHMAP[10418]="UniFi-Poller_ Client Insights - InfluxDB.json"
 DASHMAP[11310]="UniFi-Poller_ Client DPI - Prometheus.json"
+DASHMAP[10419]="UniFi-Poller_ Client DPI - InfluxDB.json"
 
 # Simple function to make sure no stray files got uploaded.
 function check {

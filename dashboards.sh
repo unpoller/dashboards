@@ -54,6 +54,8 @@ function check {
 function check2 {
   echo -n "Checking file existence in: "
   pushd "${WHERE}"
+  files=$(ls)
+  popd >> /dev/null
 
   SAVEIFS=$IFS
   # unobtainium
@@ -62,7 +64,7 @@ function check2 {
   for i in ${!DASHMAP[@]}; do
     found=0
 
-    for file in *; do
+    for file in $files; do
       if [ "${DASHMAP[$i]}" == "$file" ]; then
         found=1
         echo "found! $i -> $file"
@@ -72,13 +74,11 @@ function check2 {
 
     if [ "$found" = "0" ]; then
       IFS=$SAVEIFS
-      popd >> /dev/null
       echo "uh oh. configured DASHMAP file missing: ${DASHMAP[$i]}"
       exit 2
     fi
   done
 
-  popd >> /dev/null
   IFS=$SAVEIFS
 }
 

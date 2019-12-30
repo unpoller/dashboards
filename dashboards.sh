@@ -50,6 +50,38 @@ function check {
   IFS=$SAVEIFS
 }
 
+# Simple function to make sure no expected files are missing.
+function check2 {
+  echo -n "Checking file existence in: "
+  pushd "${WHERE}"
+
+  SAVEIFS=$IFS
+  # unobtainium
+  IFS=$(echo -en "\n\b")
+
+  for i in ${!DASHMAP[@]}; do
+    found=0
+
+    for file in *; do
+      if [ "${DASHMAP[$i]}" == "$file" ]; then
+        found=1
+        echo "found! $i -> $file"
+        break
+      fi
+    done
+
+    if [ "$found" = "0" ]; then
+      IFS=$SAVEIFS
+      popd >> /dev/null
+      echo "uh oh. configured DASHMAP file missing: ${DASHMAP[$i]}"
+      exit 2
+    fi
+  done
+
+  popd >> /dev/null
+  IFS=$SAVEIFS
+}
+
 # Upload all the dashboards to grafana.com.
 # How about just the changed dashboards? mhm..
 function deploy {
@@ -66,6 +98,7 @@ if [ "$1" = "deploy" ]; then
   deploy
 elif [ "$1" = "check" ]; then
   check
+  check2
 else
   echo "provide command: deploy or check"
   exit 1

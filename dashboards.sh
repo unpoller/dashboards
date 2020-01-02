@@ -38,13 +38,13 @@ function check {
     found=0
     [ "$file" != "README.md" ] || continue
 
-    isChanged "${WHERE}${DASHMAP[$i]}"
+    isChanged "$file"
     if [ "$?" = "1" ]; then
-      echo "Not changed: ${WHERE}${DASHMAP[$i]}"
+      echo "Not changed: $file"
     else
-      echo "Changed: ${WHERE}${DASHMAP[$i]}"
+      echo "Changed: $file"
     fi
-    
+
     # Check for this file's existence in the DASHMAP variable.
     for i in ${!DASHMAP[@]}; do
       if [ "${DASHMAP[$i]}" = "$file" ]; then

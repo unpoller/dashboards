@@ -92,7 +92,7 @@ function check2 {
 }
 
 function isChanged {
-  local changed=0
+  local changed=false
   local filename=$1
 
   SAVEIFS=$IFS
@@ -100,12 +100,12 @@ function isChanged {
   IFS=$(echo -en "\n\b")
   for file in $CHANGES; do
     if [ "$file" = "$filename" ]; then
-      changed=1
+      changed=true
       break
     fi
-  for
+  done
 
-  if [ "$changed" = "1" ]; then
+  if [ "$changed" = "true" ]; then
     true
   else
     false

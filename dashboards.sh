@@ -1,5 +1,13 @@
 #/bin/bash
 
+if [ "$TRAVIS_BRANCH" == "" ]; then
+  echo "this only works in travis-ci"
+  exit 1
+fi
+
+CHANGES=$(git diff --name-only --diff-filter=AM HEAD...$TRAVIS_BRANCH)
+echo "CHANGED: $CHANGES"
+
 declare -a DASHMAP
 
 WHERE="v2.0.0/"
@@ -16,6 +24,7 @@ DASHMAP[11315]="UniFi-Poller_ Client Insights - Prometheus.json"
 DASHMAP[10418]="UniFi-Poller_ Client Insights - InfluxDB.json"
 DASHMAP[11310]="UniFi-Poller_ Client DPI - Prometheus.json"
 DASHMAP[10419]="UniFi-Poller_ Client DPI - InfluxDB.json"
+
 
 # Simple function to make sure no stray files got uploaded.
 function check {

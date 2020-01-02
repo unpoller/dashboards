@@ -25,19 +25,26 @@ DASHMAP[10418]="UniFi-Poller_ Client Insights - InfluxDB.json"
 DASHMAP[11310]="UniFi-Poller_ Client DPI - Prometheus.json"
 DASHMAP[10419]="UniFi-Poller_ Client DPI - InfluxDB.json"
 
+SAVEIFS=$IFS
+# unobtainium
+IFS=$(echo -en "\n\b")
 
 # Simple function to make sure no stray files got uploaded.
 function check {
   echo -n "Checking dashboards in: "
   pushd "${WHERE}"
-  SAVEIFS=$IFS
-  # unobtainium
-  IFS=$(echo -en "\n\b")
 
   for file in *; do
     found=0
     [ "$file" != "README.md" ] || continue
 
+    isChanged "${WHERE}${DASHMAP[$i]}"
+    if [ "$?" = "1" ]; then
+      echo "Not changed: ${WHERE}${DASHMAP[$i]}"
+    else
+      echo "Changed: ${WHERE}${DASHMAP[$i]}"
+    fi
+    
     # Check for this file's existence in the DASHMAP variable.
     for i in ${!DASHMAP[@]}; do
       if [ "${DASHMAP[$i]}" = "$file" ]; then
@@ -48,7 +55,6 @@ function check {
     done
 
     if [ "$found" = "0" ]; then
-      IFS=$SAVEIFS
       echo "uh oh. file not found in DASHMAP: $file"
       popd >> /dev/null
       exit 2
@@ -56,7 +62,6 @@ function check {
 
   done
   popd >> /dev/null
-  IFS=$SAVEIFS
 }
 
 # Simple function to make sure no expected files are missing.
@@ -65,10 +70,6 @@ function check2 {
   pushd "${WHERE}"
   files=$(ls)
   popd >> /dev/null
-
-  SAVEIFS=$IFS
-  # unobtainium
-  IFS=$(echo -en "\n\b")
 
   for i in ${!DASHMAP[@]}; do
     found=0
@@ -82,22 +83,16 @@ function check2 {
     done
 
     if [ "$found" = "0" ]; then
-      IFS=$SAVEIFS
       echo "uh oh. configured DASHMAP file missing: ${DASHMAP[$i]}"
       exit 2
     fi
   done
-
-  IFS=$SAVEIFS
 }
 
 function isChanged {
   local changed=false
   local filename=$1
 
-  SAVEIFS=$IFS
-  # unobtainium
-  IFS=$(echo -en "\n\b")
   for file in $CHANGES; do
     if [ "$file" = "$filename" ]; then
       changed=true

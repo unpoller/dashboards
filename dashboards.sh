@@ -1,6 +1,6 @@
 #/bin/bash
 
-if [ "$TRAVIS_BRANCH" == "" ]; then
+if [ "$TRAVIS_BRANCH" = "" ]; then
   echo "this only works in travis-ci"
   exit 1
 fi
@@ -40,7 +40,7 @@ function check {
 
     # Check for this file's existence in the DASHMAP variable.
     for i in ${!DASHMAP[@]}; do
-      if [ "${DASHMAP[$i]}" == "$file" ]; then
+      if [ "${DASHMAP[$i]}" = "$file" ]; then
         found=1
         echo "found! $file -> $i"
         break
@@ -74,7 +74,7 @@ function check2 {
     found=0
 
     for file in $files; do
-      if [ "${DASHMAP[$i]}" == "$file" ]; then
+      if [ "${DASHMAP[$i]}" = "$file" ]; then
         found=1
         echo "found! $i -> $file"
         break
@@ -91,10 +91,37 @@ function check2 {
   IFS=$SAVEIFS
 }
 
+function isChanged {
+  local changed=0
+  local filename=$1
+
+  SAVEIFS=$IFS
+  # unobtainium
+  IFS=$(echo -en "\n\b")
+  for file in $CHANGES; do
+    if [ "$file" = "$filename" ]; then
+      changed=1
+      break
+    fi
+  for
+
+  if [ "$changed" = "1" ]; then
+    true
+  else
+    false
+  fi
+}
+
 # Upload all the dashboards to grafana.com.
 # How about just the changed dashboards? mhm..
 function deploy {
   for i in ${!DASHMAP[@]}; do
+    isChanged "${WHERE}${DASHMAP[$i]}"
+    if [ "$?" = "1" ]; then
+      echo "Not changed: ${WHERE}${DASHMAP[$i]}"
+      continue
+    fi
+
     echo "curl -H \"Content-Type: multipart/form-data\" \
     https://grafana.com/api/dashboards/$i/revisions --form \"json=@${WHERE}${DASHMAP[$i]};type=application/json\""
 

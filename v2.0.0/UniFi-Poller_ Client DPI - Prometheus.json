@@ -7,7 +7,7 @@
       "type": "datasource",
       "pluginId": "prometheus",
       "pluginName": "Prometheus"
-    }
+     }
   ],
   "__requires": [
     {

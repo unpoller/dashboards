@@ -5,7 +5,7 @@ if [ "$TRAVIS_BRANCH" == "" ]; then
   exit 1
 fi
 
-CHANGES=$(git diff --name-only --diff-filter=AM master...$TRAVIS_BRANCH)
+CHANGES=$(git diff --name-only --diff-filter=AM $TRAVIS_COMMIT_RANGE)
 echo "CHANGED: $CHANGES"
 
 declare -a DASHMAP

@@ -35,7 +35,7 @@ function check {
   pushd "${WHERE}"
 
   for file in *; do
-    found=0
+    local found=0
     [ "$file" != "README.md" ] || continue
 
     isChanged "$file"
@@ -72,7 +72,7 @@ function check2 {
   popd >> /dev/null
 
   for i in ${!DASHMAP[@]}; do
-    found=0
+    local found=0
 
     for file in $files; do
       if [ "${DASHMAP[$i]}" = "$file" ]; then
@@ -92,6 +92,7 @@ function check2 {
 function isChanged {
   local changed=false
   local filename=$1
+  local file=""
 
   for file in $CHANGES; do
     if [ "$file" = "$filename" ]; then

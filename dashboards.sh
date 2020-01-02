@@ -38,13 +38,6 @@ function check {
     local found=0
     [ "$file" != "README.md" ] || continue
 
-    isChanged "$file"
-    if [ "$?" = "1" ]; then
-      echo "Not changed: $file"
-    else
-      echo "Changed: $file"
-    fi
-
     # Check for this file's existence in the DASHMAP variable.
     for i in ${!DASHMAP[@]}; do
       if [ "${DASHMAP[$i]}" = "$file" ]; then
@@ -68,7 +61,7 @@ function check {
 function check2 {
   echo -n "Checking file existence in: "
   pushd "${WHERE}"
-  files=$(ls)
+  local files=$(ls)
   popd >> /dev/null
 
   for i in ${!DASHMAP[@]}; do
@@ -76,7 +69,7 @@ function check2 {
 
     for file in $files; do
       if [ "${DASHMAP[$i]}" = "$file" ]; then
-        found=1
+        local found=1
         echo "found! $i -> $file"
         break
       fi
@@ -96,7 +89,7 @@ function isChanged {
 
   for file in $CHANGES; do
     if [ "$file" = "$filename" ]; then
-      changed=true
+      local changed=true
       break
     fi
   done
@@ -108,13 +101,12 @@ function isChanged {
   fi
 }
 
-# Upload all the dashboards to grafana.com.
-# How about just the changed dashboards? mhm..
+# Upload all the (changed) dashboards to grafana.com.
 function deploy {
   for i in ${!DASHMAP[@]}; do
     isChanged "${WHERE}${DASHMAP[$i]}"
     if [ "$?" = "1" ]; then
-      echo "Not changed: ${WHERE}${DASHMAP[$i]}"
+      echo "Not changed (skipping): ${WHERE}${DASHMAP[$i]}"
       continue
     fi
 

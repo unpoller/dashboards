@@ -1,6 +1,6 @@
 #/bin/bash
 
-if [ "$TRAVIS_BRANCH" = "" ]; then
+if [ "$TRAVIS_COMMIT_RANGE" = "" ]; then
   echo "this only works in travis-ci"
   exit 1
 fi
@@ -33,9 +33,11 @@ IFS=$(echo -en "\n\b")
 function check {
   echo -n "Checking dashboards in: "
   pushd "${WHERE}"
+  local file=""
 
   for file in *; do
     local found=0
+    local i=""
     [ "$file" != "README.md" ] || continue
 
     # Check for this file's existence in the DASHMAP variable.
@@ -63,9 +65,11 @@ function check2 {
   pushd "${WHERE}"
   local files=$(ls)
   popd >> /dev/null
+  local i=""
 
   for i in ${!DASHMAP[@]}; do
     local found=0
+    local file=""
 
     for file in $files; do
       if [ "${DASHMAP[$i]}" = "$file" ]; then
@@ -82,6 +86,7 @@ function check2 {
   done
 }
 
+# check if a dashboard (or file) has been modified
 function isChanged {
   local changed=false
   local filename=$1
@@ -103,6 +108,7 @@ function isChanged {
 
 # Upload all the (changed) dashboards to grafana.com.
 function deploy {
+  local i=""
   for i in ${!DASHMAP[@]}; do
     isChanged "${WHERE}${DASHMAP[$i]}"
     if [ "$?" = "1" ]; then

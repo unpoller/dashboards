@@ -20,7 +20,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -71,7 +71,7 @@
   "gnetId": 11311,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1577607790380,
+  "iteration": 1580616399315,
   "links": [
     {
       "asDropdown": true,
@@ -83,6 +83,27 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
@@ -106,8 +127,8 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 2,
+        "h": 4,
+        "w": 3,
         "x": 0,
         "y": 0
       },
@@ -164,7 +185,7 @@
       "timeShift": null,
       "title": "USW",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "100%",
       "valueMaps": [
         {
           "op": "=",
@@ -194,9 +215,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 2,
+        "h": 4,
+        "w": 3,
+        "x": 3,
         "y": 0
       },
       "id": 42,
@@ -252,7 +273,7 @@
       "timeShift": null,
       "title": "UAP",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "100%",
       "valueMaps": [
         {
           "op": "=",
@@ -282,9 +303,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 4,
+        "h": 4,
+        "w": 3,
+        "x": 6,
         "y": 0
       },
       "id": 43,
@@ -340,7 +361,7 @@
       "timeShift": null,
       "title": "USG",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "100%",
       "valueMaps": [
         {
           "op": "=",
@@ -370,9 +391,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 6,
+        "h": 4,
+        "w": 3,
+        "x": 9,
         "y": 0
       },
       "id": 44,
@@ -428,7 +449,7 @@
       "timeShift": null,
       "title": "Stations",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "100%",
       "valueMaps": [
         {
           "op": "=",
@@ -439,12 +460,11 @@
       "valueName": "current"
     },
     {
-      "content": "Each site contains 5 subsystems: wan, lan, wlan, www, vpn. Each subsystem contains data specific to that system. All subsystems except vpn have data rate. VPN has data transfer though.\nThere's not a ton of juicy info here, and most of it can be gleaned on other the dashboards.\n",
-      "datasource": "${DS_PROMETHEUS}",
+      "content": "Each site contains 5 subsystems: wan, lan, wlan, www, vpn. Each subsystem contains data specific to that system. \nAll subsystems except vpn have data rate. VPN has data transfer though.\nThere's not a ton of juicy info here, and most of it can be gleaned on other the dashboards.\nThe row below is purposely collapsed because some installationd have hundreds of sites. \nLoading them all at once is often not possible.\n",
       "gridPos": {
-        "h": 3,
-        "w": 14,
-        "x": 8,
+        "h": 4,
+        "w": 12,
+        "x": 12,
         "y": 0
       },
       "id": 37,
@@ -458,12 +478,11 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 4
       },
       "id": 4,
       "panels": [
@@ -490,7 +509,7 @@
             "h": 3,
             "w": 6,
             "x": 0,
-            "y": 4
+            "y": 5
           },
           "id": 40,
           "interval": null,
@@ -576,7 +595,7 @@
             "h": 11,
             "w": 18,
             "x": 6,
-            "y": 4
+            "y": 5
           },
           "hiddenSeries": false,
           "id": 38,
@@ -717,7 +736,7 @@
             "h": 8,
             "w": 3,
             "x": 0,
-            "y": 7
+            "y": 8
           },
           "id": 32,
           "links": [],
@@ -727,6 +746,9 @@
                 "lastNotNull"
               ],
               "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
                 "decimals": 0,
                 "mappings": [
                   {
@@ -740,31 +762,34 @@
                 "max": 400,
                 "min": 10,
                 "nullValueMode": "connected",
-                "thresholds": [
-                  {
-                    "color": "#299c46",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 100
-                  },
-                  {
-                    "color": "#d44a3a",
-                    "value": 200
-                  }
-                ],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#299c46",
+                      "value": null
+                    },
+                    {
+                      "color": "rgba(237, 129, 40, 0.89)",
+                      "value": 100
+                    },
+                    {
+                      "color": "#d44a3a",
+                      "value": 200
+                    }
+                  ]
+                },
                 "title": "Latency",
                 "unit": "s"
               },
-              "override": {},
+              "overrides": [],
               "values": false
             },
             "orientation": "horizontal",
             "showThresholdLabels": false,
             "showThresholdMarkers": true
           },
-          "pluginVersion": "6.5.1",
+          "pluginVersion": "6.6.0",
           "scopedVars": {
             "Site": {
               "selected": false,
@@ -792,7 +817,7 @@
             "h": 8,
             "w": 3,
             "x": 3,
-            "y": 7
+            "y": 8
           },
           "id": 33,
           "links": [],
@@ -802,6 +827,9 @@
                 "lastNotNull"
               ],
               "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
                 "mappings": [
                   {
                     "id": 0,
@@ -814,31 +842,34 @@
                 "max": 200,
                 "min": 1,
                 "nullValueMode": "connected",
-                "thresholds": [
-                  {
-                    "color": "#299c46",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 50
-                  },
-                  {
-                    "color": "#d44a3a",
-                    "value": 100
-                  }
-                ],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#299c46",
+                      "value": null
+                    },
+                    {
+                      "color": "rgba(237, 129, 40, 0.89)",
+                      "value": 50
+                    },
+                    {
+                      "color": "#d44a3a",
+                      "value": 100
+                    }
+                  ]
+                },
                 "title": "Speed Test Ping",
                 "unit": "s"
               },
-              "override": {},
+              "overrides": [],
               "values": false
             },
             "orientation": "horizontal",
             "showThresholdLabels": false,
             "showThresholdMarkers": true
           },
-          "pluginVersion": "6.5.1",
+          "pluginVersion": "6.6.0",
           "scopedVars": {
             "Site": {
               "selected": false,
@@ -872,7 +903,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 15
+            "y": 16
           },
           "hiddenSeries": false,
           "id": 15,
@@ -988,7 +1019,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 23
+            "y": 24
           },
           "hiddenSeries": false,
           "id": 2,
@@ -1117,7 +1148,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 30
+            "y": 31
           },
           "hiddenSeries": false,
           "id": 39,
@@ -1232,14 +1263,16 @@
             "h": 17,
             "w": 24,
             "x": 0,
-            "y": 37
+            "y": 38
           },
           "hiddenSeries": false,
           "id": 45,
           "legend": {
             "alignAsTable": true,
-            "avg": false,
-            "current": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
             "max": true,
             "min": false,
             "rightSide": true,
@@ -1279,17 +1312,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (category)(rate(unifipoller_site_dpi_receive_bytes{site_name=~\"$Site\"}[$__interval]))",
+              "expr": "sum by (category) (rate(unifipoller_site_dpi_receive_bytes{site_name=~\"$Site\"}[$__interval]))",
               "hide": false,
               "interval": "$Smooth",
               "legendFormat": "{{category}} Rx",
               "refId": "A"
             },
             {
-              "expr": "sum by (category)(rate(unifipoller_site_dpi_transmit_bytes{site_name=~\"$Site\"}[$__interval]))",
+              "expr": "sum by (category) (rate(unifipoller_site_dpi_transmit_bytes{site_name=~\"$Site\"}[$__interval]))",
               "hide": false,
               "interval": "$Smooth",
-              "legendFormat": "{{category}} Tx S",
+              "legendFormat": "{{category}} Tx",
               "refId": "B"
             }
           ],
@@ -1342,7 +1375,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -1373,7 +1406,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_site_transmit_rate_bytes{source=~\"$Controller\"},site_name)",
@@ -1395,7 +1428,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(subsystem)",
@@ -1435,7 +1468,7 @@
             "value": "30s"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1m",
             "value": "1m"
           },
@@ -1445,7 +1478,7 @@
             "value": "2m"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "5m",
             "value": "5m"
           },
@@ -1491,5 +1524,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Network Sites - Prometheus",
   "uid": "9WaGWZaZk",
-  "version": 4
+  "version": 9
 }

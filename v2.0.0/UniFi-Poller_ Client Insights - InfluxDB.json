@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -65,7 +65,7 @@
   "gnetId": 10418,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1577607788462,
+  "iteration": 1580615238375,
   "links": [
     {
       "asDropdown": true,
@@ -77,6 +77,27 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
@@ -104,6 +125,7 @@
       "styles": [
         {
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "link": true,
           "linkTargetBlank": true,
@@ -113,6 +135,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -120,15 +143,16 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": null,
+          "decimals": 1,
           "mappingType": 1,
-          "pattern": "/Bytes$/",
+          "pattern": "/^Bytes/",
           "thresholds": [],
           "type": "number",
           "unit": "decbytes"
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -145,6 +169,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -161,6 +186,7 @@
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -172,8 +198,110 @@
           "mappingType": 1,
           "pattern": "source",
           "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "AP",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "ap_name",
+          "thresholds": [],
           "type": "string",
           "unit": "short"
+        },
+        {
+          "alias": "Chan",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "channel",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "OUI",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "oui",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Radio",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "radio_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Proto",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "radio_proto",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Uptime",
+          "thresholds": [],
+          "type": "number",
+          "unit": "s"
         }
       ],
       "targets": [
@@ -194,6 +322,42 @@
             {
               "params": [
                 "source"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "channel"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "radio_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "radio_proto"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "ap_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "site_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "oui"
               ],
               "type": "tag"
             }
@@ -227,7 +391,7 @@
             [
               {
                 "params": [
-                  "note"
+                  "uptime"
                 ],
                 "type": "field"
               },
@@ -237,7 +401,7 @@
               },
               {
                 "params": [
-                  "Note"
+                  "Uptime"
                 ],
                 "type": "alias"
               }
@@ -255,7 +419,7 @@
               },
               {
                 "params": [
-                  "Total RX Bytes"
+                  "Bytes Rx"
                 ],
                 "type": "alias"
               }
@@ -273,7 +437,7 @@
               },
               {
                 "params": [
-                  "Total TX Bytes"
+                  "Bytes Tx"
                 ],
                 "type": "alias"
               }
@@ -295,43 +459,13 @@
                 ],
                 "type": "alias"
               }
-            ],
-            [
-              {
-                "params": [
-                  "signal"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "RSSI"
-                ],
-                "type": "alias"
-              }
             ]
           ],
           "tags": [
             {
-              "key": "is_wired",
-              "operator": "=",
-              "value": "false"
-            },
-            {
-              "condition": "AND",
-              "key": "ap_name",
-              "operator": "=~",
-              "value": "/^$AP$/"
-            },
-            {
-              "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -342,7 +476,7 @@
           ]
         }
       ],
-      "timeFrom": "1h",
+      "timeFrom": "5m",
       "title": "Wireless Devices",
       "transform": "table",
       "type": "table"
@@ -372,6 +506,7 @@
       "styles": [
         {
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "link": false,
           "linkUrl": "http://$__cell",
@@ -380,6 +515,7 @@
         },
         {
           "alias": "Sw Port",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -393,23 +529,8 @@
           "unit": "short"
         },
         {
-          "alias": "Fixed IP",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "use_fixedip",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -426,6 +547,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -443,6 +565,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -450,15 +573,16 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": null,
+          "decimals": 1,
           "mappingType": 1,
-          "pattern": "/Bytes$/",
+          "pattern": "/^Bytes/",
           "thresholds": [],
           "type": "number",
           "unit": "decbytes"
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -469,6 +593,57 @@
           "decimals": 2,
           "mappingType": 1,
           "pattern": "source",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Uptime",
+          "thresholds": [],
+          "type": "number",
+          "unit": "s"
+        },
+        {
+          "alias": "OUI",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "oui",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Site",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "site_name",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -491,12 +666,6 @@
             },
             {
               "params": [
-                "use_fixedip"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
                 "name"
               ],
               "type": "tag"
@@ -504,6 +673,18 @@
             {
               "params": [
                 "source"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "oui"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "site_name"
               ],
               "type": "tag"
             }
@@ -537,24 +718,6 @@
             [
               {
                 "params": [
-                  "note"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "Note"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
                   "wired-rx_bytes"
                 ],
                 "type": "field"
@@ -565,7 +728,7 @@
               },
               {
                 "params": [
-                  "Total RX Bytes"
+                  "Bytes Rx"
                 ],
                 "type": "alias"
               }
@@ -583,7 +746,25 @@
               },
               {
                 "params": [
-                  "Total TX Bytes"
+                  "Bytes Tx"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "uptime"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Uptime"
                 ],
                 "type": "alias"
               }
@@ -599,7 +780,7 @@
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wired$/"
             },
             {
               "condition": "AND",
@@ -610,7 +791,7 @@
           ]
         }
       ],
-      "timeFrom": "1h",
+      "timeFrom": "5m",
       "title": "Wired Devices",
       "transform": "table",
       "type": "table"
@@ -648,6 +829,7 @@
       "nullPointMode": "connected",
       "options": {},
       "pieType": "pie",
+      "pluginVersion": "6.5.1",
       "strokeWidth": 1,
       "targets": [
         {
@@ -664,7 +846,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 10m AND (\"is_wired\" != \"false\" AND \"site_name\" =~ /$Site$/ AND \"ap_name\" =~ /^$AP$/ AND \"name\" =~ /^$Client$/) GROUP BY \"hostname\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /$Site$/ AND \"name\" =~ /^$Wired$/ AND sw_name =~ /$Switch$/ ) GROUP BY \"hostname\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -707,7 +889,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 10m AND (\"site_name\" =~ /$Site$/ AND \"ap_name\" =~ /^$AP$/ AND \"name\" =~ /^$Client$/) GROUP BY \"channel\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /$Site$/ AND \"name\" =~ /^$Wireless$/ AND ap_name =~ /$AP$/ ) GROUP BY \"channel\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -728,7 +910,7 @@
           "tags": []
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": "5m",
       "timeShift": null,
       "title": "Clients / Channel",
       "transparent": true,
@@ -784,7 +966,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"hostname\")) FROM \"clients\" WHERE  $timeFilter  AND \"ap_name\" =~ /$AP$/ AND \"site_name\" =~ /$Site$/  AND \"name\" =~ /^$Client$/ GROUP BY radio_proto",
+          "query": "SELECT count(distinct(\"hostname\")) FROM \"clients\" WHERE  $timeFilter  AND \"ap_name\" =~ /$AP$/ AND \"site_name\" =~ /$Site$/  AND \"name\" =~ /^$Wireless$/ GROUP BY radio_proto",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -811,7 +993,7 @@
           ]
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": "5m",
       "title": "Clients / AP Radio",
       "transparent": true,
       "type": "grafana-piechart-panel",
@@ -827,7 +1009,7 @@
       },
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 0,
-      "description": "This shows an OUI breakdown from Unifi's perspective. The prefix w means wireless client and e means ethernet (wired) client.",
+      "description": "This shows an OUI breakdown from Unifi's perspective. e = wired, w = wireless",
       "fontSize": "70%",
       "format": "short",
       "gridPos": {
@@ -842,7 +1024,8 @@
       "legend": {
         "header": "",
         "show": true,
-        "sortDesc": false,
+        "sort": "current",
+        "sortDesc": true,
         "values": true
       },
       "legendType": "Right side",
@@ -854,7 +1037,7 @@
       "strokeWidth": 1,
       "targets": [
         {
-          "alias": "w $tag_oui",
+          "alias": "$tag_oui",
           "groupBy": [
             {
               "params": [
@@ -866,7 +1049,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE (time > now() - 60m AND \"name\" =~ /^$Client$/ AND \"ap_name\" =~ /^$AP$/ AND site_name =~ /$Site$/) GROUP BY \"oui\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND site_name =~ /$Site$/ AND ((\"name\" =~ /^$Wireless$/ AND \"ap_name\" =~ /^$AP$/) OR (\"name\" =~ /^$Wired$/ AND \"sw_name\" =~ /$Switch$/ )) GROUP BY \"oui\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -891,48 +1074,9 @@
               "value": "false"
             }
           ]
-        },
-        {
-          "alias": "e $tag_oui",
-          "groupBy": [
-            {
-              "params": [
-                "channel"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "clients",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE (time > now() - 60m  AND  \"name\" =~ /^$Client$/ AND \"sw_name\" =~ /$Switch$/ AND site_name =~ /$Site$/) GROUP BY \"oui\"",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "hostname"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "is_wired",
-              "operator": "=",
-              "value": "false"
-            }
-          ]
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": "5m",
       "title": "Client MAC OUI Breakdown",
       "transparent": true,
       "type": "grafana-piechart-panel",
@@ -986,7 +1130,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 10m AND (\"ap_name\" =~ /^$AP$/ OR \"sw_name\" =~ /$Switch$/) AND \"name\" =~ /^$Client$/ AND \"site_name\" =~ /$Site$/ GROUP BY \"os_class\", \"os_name\", \"dev_cat\", \"dev_family\", \"dev_id\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND site_name =~ /$Site$/ AND ((\"name\" =~ /^$Wireless$/ AND \"ap_name\" =~ /^$AP$/) OR (\"name\" =~ /^$Wired$/ AND \"sw_name\" =~ /$Switch$/ )) GROUP BY \"os_class\", \"os_name\", \"dev_cat\", \"dev_family\", \"dev_id\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1013,7 +1157,7 @@
           ]
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": "5m",
       "title": "OS/Dev Class/ID Breakdown",
       "transparent": true,
       "type": "grafana-piechart-panel",
@@ -1025,715 +1169,14 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
-      "description": "Bandwidth usage per wireless devices as reported by the UAPs. Rx is on the negative axis. Does not include amazon devices.",
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 32
-      },
-      "hiddenSeries": false,
-      "id": 3,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "max",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/Rx$/",
-          "transform": "negative-Y"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_name $col",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "name"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "clients",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(first(\"wired-rx_bytes\"), 1s) FROM \"clients\" WHERE (\"hostname\" = 'dns-rtn') AND $timeFilter GROUP BY time(10s) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "rx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Rx"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "tx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Tx"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "is_wired",
-              "operator": "!=",
-              "value": "true"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "!~",
-              "value": "/^(amazon-)/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/^$Client$/"
-            },
-            {
-              "condition": "AND",
-              "key": "ap_name",
-              "operator": "=~",
-              "value": "/^$AP$/"
-            },
-            {
-              "condition": "AND",
-              "key": "site_name",
-              "operator": "=~",
-              "value": "/^$Site$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "UAP Bandwidth / Wireless Devices",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Bps",
-          "label": "bytes / sec",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_UNIFI_POLLER}",
-      "description": "Cameras TX / RX bytes per second. Rx is on the negative axis. Cameras probably don't do much Tx. If you don't have cameras, don't include this graph on your dashboards. This graph shows any device with the word \"camera\" in its name and has nothing to do with UniFi Protect.",
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 32
-      },
-      "hiddenSeries": false,
-      "id": 15,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/Rx$/",
-          "transform": "negative-Y"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "$tag_name $col",
-          "groupBy": [
-            {
-              "params": [
-                "1m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "name"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "clients",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(first(\"wired-rx_bytes\"), 1s) FROM \"clients\" WHERE (\"hostname\" = 'dns-rtn') AND $timeFilter GROUP BY time(10s) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "wired-rx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Rx"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "wired-tx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Tx"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "name",
-              "operator": "=~",
-              "value": "/^camera/"
-            },
-            {
-              "condition": "AND",
-              "key": "site_name",
-              "operator": "=~",
-              "value": "/^$Site$/"
-            },
-            {
-              "condition": "AND",
-              "key": "sw_name",
-              "operator": "=~",
-              "value": "/^$Switch$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Switch Bandwidth / Cameras",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Bps",
-          "label": "bytes / sec",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_UNIFI_POLLER}",
-      "description": "Amazon Devices TX / RX bytes per second (calculated in 30 second buckets). Rx is on the native axis. My home network has a ton of Amazon devices, so I broke them out separately. If you don't have Amazon devices, don't fret, just don't include this graph in the new dashboards you're building. :)",
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 39
-      },
-      "hiddenSeries": false,
-      "id": 23,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sort": "current",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/Rx$/",
-          "transform": "negative-Y"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "e $tag_name $col",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "name"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "clients",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(first(\"wired-rx_bytes\"), 1s) FROM \"clients\" WHERE (\"hostname\" = 'dns-rtn') AND $timeFilter GROUP BY time(10s) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "wired-rx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Rx"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "wired-tx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Tx"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "name",
-              "operator": "=~",
-              "value": "/^amazon-(.*)/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/^$Client$/"
-            },
-            {
-              "condition": "AND",
-              "key": "sw_name",
-              "operator": "=~",
-              "value": "/^$Switch$/"
-            },
-            {
-              "condition": "AND",
-              "key": "site_name",
-              "operator": "=~",
-              "value": "/^$Site$/"
-            }
-          ]
-        },
-        {
-          "alias": "w $tag_name $col",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "name"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "clients",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT derivative(first(\"wired-rx_bytes\"), 1s) FROM \"clients\" WHERE (\"hostname\" = 'dns-rtn') AND $timeFilter GROUP BY time(10s) fill(none)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "rx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Rx"
-                ],
-                "type": "alias"
-              }
-            ],
-            [
-              {
-                "params": [
-                  "tx_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              },
-              {
-                "params": [
-                  "Tx"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "name",
-              "operator": "=~",
-              "value": "/^amazon-(.*)/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/^$Client$/"
-            },
-            {
-              "condition": "AND",
-              "key": "site_name",
-              "operator": "=~",
-              "value": "/^$Site$/"
-            },
-            {
-              "condition": "AND",
-              "key": "ap_name",
-              "operator": "=~",
-              "value": "/^$AP$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Switch Bandwidth / Echos & FireTVs",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "Bps",
-          "label": "bytes / sec",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_UNIFI_POLLER}",
       "description": "Wired TX / RX bytes per second (calculated in 30 second buckets). Rx is on the negative axis. Does not include amazon and camera devices. Unaffected by the AP setting.",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 39
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 2,
@@ -1810,13 +1253,13 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
                   "1s"
                 ],
-                "type": "non_negative_derivative"
+                "type": "derivative"
               },
               {
                 "params": [
@@ -1834,13 +1277,13 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
                   "1s"
                 ],
-                "type": "non_negative_derivative"
+                "type": "derivative"
               },
               {
                 "params": [
@@ -1854,13 +1297,13 @@
             {
               "key": "name",
               "operator": "!~",
-              "value": "/^(supermic-bmc|amazon-|camera-)/"
+              "value": "/^amazon-|camera|cam$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wired$/"
             },
             {
               "condition": "AND",
@@ -1888,6 +1331,204 @@
         "value_type": "individual"
       },
       "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": "bytes / sec",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_UNIFI_POLLER}",
+      "description": "Bandwidth usage per wireless devices as reported by the UAPs. Rx is on the negative axis. Does not include amazon devices.",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 16,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Rx$/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "clients",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(first(\"wired-rx_bytes\"), 1s) FROM \"clients\" WHERE (\"hostname\" = 'dns-rtn') AND $timeFilter GROUP BY time(10s) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Rx"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Tx"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "name",
+              "operator": "!~",
+              "value": "/^amazon-|camera|cam$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Wireless$/"
+            },
+            {
+              "condition": "AND",
+              "key": "ap_name",
+              "operator": "=~",
+              "value": "/^$AP$/"
+            },
+            {
+              "condition": "AND",
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "UAP Bandwidth / Wireless Devices",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1949,7 +1590,7 @@
         "h": 16,
         "w": 12,
         "x": 0,
-        "y": 48
+        "y": 63
       },
       "highlightOnMouseover": true,
       "id": 17,
@@ -2003,13 +1644,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
-            },
-            {
-              "condition": "AND",
-              "key": "is_wired",
-              "operator": "!=",
-              "value": "true"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -2126,7 +1761,7 @@
         "h": 16,
         "w": 12,
         "x": 12,
-        "y": 48
+        "y": 63
       },
       "highlightOnMouseover": true,
       "id": 18,
@@ -2183,13 +1818,61 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
               "value": "/^$AP$/"
+            },
+            {
+              "condition": "AND",
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name",
+          "groupBy": [
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "clients",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"ip\" FROM \"clients\" WHERE \"use_fixedip\" != 'true' AND \"name\" =~ /^$Client$/ AND (\"ap_name\" =~ /^$AP$/ OR \"sw_name\" =~ /$Switch$/) AND \"site_name\" =~ /^$Site$/ AND $timeFilter GROUP BY \"name\"",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Wired$/"
+            },
+            {
+              "condition": "AND",
+              "key": "sw_name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
             },
             {
               "condition": "AND",
@@ -2263,6 +1946,502 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
+      "description": "Amazon Devices TX / RX bytes per second (calculated in 30 second buckets). Rx is on the native axis. My home network has a ton of Amazon devices, so I broke them out separately. If you don't have Amazon devices, don't fret, just don't include this graph in the new dashboards you're building. :)",
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 79
+      },
+      "hiddenSeries": false,
+      "id": 23,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Rx$/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "e $tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "clients",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(first(\"wired-rx_bytes\"), 1s) FROM \"clients\" WHERE (\"hostname\" = 'dns-rtn') AND $timeFilter GROUP BY time(10s) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "wired-rx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Rx"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "wired-tx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Tx"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "name",
+              "operator": "=~",
+              "value": "/^amazon-/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Wired$/"
+            },
+            {
+              "condition": "AND",
+              "key": "sw_name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            },
+            {
+              "condition": "AND",
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            }
+          ]
+        },
+        {
+          "alias": "w $tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "clients",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(first(\"wired-rx_bytes\"), 1s) FROM \"clients\" WHERE (\"hostname\" = 'dns-rtn') AND $timeFilter GROUP BY time(10s) fill(none)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Rx"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Tx"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "name",
+              "operator": "=~",
+              "value": "/^amazon-/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Wireless$/"
+            },
+            {
+              "condition": "AND",
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "ap_name",
+              "operator": "=~",
+              "value": "/^$AP$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Switch Bandwidth / Echos & FireTVs",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": "bytes / sec",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_UNIFI_POLLER}",
+      "description": "Cameras TX / RX bytes per second. Rx is on the negative axis. Cameras probably don't do much Tx. If you don't have cameras, don't include this graph on your dashboards. This graph shows any device with the word \"camera\" in its name and has nothing to do with UniFi Protect.",
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 79
+      },
+      "hiddenSeries": false,
+      "id": 15,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Rx$/",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "clients",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(sum(\"wired-rx_bytes\"), 1s) AS \"Rx\", non_negative_derivative(sum(\"wired-tx_bytes\"), 1s) AS \"Tx\" FROM \"clients\" WHERE \"name\" =~ /camera|cam$/ AND \"site_name\" =~ /^$Site$/ AND (\"sw_name\" =~ /^$Switch$/ OR \"ap_name\" =~ /^$AP$/) AND $timeFilter GROUP BY time($__interval), \"name\"",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "wired-rx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Rx"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "wired-tx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "Tx"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "name",
+              "operator": "=~",
+              "value": "/camera|cam$/"
+            },
+            {
+              "condition": "AND",
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "sw_name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            },
+            {
+              "condition": "OR",
+              "key": "ap_name",
+              "operator": "=~",
+              "value": "/^$AP$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Switch Bandwidth / Cameras",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": "bytes / sec",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 0,
       "fill": 0,
       "fillGradient": 0,
@@ -2270,7 +2449,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 64
+        "y": 88
       },
       "hiddenSeries": false,
       "id": 7,
@@ -2336,7 +2515,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -2408,7 +2587,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 64
+        "y": 88
       },
       "hiddenSeries": false,
       "id": 10,
@@ -2422,7 +2601,7 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sort": "current",
+        "sort": "max",
         "sortDesc": true,
         "total": false,
         "values": true
@@ -2474,7 +2653,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -2545,7 +2724,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 73
+        "y": 97
       },
       "hiddenSeries": false,
       "id": 6,
@@ -2611,7 +2790,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -2683,7 +2862,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 73
+        "y": 97
       },
       "hiddenSeries": false,
       "id": 19,
@@ -2747,7 +2926,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -2818,7 +2997,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 81
+        "y": 105
       },
       "hiddenSeries": false,
       "id": 24,
@@ -2890,7 +3069,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -2963,7 +3142,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 81
+        "y": 105
       },
       "hiddenSeries": false,
       "id": 26,
@@ -3027,7 +3206,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -3096,10 +3275,10 @@
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 89
+        "y": 113
       },
       "hiddenSeries": false,
       "id": 27,
@@ -3113,7 +3292,7 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sort": "current",
+        "sort": "max",
         "sortDesc": true,
         "total": false,
         "values": true
@@ -3171,7 +3350,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -3237,23 +3416,24 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 0,
-      "description": "",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 12,
-        "y": 89
+        "y": 113
       },
       "hiddenSeries": false,
-      "id": 29,
+      "id": 31,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": true,
-        "min": false,
+        "min": true,
         "rightSide": true,
         "show": true,
         "sort": "current",
@@ -3298,15 +3478,9 @@
             [
               {
                 "params": [
-                  "ccq"
+                  "tx_power"
                 ],
                 "type": "field"
-              },
-              {
-                "params": [
-                  " / 10"
-                ],
-                "type": "math"
               }
             ]
           ],
@@ -3314,7 +3488,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -3335,7 +3509,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Client Connection Quality",
+      "title": "Client Transmit Power",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -3351,9 +3525,8 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
-          "format": "percent",
-          "label": null,
+          "format": "dBm",
+          "label": "Signal Power",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -3383,10 +3556,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 12,
         "x": 0,
-        "y": 97
+        "y": 122
       },
       "hiddenSeries": false,
       "id": 25,
@@ -3452,7 +3625,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -3523,10 +3696,10 @@
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 12,
         "x": 12,
-        "y": 97
+        "y": 122
       },
       "hiddenSeries": false,
       "id": 30,
@@ -3590,7 +3763,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -3660,10 +3833,10 @@
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 9,
         "w": 12,
         "x": 0,
-        "y": 105
+        "y": 129
       },
       "hiddenSeries": false,
       "id": 28,
@@ -3729,7 +3902,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -3794,24 +3967,24 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
+      "decimals": 0,
+      "description": "",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 105
+        "y": 129
       },
       "hiddenSeries": false,
-      "id": 31,
+      "id": 29,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": true,
-        "hideEmpty": false,
-        "hideZero": false,
         "max": true,
-        "min": true,
+        "min": false,
         "rightSide": true,
         "show": true,
         "sort": "current",
@@ -3856,9 +4029,15 @@
             [
               {
                 "params": [
-                  "tx_power"
+                  "ccq"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [
+                  " / 10"
+                ],
+                "type": "math"
               }
             ]
           ],
@@ -3866,7 +4045,7 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Client$/"
+              "value": "/^$Wireless$/"
             },
             {
               "condition": "AND",
@@ -3887,7 +4066,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Client Transmit Power",
+      "title": "Client Connection Quality",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -3903,8 +4082,9 @@
       },
       "yaxes": [
         {
-          "format": "dBm",
-          "label": "Signal Power",
+          "decimals": 0,
+          "format": "percent",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -3926,7 +4106,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -4023,17 +4203,39 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND (ap_name =~ /^$AP$/ OR sw_name =~ /^$Switch$/) ",
+        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND ap_name =~ /^$AP$/ AND is_wired=false",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
-        "name": "Client",
+        "name": "Wireless",
         "options": [],
-        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND (ap_name =~ /^$AP$/ OR sw_name =~ /^$Switch$/) ",
+        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND ap_name =~ /^$AP$/ AND is_wired=false",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {},
+        "datasource": "${DS_UNIFI_POLLER}",
+        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND sw_name =~ /^$Switch$/ AND is_wired=true",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "Wired",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND sw_name =~ /^$Switch$/ AND is_wired=true",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4076,5 +4278,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Client Insights - InfluxDB",
   "uid": "YVR23BZiz",
-  "version": 5
+  "version": 12
 }

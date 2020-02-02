@@ -11,16 +11,10 @@
   ],
   "__requires": [
     {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -72,7 +66,7 @@
   "gnetId": 10416,
   "graphTooltip": 2,
   "id": null,
-  "iteration": 1577607791213,
+  "iteration": 1580615240633,
   "links": [
     {
       "asDropdown": true,
@@ -84,6 +78,27 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
@@ -113,6 +128,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -128,6 +144,7 @@
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -148,6 +165,7 @@
         },
         {
           "alias": "Model",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -163,6 +181,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -178,6 +197,7 @@
         },
         {
           "alias": "Unifi Serial #",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -193,6 +213,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -208,6 +229,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": "value",
           "colors": [
             "#CA95E5",
@@ -225,6 +247,7 @@
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -240,6 +263,7 @@
         },
         {
           "alias": "Version",
+          "align": "auto",
           "colorMode": "value",
           "colors": [
             "rgba(50, 172, 45, 0.97)",
@@ -258,6 +282,7 @@
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -268,6 +293,40 @@
           "decimals": 2,
           "mappingType": 1,
           "pattern": "source",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 1,
+          "mappingType": 1,
+          "pattern": "Data",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Type",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "type",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -319,6 +378,12 @@
                 "source"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "type"
+              ],
+              "type": "tag"
             }
           ],
           "measurement": "usg",
@@ -341,6 +406,42 @@
               {
                 "params": [
                   "Uptime"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "ip"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Address"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Data"
                 ],
                 "type": "alias"
               }
@@ -395,12 +496,12 @@
           "colorBackground": true,
           "colorValue": false,
           "colors": [
-            "#511749",
+            "rgb(93, 30, 124)",
             "#3f2b5b",
-            "#511749"
+            "rgb(94, 29, 127)"
           ],
           "datasource": "${DS_UNIFI_POLLER}",
-          "decimals": 3,
+          "decimals": 2,
           "format": "dtdurations",
           "gauge": {
             "maxValue": 100,
@@ -501,7 +602,7 @@
           "thresholds": "",
           "title": "System Uptime",
           "type": "singlestat",
-          "valueFontSize": "30%",
+          "valueFontSize": "70%",
           "valueMaps": [
             {
               "op": "=",
@@ -513,60 +614,60 @@
         },
         {
           "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "",
+          "format": "Mbits",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
           "gridPos": {
-            "h": 8,
-            "w": 4,
+            "h": 4,
+            "w": 8,
             "x": 8,
             "y": 6
           },
           "hideTimeOverride": false,
           "id": 44,
+          "interval": null,
           "links": [],
-          "options": {
-            "fieldOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "defaults": {
-                "mappings": [
-                  {
-                    "id": 0,
-                    "op": "=",
-                    "text": "N/A",
-                    "type": 1,
-                    "value": "null"
-                  }
-                ],
-                "max": 100,
-                "min": 0,
-                "nullValueMode": "connected",
-                "thresholds": [
-                  {
-                    "color": "#d44a3a",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 10
-                  },
-                  {
-                    "color": "#299c46",
-                    "value": 20
-                  }
-                ],
-                "title": "Upload Test",
-                "unit": "Mbits"
-              },
-              "override": {},
-              "values": false
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
             },
-            "orientation": "horizontal",
-            "showThresholdLabels": true,
-            "showThresholdMarkers": true
-          },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "options": {},
           "pluginVersion": "6.5.1",
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
           "scopedVars": {
             "host": {
               "selected": false,
@@ -574,6 +675,15 @@
               "value": "gateway"
             }
           },
+          "sparkline": {
+            "fillColor": "#8F3BB8",
+            "full": false,
+            "lineColor": "#DEB6F2",
+            "show": true,
+            "ymax": null,
+            "ymin": null
+          },
+          "tableColumn": "",
           "targets": [
             {
               "groupBy": [
@@ -614,118 +724,20 @@
               ]
             }
           ],
+          "thresholds": "",
           "timeFrom": null,
           "title": "",
           "transparent": true,
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_UNIFI_POLLER}",
-          "description": "",
-          "gridPos": {
-            "h": 8,
-            "w": 4,
-            "x": 12,
-            "y": 6
-          },
-          "hideTimeOverride": false,
-          "id": 41,
-          "links": [],
-          "options": {
-            "fieldOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "defaults": {
-                "mappings": [
-                  {
-                    "id": 0,
-                    "op": "=",
-                    "text": "N/A",
-                    "type": 1,
-                    "value": "0"
-                  }
-                ],
-                "max": 1000,
-                "min": 0,
-                "nullValueMode": "connected",
-                "thresholds": [
-                  {
-                    "color": "#d44a3a",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 200
-                  },
-                  {
-                    "color": "#299c46",
-                    "value": 400
-                  }
-                ],
-                "title": "Download Test",
-                "unit": "Mbits"
-              },
-              "override": {},
-              "values": false
-            },
-            "orientation": "horizontal",
-            "showThresholdLabels": true,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "6.5.1",
-          "scopedVars": {
-            "host": {
-              "selected": false,
-              "text": "gateway",
-              "value": "gateway"
-            }
-          },
-          "targets": [
+          "type": "singlestat",
+          "valueFontSize": "170%",
+          "valueMaps": [
             {
-              "groupBy": [
-                {
-                  "params": [
-                    "name"
-                  ],
-                  "type": "tag"
-                }
-              ],
-              "measurement": "usg",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "speedtest-status_xput_download"
-                    ],
-                    "type": "field"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "name",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                },
-                {
-                  "condition": "AND",
-                  "key": "site_name",
-                  "operator": "=~",
-                  "value": "/^$Site$/"
-                }
-              ]
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
             }
           ],
-          "timeFrom": null,
-          "title": "",
-          "transparent": true,
-          "type": "gauge"
+          "valueName": "avg"
         },
         {
           "cacheTimeout": null,
@@ -746,8 +758,8 @@
             "thresholdMarkers": true
           },
           "gridPos": {
-            "h": 8,
-            "w": 4,
+            "h": 4,
+            "w": 8,
             "x": 16,
             "y": 6
           },
@@ -842,132 +854,6 @@
           "timeFrom": null,
           "timeShift": null,
           "title": "CPU",
-          "transparent": true,
-          "type": "singlestat",
-          "valueFontSize": "200%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": true,
-          "colors": [
-            "#299c46",
-            "rgba(237, 129, 40, 0.89)",
-            "#d44a3a"
-          ],
-          "datasource": "${DS_UNIFI_POLLER}",
-          "decimals": 1,
-          "description": "",
-          "format": "percent",
-          "gauge": {
-            "minValue": null,
-            "show": false,
-            "thresholdLabels": true,
-            "thresholdMarkers": true
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 4,
-            "x": 20,
-            "y": 6
-          },
-          "hideTimeOverride": false,
-          "id": 30,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "options": {},
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "scopedVars": {
-            "host": {
-              "selected": false,
-              "text": "gateway",
-              "value": "gateway"
-            }
-          },
-          "sparkline": {
-            "fillColor": "#8F3BB8",
-            "full": true,
-            "lineColor": "#DEB6F2",
-            "show": true,
-            "ymax": 100,
-            "ymin": 1
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "name"
-                  ],
-                  "type": "tag"
-                }
-              ],
-              "measurement": "usg",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "mem"
-                    ],
-                    "type": "field"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "name",
-                  "operator": "=~",
-                  "value": "/^$host$/"
-                },
-                {
-                  "condition": "AND",
-                  "key": "site_name",
-                  "operator": "=~",
-                  "value": "/^$Site$/"
-                }
-              ]
-            }
-          ],
-          "thresholds": "50,80",
-          "timeFrom": null,
-          "title": "Memory",
           "transparent": true,
           "type": "singlestat",
           "valueFontSize": "200%",
@@ -1487,7 +1373,7 @@
             "#d44a3a"
           ],
           "datasource": "${DS_UNIFI_POLLER}",
-          "decimals": 1,
+          "decimals": 0,
           "description": "",
           "format": "ms",
           "gauge": {
@@ -1594,7 +1480,260 @@
           "title": "Uplink Latency",
           "transparent": true,
           "type": "singlestat",
-          "valueFontSize": "120%",
+          "valueFontSize": "150%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_UNIFI_POLLER}",
+          "description": "",
+          "format": "Mbits",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": false,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 8,
+            "x": 8,
+            "y": 10
+          },
+          "hideTimeOverride": false,
+          "id": 41,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "options": {},
+          "pluginVersion": "6.5.1",
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "host": {
+              "selected": false,
+              "text": "gateway",
+              "value": "gateway"
+            }
+          },
+          "sparkline": {
+            "fillColor": "#8F3BB8",
+            "full": false,
+            "lineColor": "#DEB6F2",
+            "show": true,
+            "ymax": null,
+            "ymin": null
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "groupBy": [
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "usg",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "speedtest-status_xput_download"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "name",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "site_name",
+                  "operator": "=~",
+                  "value": "/^$Site$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "",
+          "timeFrom": null,
+          "title": "",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "170%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_UNIFI_POLLER}",
+          "decimals": 1,
+          "description": "",
+          "format": "percent",
+          "gauge": {
+            "minValue": null,
+            "show": false,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 8,
+            "x": 16,
+            "y": 10
+          },
+          "hideTimeOverride": false,
+          "id": 30,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "options": {},
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "scopedVars": {
+            "host": {
+              "selected": false,
+              "text": "gateway",
+              "value": "gateway"
+            }
+          },
+          "sparkline": {
+            "fillColor": "#8F3BB8",
+            "full": true,
+            "lineColor": "#DEB6F2",
+            "show": true,
+            "ymax": 100,
+            "ymin": 1
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "groupBy": [
+                {
+                  "params": [
+                    "name"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "measurement": "usg",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "mem"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "name",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "site_name",
+                  "operator": "=~",
+                  "value": "/^$Site$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": "50,80",
+          "timeFrom": null,
+          "title": "Memory",
+          "transparent": true,
+          "type": "singlestat",
+          "valueFontSize": "200%",
           "valueMaps": [
             {
               "op": "=",
@@ -1882,12 +2021,14 @@
           "styles": [
             {
               "alias": "Time",
+              "align": "auto",
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "pattern": "Time",
               "type": "hidden"
             },
             {
               "alias": "MAC",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1903,6 +2044,7 @@
             },
             {
               "alias": "On",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1918,6 +2060,7 @@
             },
             {
               "alias": "Guest",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1933,6 +2076,7 @@
             },
             {
               "alias": "Network Name",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1947,7 +2091,8 @@
               "unit": "short"
             },
             {
-              "alias": "IP",
+              "alias": "Address",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1963,6 +2108,7 @@
             },
             {
               "alias": "",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1978,6 +2124,7 @@
             },
             {
               "alias": "Purpose",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1993,6 +2140,7 @@
             },
             {
               "alias": "",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -2009,6 +2157,7 @@
             },
             {
               "alias": "Up",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -2025,6 +2174,7 @@
             },
             {
               "alias": "Domain",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -2131,7 +2281,7 @@
                   },
                   {
                     "params": [
-                      "Rx"
+                      "Bytes Rx"
                     ],
                     "type": "alias"
                   }
@@ -2149,7 +2299,7 @@
                   },
                   {
                     "params": [
-                      "Tx"
+                      "Bytes Tx"
                     ],
                     "type": "alias"
                   }
@@ -2222,7 +2372,7 @@
                   },
                   {
                     "params": [
-                      "Tx"
+                      "Bytes Tx"
                     ],
                     "type": "alias"
                   }
@@ -2240,7 +2390,7 @@
                   },
                   {
                     "params": [
-                      "Rx"
+                      "Bytes Rx"
                     ],
                     "type": "alias"
                   }
@@ -2285,7 +2435,11 @@
           "type": "table"
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "gateway Avg Load 1": "dark-green",
+            "gateway Avg Load 15": "dark-purple",
+            "gateway Avg Load 5": "dark-blue"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -2463,7 +2617,10 @@
           }
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "wan Rx": "dark-green",
+            "wan Tx": "dark-purple"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -2538,6 +2695,7 @@
                   "type": "tag"
                 }
               ],
+              "hide": false,
               "measurement": "usg_wan_ports",
               "orderByTime": "ASC",
               "policy": "default",
@@ -2553,13 +2711,13 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
                       "1s"
                     ],
-                    "type": "derivative"
+                    "type": "non_negative_derivative"
                   },
                   {
                     "params": [
@@ -2577,13 +2735,88 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
                       "1s"
                     ],
-                    "type": "derivative"
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "Tx"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "device_name",
+                  "operator": "=~",
+                  "value": "/^$host$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "site_name",
+                  "operator": "=~",
+                  "value": "/^$Site$/"
+                }
+              ]
+            },
+            {
+              "alias": "$tag_purpose n $col",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "purpose"
+                  ],
+                  "type": "tag"
+                }
+              ],
+              "hide": true,
+              "measurement": "usg_wan_ports",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "rx_bytes-r"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "Rx"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "tx_bytes-r"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -2652,7 +2885,10 @@
           }
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "gateway Rx": "dark-green",
+            "gateway Tx": "dark-purple"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -2742,7 +2978,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -2766,7 +3002,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -2841,7 +3077,10 @@
           }
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "wan Rx": "dark-green",
+            "wan Tx": "dark-purple"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -2940,7 +3179,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -2964,7 +3203,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3040,7 +3279,10 @@
           }
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "gateway Rx": "dark-green",
+            "gateway Tx": "dark-purple"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -3139,7 +3381,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3163,7 +3405,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3239,7 +3481,12 @@
           }
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "wan Broadcast Rx": "dark-blue",
+            "wan Broadcast Tx": "dark-yellow",
+            "wan Multicast Rx": "dark-green",
+            "wan Multicast Tx": "dark-purple"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -3291,7 +3538,7 @@
           },
           "seriesOverrides": [
             {
-              "alias": "/In$/",
+              "alias": "/Rx$/",
               "transform": "negative-Y"
             }
           ],
@@ -3337,7 +3584,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3347,7 +3594,7 @@
                   },
                   {
                     "params": [
-                      "Multicast In"
+                      "Multicast Rx"
                     ],
                     "type": "alias"
                   }
@@ -3361,7 +3608,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3371,7 +3618,7 @@
                   },
                   {
                     "params": [
-                      "Multicast Out"
+                      "Multicast Tx"
                     ],
                     "type": "alias"
                   }
@@ -3385,7 +3632,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3395,7 +3642,7 @@
                   },
                   {
                     "params": [
-                      "Broadcast In"
+                      "Broadcast Rx"
                     ],
                     "type": "alias"
                   }
@@ -3409,7 +3656,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3419,7 +3666,7 @@
                   },
                   {
                     "params": [
-                      "Broadcast Out"
+                      "Broadcast Tx"
                     ],
                     "type": "alias"
                   }
@@ -3484,7 +3731,12 @@
           }
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "wan Drop Rx": "dark-green",
+            "wan Drop Tx": "dark-purple",
+            "wan Error Rx": "dark-blue",
+            "wan Error Tx": "dark-yellow"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -3583,7 +3835,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3607,7 +3859,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3631,7 +3883,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3655,7 +3907,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3730,7 +3982,9 @@
           }
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            " Drop Rx": "dark-green"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -3783,7 +4037,7 @@
           },
           "seriesOverrides": [
             {
-              "alias": "/:Rx$/",
+              "alias": "/Rx$/",
               "transform": "negative-Y"
             }
           ],
@@ -3829,7 +4083,7 @@
                   },
                   {
                     "params": [],
-                    "type": "last"
+                    "type": "sum"
                   },
                   {
                     "params": [
@@ -3895,10 +4149,24 @@
       "repeat": "host",
       "title": "Gateway: $host",
       "type": "row"
+    },
+    {
+      "collapsed": false,
+      "datasource": "${DS_UNIFI_POLLER}",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 57,
+      "panels": [],
+      "title": "Purposely Empty Row",
+      "type": "row"
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -4005,5 +4273,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USG Insights - InfluxDB",
   "uid": "WX6RJOMik",
-  "version": 3
+  "version": 12
 }

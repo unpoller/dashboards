@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -59,7 +59,7 @@
   "gnetId": 11315,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1577608034966,
+  "iteration": 1580615170679,
   "links": [
     {
       "asDropdown": true,
@@ -71,13 +71,34 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
     {
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
-      "description": "",
+      "description": "This table represents current (latest) data.\nBytes columns are lifetime totals.",
       "fontSize": "80%",
       "gridPos": {
         "h": 13,
@@ -92,21 +113,13 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": null,
-        "desc": false
+        "col": 9,
+        "desc": true
       },
       "styles": [
         {
-          "alias": "vvvvv",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "link": true,
-          "linkTargetBlank": true,
-          "linkUrl": "http://sleepers.pro",
-          "pattern": "__name__",
-          "type": "hidden"
-        },
-        {
-          "alias": "Rate",
+          "alias": "Bytes Rx",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -116,13 +129,14 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": null,
           "mappingType": 1,
-          "pattern": "Value",
+          "pattern": "Value #A",
           "thresholds": [],
           "type": "number",
-          "unit": "Bps"
+          "unit": "decbytes"
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -138,23 +152,8 @@
           "unit": "short"
         },
         {
-          "alias": "AP",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "ap_name",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
           "alias": "Chan",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -171,6 +170,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -187,6 +187,7 @@
         },
         {
           "alias": "Radio",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -203,6 +204,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -218,7 +220,8 @@
           "unit": "short"
         },
         {
-          "alias": "Radio",
+          "alias": "AP / Radio / Proto",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -235,6 +238,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -251,6 +255,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -267,6 +272,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -283,6 +289,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -299,6 +306,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -315,6 +323,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -331,6 +340,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -347,6 +357,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -363,6 +374,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -379,6 +391,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -395,6 +408,7 @@
         },
         {
           "alias": "Network",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -411,6 +425,7 @@
         },
         {
           "alias": "OUI",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -426,7 +441,8 @@
           "unit": "short"
         },
         {
-          "alias": "IP",
+          "alias": "Address",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -443,6 +459,7 @@
         },
         {
           "alias": "ESSID",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -459,6 +476,7 @@
         },
         {
           "alias": "Switch",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -475,6 +493,7 @@
         },
         {
           "alias": "Sw Port",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -491,6 +510,7 @@
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -507,6 +527,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -523,6 +544,7 @@
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -534,18 +556,68 @@
           "mappingType": 1,
           "pattern": "source",
           "thresholds": [],
-          "type": "string",
+          "type": "hidden",
           "unit": "short"
+        },
+        {
+          "alias": "Bytes Tx",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Value #B",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Uptime",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #C",
+          "thresholds": [],
+          "type": "number",
+          "unit": "s"
         }
       ],
       "targets": [
         {
-          "expr": "unifipoller_client_transfer_rate_bytes{site_name=~\"$Site\", name=~\"$Client\", ap_name=~\"$AP\"}",
+          "expr": "sum by (channel,essid,ip,mac,name,network,oui,radio_desc,site_name,source) (\n unifipoller_client_receive_bytes_total{wired!=\"true\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "format": "table",
           "instant": true,
-          "interval": "$__interval",
+          "interval": "",
           "legendFormat": "",
           "refId": "A"
+        },
+        {
+          "expr": "sum by (channel,essid,ip,mac,name,network,oui,radio_desc,site_name,source) (\n unifipoller_client_transmit_bytes_total{wired!=\"true\",site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "expr": "sum by (channel,essid,ip,mac,name,network,oui,radio_desc,site_name,source) (\n unifipoller_client_uptime_seconds{wired!=\"true\",site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
         }
       ],
       "timeFrom": null,
@@ -556,7 +628,7 @@
     {
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
-      "description": "",
+      "description": "This table represents current (latest) data.\nBytes columns are lifetime totals.",
       "fontSize": "80%",
       "gridPos": {
         "h": 12,
@@ -572,12 +644,13 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": 14,
+        "col": 9,
         "desc": true
       },
       "styles": [
         {
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "link": false,
           "linkUrl": "http://$__cell",
@@ -586,6 +659,7 @@
         },
         {
           "alias": "Sw Port",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -600,6 +674,7 @@
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -616,6 +691,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -633,6 +709,7 @@
         },
         {
           "alias": "Uptime",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -649,6 +726,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -665,6 +743,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -681,6 +760,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -697,6 +777,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -712,7 +793,8 @@
           "unit": "short"
         },
         {
-          "alias": "IP",
+          "alias": "Address",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -729,6 +811,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -745,6 +828,7 @@
         },
         {
           "alias": "Network",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -761,6 +845,7 @@
         },
         {
           "alias": "OUI",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -777,6 +862,7 @@
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -793,6 +879,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -809,6 +896,7 @@
         },
         {
           "alias": "Switch",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -825,6 +913,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -841,6 +930,7 @@
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -852,17 +942,84 @@
           "mappingType": 1,
           "pattern": "source",
           "thresholds": [],
-          "type": "string",
+          "type": "hidden",
           "unit": "short"
+        },
+        {
+          "alias": "Uptime",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #A",
+          "thresholds": [],
+          "type": "number",
+          "unit": "s"
+        },
+        {
+          "alias": "Bytes Rx",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 1,
+          "mappingType": 1,
+          "pattern": "Value #B",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Bytes Tx",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 1,
+          "mappingType": 1,
+          "pattern": "Value #C",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
         }
       ],
       "targets": [
         {
-          "expr": "unifipoller_client_uptime_seconds{wired=\"true\", site_name=~\"$Site\", sw_name=~\"$Switch\", name=~\"$Client\"}",
+          "expr": "sum by (ap_name,ip,mac,name,network,oui,site_name,source,sw_port) (\n     unifipoller_client_uptime_seconds{wired=\"true\", site_name=~\"$Site\", name=~\"$Wired\", sw_name=~\"$Switch\"})",
           "format": "table",
           "instant": true,
-          "interval": "$__interval",
+          "interval": "",
           "refId": "A"
+        },
+        {
+          "expr": "sum by (ap_name,ip,mac,name,network,oui,site_name,source,sw_port) (\n     unifipoller_client_receive_bytes_total{wired=\"true\", site_name=~\"$Site\", name=~\"$Wired\", sw_name=~\"$Switch\"})",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "B"
+        },
+        {
+          "expr": "sum by (ap_name,ip,mac,name,network,oui,site_name,source,sw_port) (\n     unifipoller_client_transmit_bytes_total{wired=\"true\", site_name=~\"$Site\", name=~\"$Wired\", sw_name=~\"$Switch\"})",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "C"
         }
       ],
       "timeFrom": null,
@@ -907,13 +1064,13 @@
       "strokeWidth": "2",
       "targets": [
         {
-          "expr": "count(unifipoller_client_uptime_seconds{wired=\"true\"})",
+          "expr": "count by (hostname) (unifipoller_client_uptime_seconds{site_name=~\"$Site\", name=~\"$Wired\", sw_name=~\"$Switch\"})",
           "instant": true,
           "legendFormat": "Wired",
           "refId": "A"
         },
         {
-          "expr": "count by (channel) (unifipoller_client_roam_count_total)\n",
+          "expr": "count by (channel) (unifipoller_client_roam_count_total{site_name=~\"$Site\", name=~\"$Wireless\", ap_name=~\"$AP\"})",
           "instant": true,
           "interval": "$Smooth",
           "legendFormat": "Channel {{channel}}",
@@ -963,7 +1120,7 @@
       "strokeWidth": "3",
       "targets": [
         {
-          "expr": "count by (radio_proto) (unifipoller_client_roam_count_total)",
+          "expr": "count by (radio_proto) (unifipoller_client_roam_count_total{site_name=~\"$Site\", name=~\"$Wireless\", ap_name=~\"$AP\"})",
           "instant": true,
           "interval": "$Smooth",
           "legendFormat": "{{radio_proto}}",
@@ -986,7 +1143,7 @@
       },
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
-      "description": "This shows an OUI breakdown from Unifi's perspective.",
+      "description": "This shows an OUI breakdown from Unifi's perspective. e = wired, w = wireless",
       "fontSize": "70%",
       "format": "short",
       "gridPos": {
@@ -1003,7 +1160,8 @@
         "percentage": true,
         "percentageDecimals": 0,
         "show": true,
-        "sortDesc": false,
+        "sort": "current",
+        "sortDesc": true,
         "values": true
       },
       "legendType": "Right side",
@@ -1015,11 +1173,20 @@
       "strokeWidth": 1,
       "targets": [
         {
-          "expr": "count by (oui) (unifipoller_client_uptime_seconds)",
+          "expr": "count by (oui) (unifipoller_client_uptime_seconds{site_name=~\"$Site\", name=~\"$Wireless\", ap_name=~\"$AP\"})",
+          "hide": false,
           "instant": true,
           "interval": "$Smooth",
-          "legendFormat": "e {{oui}}",
+          "legendFormat": " w {{oui}}",
           "refId": "A"
+        },
+        {
+          "expr": "count by (oui) (+unifipoller_client_uptime_seconds{site_name=~\"$Site\", name=~\"$Wired\", sw_name=~\"$Switch\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "$Smooth",
+          "legendFormat": "e  {{oui}}",
+          "refId": "B"
         }
       ],
       "timeFrom": null,
@@ -1082,14 +1249,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_transmit_bytes_total{wired=\"false\", name!~\"^amazon.*\", name=~\"$Client\", site_name=~\"$Site\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
           "instant": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} Tx",
           "refId": "B"
         },
         {
-          "expr": "rate(unifipoller_client_receive_bytes_total{wired=\"false\", name!~\"^amazon.*\", name=~\"$Client\", site_name=~\"$Site\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
           "instant": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} Rx",
@@ -1190,13 +1357,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_transmit_bytes_total{wired=\"true\", name!~\"^(supermic-bmc|amazon-|camera-).*\", name=~\"$Client\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Tx",
           "refId": "A"
         },
         {
-          "expr": "rate(unifipoller_client_receive_bytes_total{wired=\"true\", name!~\"^(supermic-bmc|amazon-|camera-).*\", name=~\"$Client\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "hide": false,
           "interval": "$Smooth",
           "intervalFactor": 1,
           "legendFormat": "{{name}} Rx",
@@ -1251,7 +1419,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "description": "Amazon Devices TX / RX bytes per second (calculated in 30 second buckets). Rx is on the native axis. My home network has a ton of Amazon devices, so I broke them out separately. If you don't have Amazon devices, don't fret, just don't include this graph in the new dashboards you're building. :)",
+      "description": "Amazon Devices TX / RX bytes per second. Rx is on the negative axis. My home network has a ton of Amazon devices, so I broke them out separately. If you don't have Amazon devices, or they have different names, you can edit the query to use a different name. e = wired, w = wireless",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1297,16 +1465,32 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Client\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}} Tx",
+          "legendFormat": "w {{name}} Tx",
           "refId": "A"
         },
         {
-          "expr": "rate(unifipoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Client\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}} Rx",
+          "legendFormat": "w {{name}} Rx",
           "refId": "B"
+        },
+        {
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "hide": false,
+          "interval": "$Smooth",
+          "legendFormat": "e {{name}} Tx",
+          "refId": "C"
+        },
+        {
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "hide": false,
+          "interval": "$Smooth",
+          "legendFormat": "e {{name}} Rx",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -1356,7 +1540,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "description": "Cameras TX / RX bytes per second. Rx is on the negative axis. Cameras probably don't do much Tx. If you don't have cameras, don't include this graph on your dashboards. This graph shows any device with the word \"camera\" in its name and has nothing to do with UniFi Protect.",
+      "description": "Cameras TX / RX bytes per second. Rx is on the negative axis. This graph shows any device with the word \"camera\" in its name and has nothing to do with UniFi Protect/video products. e = wired, w = wireless",
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1376,7 +1560,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sort": "current",
+        "sort": "avg",
         "sortDesc": true,
         "total": false,
         "values": true
@@ -1403,16 +1587,33 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_transmit_bytes_total{name=~\"^camera.*\", sw_name=~\"$Switch\", site_name=~\"$Site\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "hide": false,
+          "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}} Tx",
+          "legendFormat": "w {{name}} Tx",
           "refId": "A"
         },
         {
-          "expr": "rate(unifipoller_client_receive_bytes_total{name=~\"^camera.*\", sw_name=~\"$Switch\", site_name=~\"$Site\"}[$__interval])",
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}} Rx",
+          "legendFormat": "w {{name}} Rx",
           "refId": "B"
+        },
+        {
+          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "hide": false,
+          "interval": "$Smooth",
+          "legendFormat": "e {{name}} Tx",
+          "refId": "C"
+        },
+        {
+          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "hide": false,
+          "interval": "$Smooth",
+          "legendFormat": "e {{name}} Rx",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -1491,7 +1692,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -1505,7 +1706,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_rssi_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_rssi_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "1m",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -1581,7 +1782,7 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sort": "current",
+        "sort": "max",
         "sortDesc": true,
         "total": false,
         "values": true
@@ -1589,7 +1790,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -1603,8 +1804,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_radio_signal_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_radio_signal_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "instant": false,
           "interval": "$Smooth",
+          "intervalFactor": 1,
           "legendFormat": "{{name}}",
           "refId": "A"
         }
@@ -1687,7 +1890,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -1701,7 +1904,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_noise_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_noise_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "instant": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -1774,7 +1978,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sort": "current",
+        "sort": "max",
         "sortDesc": true,
         "total": false,
         "values": true
@@ -1796,7 +2000,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_radio_transmit_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_radio_transmit_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -1893,7 +2097,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_wifi_attempts_transmit_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+          "expr": "rate(unifipoller_client_wifi_attempts_transmit_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval])",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -1991,7 +2195,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_radio_receive_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_radio_receive_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2067,7 +2271,7 @@
         "min": true,
         "rightSide": true,
         "show": true,
-        "sort": "current",
+        "sort": "max",
         "sortDesc": true,
         "total": false,
         "values": true
@@ -2089,7 +2293,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_transmit_retries_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+          "expr": "rate(unifipoller_client_transmit_retries_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval])",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2143,7 +2347,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "decimals": 3,
+      "decimals": 0,
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2153,19 +2357,19 @@
         "y": 102
       },
       "hiddenSeries": false,
-      "id": 27,
+      "id": 29,
       "legend": {
         "alignAsTable": true,
         "avg": false,
         "current": true,
         "hideEmpty": true,
         "hideZero": false,
-        "max": false,
+        "max": true,
         "min": true,
         "rightSide": true,
         "show": true,
-        "sort": "min",
-        "sortDesc": false,
+        "sort": "max",
+        "sortDesc": true,
         "total": false,
         "values": true
       },
@@ -2186,7 +2390,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_ccq_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_radio_transmit_power_dbm{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2196,7 +2400,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Client Connection Quality %",
+      "title": "Client Transmit Power",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -2212,12 +2416,12 @@
       },
       "yaxes": [
         {
-          "decimals": 1,
-          "format": "percentunit",
-          "label": "CCQ",
+          "decimals": 0,
+          "format": "dBm",
+          "label": "Transmit Power dBm",
           "logBase": 1,
-          "max": "1",
-          "min": "0",
+          "max": null,
+          "min": null,
           "show": true
         },
         {
@@ -2283,7 +2487,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_anomalies{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_anomalies{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2381,7 +2585,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_satisfaction_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_satisfaction_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2479,7 +2683,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_roam_count_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_roam_count_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2543,18 +2747,18 @@
         "y": 118
       },
       "hiddenSeries": false,
-      "id": 29,
+      "id": 27,
       "legend": {
         "alignAsTable": true,
         "avg": false,
         "current": true,
         "hideEmpty": true,
         "hideZero": false,
-        "max": true,
+        "max": false,
         "min": true,
         "rightSide": true,
         "show": true,
-        "sort": "max",
+        "sort": "current",
         "sortDesc": true,
         "total": false,
         "values": true
@@ -2576,7 +2780,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_client_radio_transmit_power_dbm{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Client\"}",
+          "expr": "sum by (name) (unifipoller_client_ccq_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -2586,7 +2790,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Client Transmit Power",
+      "title": "Client Connection Quality %",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -2602,12 +2806,12 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
-          "format": "dBm",
-          "label": "Transmit Power dBm",
+          "decimals": 1,
+          "format": "percentunit",
+          "label": "CCQ",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         },
         {
@@ -2626,7 +2830,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -2657,7 +2861,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_client_uptime_seconds{source=~\"$Controller\"},site_name)",
@@ -2679,7 +2883,7 @@
         "useTags": false
       },
       {
-        "allValue": ".*",
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\"},ap_name)",
@@ -2701,7 +2905,7 @@
         "useTags": false
       },
       {
-        "allValue": ".*",
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\"},sw_name)",
@@ -2724,49 +2928,38 @@
       },
       {
         "allValue": ".*",
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
-        },
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": false,
-        "name": "Wired",
-        "options": [
-          {
-            "selected": true,
-            "text": "All",
-            "value": "$__all"
-          },
-          {
-            "selected": false,
-            "text": "true",
-            "value": "true"
-          },
-          {
-            "selected": false,
-            "text": "false",
-            "value": "false"
-          }
-        ],
-        "query": "true, false",
-        "skipUrlSync": false,
-        "type": "custom"
-      },
-      {
-        "allValue": null,
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\", sw_name=~\"$Switch\", ap_name=~\"$AP\", wired=~\"$Wired\"},name)",
+        "definition": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\", ap_name=~\"$AP\", wired=\"false\"},name)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
-        "name": "Client",
+        "name": "Wireless",
         "options": [],
-        "query": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\", sw_name=~\"$Switch\", ap_name=~\"$AP\", wired=~\"$Wired\"},name)",
+        "query": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\", ap_name=~\"$AP\", wired=\"false\"},name)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\", sw_name=~\"$Switch\", wired=\"true\"},name)",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "Wired",
+        "options": [],
+        "query": "label_values(unifipoller_client_uptime_seconds{site_name=~\"$Site\", sw_name=~\"$Switch\", wired=\"true\"},name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2796,12 +2989,12 @@
             "value": "30s"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1m",
             "value": "1m"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "2m",
             "value": "2m"
           },
@@ -2838,7 +3031,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {
@@ -2867,5 +3060,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Client Insights - Prometheus",
   "uid": "jMfvAjxWz",
-  "version": 7
+  "version": 25
 }

@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -77,7 +77,7 @@
   "gnetId": 10415,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1577607790762,
+  "iteration": 1580615240043,
   "links": [
     {
       "asDropdown": true,
@@ -89,6 +89,27 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
@@ -97,7 +118,7 @@
       "datasource": "${DS_UNIFI_POLLER}",
       "gridPos": {
         "h": 3,
-        "w": 3,
+        "w": 4,
         "x": 0,
         "y": 0
       },
@@ -108,90 +129,6 @@
       "title": "",
       "transparent": true,
       "type": "text"
-    },
-    {
-      "aliasColors": {},
-      "breakPoint": "25%",
-      "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
-      "datasource": "${DS_UNIFI_POLLER}",
-      "decimals": 0,
-      "description": "",
-      "fontSize": "70%",
-      "format": "short",
-      "gridPos": {
-        "h": 9,
-        "w": 7,
-        "x": 3,
-        "y": 0
-      },
-      "hideTimeOverride": false,
-      "id": 36,
-      "interval": null,
-      "legend": {
-        "header": "",
-        "percentage": true,
-        "show": true,
-        "sortDesc": true,
-        "values": true
-      },
-      "legendType": "Right side",
-      "links": [],
-      "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "options": {},
-      "pieType": "pie",
-      "strokeWidth": "3",
-      "targets": [
-        {
-          "alias": "$tag_radio_proto",
-          "groupBy": [
-            {
-              "params": [
-                "channel"
-              ],
-              "type": "tag"
-            }
-          ],
-          "hide": false,
-          "measurement": "clients",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter  AND  ap_name =~ /$AP$/ AND site_name =~ /$Site$/) GROUP BY \"radio_proto\"",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "hostname"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "is_wired",
-              "operator": "=",
-              "value": "false"
-            }
-          ]
-        }
-      ],
-      "timeFrom": "1h",
-      "title": "Clients / Band",
-      "transparent": true,
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
     },
     {
       "aliasColors": {},
@@ -207,19 +144,20 @@
       "fontSize": "70%",
       "format": "short",
       "gridPos": {
-        "h": 9,
-        "w": 7,
-        "x": 10,
+        "h": 10,
+        "w": 6,
+        "x": 4,
         "y": 0
       },
-      "hideTimeOverride": false,
+      "hideTimeOverride": true,
       "id": 38,
       "interval": null,
       "legend": {
         "header": "",
+        "percentage": true,
         "show": true,
         "sortDesc": false,
-        "values": true
+        "values": false
       },
       "legendType": "Right side",
       "links": [],
@@ -230,7 +168,7 @@
       "strokeWidth": 1,
       "targets": [
         {
-          "alias": "Chan $tag_channel",
+          "alias": "Ch $tag_channel",
           "groupBy": [
             {
               "params": [
@@ -269,8 +207,94 @@
           "tags": []
         }
       ],
-      "timeFrom": "1h",
+      "timeFrom": "5m",
       "title": "Clients / Channel",
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "25%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_UNIFI_POLLER}",
+      "decimals": 0,
+      "description": "",
+      "fontSize": "70%",
+      "format": "short",
+      "gridPos": {
+        "h": 10,
+        "w": 7,
+        "x": 10,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 36,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "options": {},
+      "pieType": "pie",
+      "strokeWidth": "3",
+      "targets": [
+        {
+          "alias": "$tag_ap_name $tag_radio_proto",
+          "groupBy": [
+            {
+              "params": [
+                "channel"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "clients",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter  AND  ap_name =~ /$AP$/ AND site_name =~ /$Site$/) GROUP BY \"radio_proto\", \"ap_name\"",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "distinct"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "is_wired",
+              "operator": "=",
+              "value": "false"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "Clients / AP Band",
+      "transparent": true,
       "type": "grafana-piechart-panel",
       "valueName": "current"
     },
@@ -284,16 +308,16 @@
       },
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 0,
-      "description": "",
+      "description": "This shows an OUI breakdown from Unifi's perspective.",
       "fontSize": "70%",
       "format": "short",
       "gridPos": {
-        "h": 9,
+        "h": 10,
         "w": 7,
         "x": 17,
         "y": 0
       },
-      "hideTimeOverride": false,
+      "hideTimeOverride": true,
       "id": 40,
       "interval": null,
       "legend": {
@@ -351,7 +375,7 @@
           ]
         }
       ],
-      "timeFrom": "12h",
+      "timeFrom": "5m",
       "title": "Client / MAC OUI",
       "transparent": true,
       "type": "grafana-piechart-panel",
@@ -367,7 +391,7 @@
         "rgba(50, 172, 45, 0.97)"
       ],
       "datasource": "${DS_UNIFI_POLLER}",
-      "description": "Count of distinct client hostnames seen in the past 60 minutes on these UAPs: $AP",
+      "description": "",
       "editable": true,
       "error": false,
       "format": "none",
@@ -379,11 +403,12 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 3,
+        "h": 4,
+        "w": 2,
         "x": 0,
         "y": 3
       },
+      "hideTimeOverride": true,
       "id": 48,
       "interval": null,
       "isNew": true,
@@ -403,7 +428,7 @@
       "nullPointMode": "connected",
       "nullText": null,
       "options": {},
-      "postfix": " clients",
+      "postfix": "",
       "postfixFontSize": "80%",
       "prefix": "",
       "prefixFontSize": "50%",
@@ -471,11 +496,127 @@
         }
       ],
       "thresholds": "",
-      "timeFrom": "1h",
-      "title": "",
+      "timeFrom": "5m",
+      "title": "Users",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "120%",
       "valueMaps": [],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "datasource": "${DS_UNIFI_POLLER}",
+      "description": "",
+      "editable": true,
+      "error": false,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 2,
+        "y": 3
+      },
+      "hideTimeOverride": true,
+      "id": 52,
+      "interval": null,
+      "isNew": true,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "80%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "device_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "is_guest"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "clients",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter AND ap_name =~ /$AP$/ AND site_name =~ /$Site$/ AND is_guest = \"true\")",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "channel"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": "5m",
+      "title": "Guests",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "0",
+          "value": "null"
+        }
+      ],
       "valueName": "current"
     },
     {
@@ -495,9 +636,9 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
+        "w": 4,
         "x": 0,
-        "y": 6
+        "y": 7
       },
       "id": 32,
       "links": [],
@@ -533,8 +674,9 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 10
       },
+      "hideTimeOverride": true,
       "id": 1,
       "isNew": true,
       "links": [],
@@ -549,6 +691,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -564,6 +707,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -579,6 +723,7 @@
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -598,7 +743,8 @@
           "unit": "short"
         },
         {
-          "alias": "Config Version",
+          "alias": "Version",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -607,13 +753,14 @@
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
-          "pattern": "cfgversion",
+          "pattern": "version",
           "thresholds": [],
           "type": "string",
           "unit": "short"
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -629,6 +776,7 @@
         },
         {
           "alias": "Model",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -644,6 +792,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -659,6 +808,7 @@
         },
         {
           "alias": "Unifi Serial #",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -674,6 +824,7 @@
         },
         {
           "alias": "Site ID",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -689,6 +840,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -704,6 +856,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -720,6 +873,7 @@
         },
         {
           "alias": "Bandsteering Mode",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -735,6 +889,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -750,6 +905,7 @@
         },
         {
           "alias": "Guests",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -765,6 +921,7 @@
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -775,6 +932,40 @@
           "decimals": 2,
           "mappingType": 1,
           "pattern": "source",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "Type",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "type",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Device MAC",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "mac",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -814,6 +1005,24 @@
                 "source"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "type"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "version"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "mac"
+              ],
+              "type": "tag"
             }
           ],
           "measurement": "uap",
@@ -835,7 +1044,7 @@
               },
               {
                 "params": [
-                  "IP"
+                  "Address"
                 ],
                 "type": "alias"
               }
@@ -952,7 +1161,7 @@
           ]
         }
       ],
-      "timeFrom": "1h",
+      "timeFrom": "5m",
       "title": "UAP Details",
       "transform": "table",
       "type": "table"
@@ -960,6 +1169,7 @@
     {
       "columns": [],
       "datasource": "${DS_UNIFI_POLLER}",
+      "description": "The counters in this table represent uptime totals and do not change with the time range selector. ",
       "editable": true,
       "error": false,
       "fontSize": "100%",
@@ -967,8 +1177,9 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 16
       },
+      "hideTimeOverride": true,
       "id": 49,
       "isNew": true,
       "links": [],
@@ -983,6 +1194,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -997,7 +1209,8 @@
           "unit": "short"
         },
         {
-          "alias": "UAP",
+          "alias": "AP Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1013,6 +1226,7 @@
         },
         {
           "alias": "Radio",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1033,6 +1247,7 @@
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1049,6 +1264,7 @@
         },
         {
           "alias": "ESSID",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1062,6 +1278,142 @@
           "thresholds": [],
           "type": "string",
           "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "CCQ",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percent"
+        },
+        {
+          "alias": "VAP",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "BSSID",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "bssid",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Site",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "site_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Controller",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "source",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 1,
+          "mappingType": 1,
+          "pattern": "/^Bytes/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "/^[TR]x/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Avg Client Sig",
+          "thresholds": [],
+          "type": "number",
+          "unit": "dBm"
         }
       ],
       "targets": [
@@ -1080,9 +1432,51 @@
                 "device_name"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "site_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "source"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "usage"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "essid"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "radio_name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "bssid"
+              ],
+              "type": "tag"
             }
           ],
-          "measurement": "uap_radios",
+          "measurement": "uap_vaps",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -1109,7 +1503,7 @@
             [
               {
                 "params": [
-                  "guest-num_sta"
+                  "rx_bytes"
                 ],
                 "type": "field"
               },
@@ -1119,7 +1513,7 @@
               },
               {
                 "params": [
-                  "Guests"
+                  "Bytes Rx"
                 ],
                 "type": "alias"
               }
@@ -1127,7 +1521,7 @@
             [
               {
                 "params": [
-                  "user-num_sta"
+                  "tx_bytes"
                 ],
                 "type": "field"
               },
@@ -1137,7 +1531,139 @@
               },
               {
                 "params": [
-                  "Users"
+                  "Bytes Tx"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "num_sta"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Clients"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "rx_packets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Rx Packets"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_packets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Tx Packets"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "ccq"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "/10"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "CCQ"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "avg_client_signal"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Avg Client Sig"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "rx_dropped"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Rx Drops"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_dropped"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Tx Drops"
                 ],
                 "type": "alias"
               }
@@ -1158,7 +1684,7 @@
           ]
         }
       ],
-      "timeFrom": "1d",
+      "timeFrom": "5m",
       "title": "Networks / UAP",
       "transform": "table",
       "type": "table"
@@ -1177,7 +1703,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "hiddenSeries": false,
       "hideTimeOverride": true,
@@ -1304,7 +1830,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 21
+        "y": 22
       },
       "hiddenSeries": false,
       "hideTimeOverride": true,
@@ -1433,7 +1959,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "hiddenSeries": false,
       "id": 3,
@@ -1604,7 +2130,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 29
       },
       "hiddenSeries": false,
       "id": 46,
@@ -1748,7 +2274,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 35
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 42,
@@ -1926,7 +2452,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 35
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 19,
@@ -2176,7 +2702,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 50,
@@ -2316,7 +2842,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 43
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 44,
@@ -2458,7 +2984,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 51
+        "y": 52
       },
       "hiddenSeries": false,
       "id": 18,
@@ -2615,7 +3141,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 51
+        "y": 52
       },
       "hiddenSeries": false,
       "id": 51,
@@ -2772,7 +3298,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 60
       },
       "hiddenSeries": false,
       "id": 8,
@@ -2969,7 +3495,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 59
+        "y": 60
       },
       "hiddenSeries": false,
       "id": 27,
@@ -3163,7 +3689,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 68
       },
       "hiddenSeries": false,
       "id": 20,
@@ -3360,7 +3886,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 68
       },
       "hiddenSeries": false,
       "id": 24,
@@ -3551,7 +4077,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 74
+        "y": 75
       },
       "hiddenSeries": false,
       "id": 22,
@@ -3580,7 +4106,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/In$/",
+          "alias": "/Rx$/",
           "transform": "negative-Y"
         }
       ],
@@ -3626,7 +4152,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -3636,7 +4162,7 @@
               },
               {
                 "params": [
-                  "In"
+                  "Rx"
                 ],
                 "type": "alias"
               }
@@ -3650,7 +4176,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -3660,7 +4186,7 @@
               },
               {
                 "params": [
-                  "Out"
+                  "Tx"
                 ],
                 "type": "alias"
               }
@@ -3746,7 +4272,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 74
+        "y": 75
       },
       "hiddenSeries": false,
       "id": 25,
@@ -3777,7 +4303,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/In$/",
+          "alias": "/Rx$/",
           "transform": "negative-Y"
         }
       ],
@@ -3823,7 +4349,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -3833,7 +4359,7 @@
               },
               {
                 "params": [
-                  "In"
+                  "Rx"
                 ],
                 "type": "alias"
               }
@@ -3847,7 +4373,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -3857,7 +4383,7 @@
               },
               {
                 "params": [
-                  "Out"
+                  "Tx"
                 ],
                 "type": "alias"
               }
@@ -3943,7 +4469,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 81
+        "y": 82
       },
       "hiddenSeries": false,
       "id": 21,
@@ -3975,7 +4501,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/In$/",
+          "alias": "/Rx$/",
           "transform": "negative-Y"
         }
       ],
@@ -4027,7 +4553,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4037,7 +4563,7 @@
               },
               {
                 "params": [
-                  "Drop In"
+                  "Drops Rx"
                 ],
                 "type": "alias"
               }
@@ -4051,7 +4577,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4061,7 +4587,7 @@
               },
               {
                 "params": [
-                  "Drop Out"
+                  "Drops Tx"
                 ],
                 "type": "alias"
               }
@@ -4075,7 +4601,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4085,7 +4611,7 @@
               },
               {
                 "params": [
-                  "Error In"
+                  "Errors Rx"
                 ],
                 "type": "alias"
               }
@@ -4099,7 +4625,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4109,7 +4635,7 @@
               },
               {
                 "params": [
-                  "Error Out"
+                  "Errors Tx"
                 ],
                 "type": "alias"
               }
@@ -4123,7 +4649,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4133,7 +4659,7 @@
               },
               {
                 "params": [
-                  "BadCrypt In"
+                  "Crypts Rx"
                 ],
                 "type": "alias"
               }
@@ -4147,7 +4673,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4157,7 +4683,7 @@
               },
               {
                 "params": [
-                  "BadFrag In"
+                  "Frags Rx"
                 ],
                 "type": "alias"
               }
@@ -4171,7 +4697,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4181,7 +4707,7 @@
               },
               {
                 "params": [
-                  "ExsRetry Out"
+                  "Retries Tx"
                 ],
                 "type": "alias"
               }
@@ -4195,7 +4721,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4205,7 +4731,7 @@
               },
               {
                 "params": [
-                  "Nwids In"
+                  "Nwids Rx"
                 ],
                 "type": "alias"
               }
@@ -4240,7 +4766,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "transparent": true,
@@ -4292,7 +4818,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 81
+        "y": 82
       },
       "hiddenSeries": false,
       "id": 26,
@@ -4323,7 +4849,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/In$/",
+          "alias": "/Rx$/",
           "transform": "negative-Y"
         }
       ],
@@ -4369,7 +4895,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4379,7 +4905,7 @@
               },
               {
                 "params": [
-                  "Drop In"
+                  "Drops Rx"
                 ],
                 "type": "alias"
               }
@@ -4393,7 +4919,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4403,7 +4929,7 @@
               },
               {
                 "params": [
-                  "Drop Out"
+                  "Drops Tx"
                 ],
                 "type": "alias"
               }
@@ -4417,7 +4943,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4427,7 +4953,7 @@
               },
               {
                 "params": [
-                  "Error In"
+                  "Errors Rx"
                 ],
                 "type": "alias"
               }
@@ -4441,7 +4967,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4451,7 +4977,7 @@
               },
               {
                 "params": [
-                  "Error Out"
+                  "Errors Rx"
                 ],
                 "type": "alias"
               }
@@ -4465,7 +4991,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4475,7 +5001,7 @@
               },
               {
                 "params": [
-                  "BadCrypt In"
+                  "Crypts Rx"
                 ],
                 "type": "alias"
               }
@@ -4489,7 +5015,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4499,7 +5025,7 @@
               },
               {
                 "params": [
-                  "BadFrag In"
+                  "Frags Rx"
                 ],
                 "type": "alias"
               }
@@ -4513,7 +5039,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4523,7 +5049,7 @@
               },
               {
                 "params": [
-                  "ExsRetry Out"
+                  "Retries Tx"
                 ],
                 "type": "alias"
               }
@@ -4537,7 +5063,7 @@
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "sum"
               },
               {
                 "params": [
@@ -4547,7 +5073,7 @@
               },
               {
                 "params": [
-                  "Nwids In"
+                  "Nwids Rx"
                 ],
                 "type": "alias"
               }
@@ -4620,7 +5146,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -4630,7 +5156,7 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
         "definition": "show tag values from \"uap\" with key=\"source\"",
@@ -4727,5 +5253,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: UAP Insights - InfluxDB",
   "uid": "8nQ_RPZiz",
-  "version": 3
+  "version": 10
 }

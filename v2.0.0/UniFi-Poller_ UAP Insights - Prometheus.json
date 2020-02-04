@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -83,7 +83,7 @@
   "gnetId": 11314,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1577607791035,
+  "iteration": 1580616501060,
   "links": [
     {
       "asDropdown": true,
@@ -96,12 +96,32 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
     {
       "content": "<br>\n<br>\n<center><b><font size=\"6px\">Unifi UAP</font></b></center>\n",
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 3,
         "w": 4,
@@ -117,7 +137,11 @@
       "type": "text"
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "Channel 11": "#37872D",
+        "Channel 36": "#1F60C4",
+        "Channel 44": "#8F3BB8"
+      },
       "breakPoint": "50%",
       "cacheTimeout": null,
       "combine": {
@@ -157,7 +181,7 @@
           "expr": "count by (channel) (unifipoller_client_roam_count_total{site_name=~\"$Site\", ap_name=~\"$AP\"})\n",
           "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "Channel {{channel}}",
+          "legendFormat": "Ch {{channel}}",
           "refId": "B"
         }
       ],
@@ -168,7 +192,12 @@
       "valueName": "current"
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "ac": "#37872D",
+        "g": "#E0B400",
+        "na": "#1F60C4",
+        "ng": "#8F3BB8"
+      },
       "breakPoint": "25%",
       "cacheTimeout": null,
       "combine": {
@@ -182,7 +211,7 @@
       "format": "short",
       "gridPos": {
         "h": 10,
-        "w": 6,
+        "w": 7,
         "x": 10,
         "y": 0
       },
@@ -193,6 +222,8 @@
         "header": "",
         "percentage": true,
         "show": true,
+        "sort": "current",
+        "sortDesc": true,
         "values": true
       },
       "legendType": "Right side",
@@ -204,10 +235,10 @@
       "strokeWidth": "3",
       "targets": [
         {
-          "expr": "sum by (radio_proto) (unifipoller_client_roam_count_total{site_name=~\"$Site\", ap_name=~\"$AP\"})",
+          "expr": "count by (radio_desc) (unifipoller_client_uptime_seconds{site_name=~\"$Site\", ap_name=~\"$AP\"})",
           "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "{{radio_proto}}",
+          "legendFormat": "{{radio_desc}}",
           "refId": "A"
         }
       ],
@@ -232,8 +263,8 @@
       "format": "short",
       "gridPos": {
         "h": 10,
-        "w": 8,
-        "x": 16,
+        "w": 7,
+        "x": 17,
         "y": 0
       },
       "hideTimeOverride": false,
@@ -264,7 +295,7 @@
         }
       ],
       "timeFrom": null,
-      "title": "Client MAC OUI Breakdown",
+      "title": "Client / MAC OUI",
       "transparent": true,
       "type": "grafana-piechart-panel",
       "valueName": "current"
@@ -435,7 +466,6 @@
         "endCountdownTime": "2018-04-29T21:47:00.000Z",
         "endText": "00:00:00"
       },
-      "datasource": "${DS_PROMETHEUS}",
       "dateSettings": {
         "dateFormat": "YYYY-MM-DD",
         "fontSize": "12px",
@@ -498,6 +528,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -513,6 +544,7 @@
         },
         {
           "alias": "Uptime",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -528,6 +560,7 @@
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -548,6 +581,7 @@
         },
         {
           "alias": "ID",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -558,11 +592,12 @@
           "decimals": 2,
           "pattern": "id",
           "thresholds": [],
-          "type": "string",
+          "type": "hidden",
           "unit": "short"
         },
         {
           "alias": "Model",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -578,6 +613,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -593,6 +629,7 @@
         },
         {
           "alias": "Unifi Serial #",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -608,6 +645,7 @@
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -623,6 +661,7 @@
         },
         {
           "alias": "Version",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -638,6 +677,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -654,6 +694,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -670,6 +711,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -685,7 +727,8 @@
           "unit": "short"
         },
         {
-          "alias": "IP",
+          "alias": "Address",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -701,7 +744,8 @@
           "unit": "short"
         },
         {
-          "alias": "",
+          "alias": "Type",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -717,7 +761,8 @@
           "unit": "short"
         },
         {
-          "alias": "Data",
+          "alias": "Type",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -727,13 +772,14 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "bytes",
+          "pattern": "type",
           "thresholds": [],
-          "type": "number",
+          "type": "string",
           "unit": "decbytes"
         },
         {
           "alias": "Uptime",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -750,6 +796,7 @@
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -761,7 +808,24 @@
           "mappingType": 1,
           "pattern": "source",
           "thresholds": [],
-          "type": "string",
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "bytes",
+          "thresholds": [],
+          "type": "hidden",
           "unit": "short"
         }
       ],
@@ -781,6 +845,7 @@
     {
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
+      "description": "The counters in this table represent uptime totals and do not change with the time range selector. ",
       "editable": true,
       "error": false,
       "fontSize": "100%",
@@ -798,12 +863,13 @@
       "scroll": false,
       "showHeader": true,
       "sort": {
-        "col": 11,
+        "col": 15,
         "desc": true
       },
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -818,22 +884,8 @@
           "unit": "short"
         },
         {
-          "alias": "UAP",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "pattern": "device_name",
-          "thresholds": [],
-          "type": "string",
-          "unit": "dtdurations"
-        },
-        {
           "alias": "BSSID",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -854,6 +906,7 @@
         },
         {
           "alias": "ESSID",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -870,6 +923,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -886,6 +940,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -902,6 +957,7 @@
         },
         {
           "alias": "Serial",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -918,6 +974,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -934,6 +991,7 @@
         },
         {
           "alias": "MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -950,6 +1008,7 @@
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -966,6 +1025,7 @@
         },
         {
           "alias": "VAP",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -982,6 +1042,7 @@
         },
         {
           "alias": "Version",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -998,6 +1059,7 @@
         },
         {
           "alias": "CCQ",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1007,13 +1069,14 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "Value",
+          "pattern": "Value #A",
           "thresholds": [],
           "type": "number",
           "unit": "percentunit"
         },
         {
           "alias": "Model",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1030,6 +1093,7 @@
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1046,6 +1110,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1062,6 +1127,7 @@
         },
         {
           "alias": "AP Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1078,6 +1144,7 @@
         },
         {
           "alias": "Usage",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1094,6 +1161,7 @@
         },
         {
           "alias": "Radio",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1107,15 +1175,207 @@
           "thresholds": [],
           "type": "string",
           "unit": "short"
+        },
+        {
+          "alias": "Avg Client Sig",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Value #B",
+          "thresholds": [],
+          "type": "number",
+          "unit": "dBm"
+        },
+        {
+          "alias": "Rx Drops",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Value #C",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Controller",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "source",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "Tx Drops",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Value #E",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Bytes Rx",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Value #G",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Bytes Tx",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Value #F",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Rx Packets",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #H",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Tx Packets",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value #I",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
         }
       ],
       "targets": [
         {
-          "expr": "unifipoller_device_vap_ccq_ratio{site_name=~\"$Site\", name=~\"$AP\"}",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_ccq_ratio{site_name=~\"$Site\", name=~\"$AP\"})",
           "format": "table",
           "instant": true,
           "interval": "",
           "refId": "A"
+        },
+        {
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_average_client_signal{site_name=~\"$Site\", name=~\"$AP\"})",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "B"
+        },
+        {
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_receive_dropped_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "C"
+        },
+        {
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_transmit_dropped_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "E"
+        },
+        {
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_transmit_bytes_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "F"
+        },
+        {
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_receive_bytes_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "G"
+        },
+        {
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_receive_packets_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "H"
+        },
+        {
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_transmit_packets_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "refId": "I"
         }
       ],
       "timeFrom": null,
@@ -1125,7 +1385,10 @@
       "type": "table"
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "wap-lower": "dark-green",
+        "wap-upper": "dark-purple"
+      },
       "bars": false,
       "cacheTimeout": null,
       "dashLength": 10,
@@ -1219,7 +1482,10 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "wap-lower": "dark-green",
+        "wap-upper": "dark-purple"
+      },
       "bars": false,
       "cacheTimeout": null,
       "dashLength": 10,
@@ -1313,7 +1579,12 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "wap-lower load1": "dark-green",
+        "wap-lower load15": "dark-blue",
+        "wap-upper load1": "dark-purple",
+        "wap-upper load15": "dark-yellow"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -1332,9 +1603,11 @@
       "id": 3,
       "isNew": true,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
-        "current": true,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
         "max": true,
         "min": false,
         "show": true,
@@ -1374,6 +1647,7 @@
         },
         {
           "expr": "unifipoller_device_load_average_5{site_name=~\"$Site\",name=~\"$AP\"}",
+          "hide": true,
           "interval": "$Smooth",
           "legendFormat": "{{name}} load5",
           "refId": "B"
@@ -1660,7 +1934,7 @@
         "avg": false,
         "current": true,
         "hideEmpty": true,
-        "hideZero": false,
+        "hideZero": true,
         "max": true,
         "min": true,
         "rightSide": true,
@@ -2849,7 +3123,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
       "options": {
         "dataLinks": []
       },
@@ -3111,7 +3385,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -3121,7 +3395,7 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_device_info{type=\"uap\"},source)",
@@ -3143,7 +3417,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_device_info{source=~\"$Controller\", type=\"uap\"},site_name)",
@@ -3165,7 +3439,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"uap|udm\",model!=\"UDMPRO\"},name)",
@@ -3277,5 +3551,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: UAP Insights - Prometheus",
   "uid": "g5wFWqxZk",
-  "version": 5
+  "version": 19
 }

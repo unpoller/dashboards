@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -53,7 +53,7 @@
   "gnetId": 10417,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1577607791801,
+  "iteration": 1580615240821,
   "links": [
     {
       "asDropdown": true,
@@ -65,6 +65,27 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
@@ -108,6 +129,7 @@
       "styles": [
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -123,6 +145,7 @@
         },
         {
           "alias": "Name",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -143,6 +166,7 @@
         },
         {
           "alias": "Model",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -158,6 +182,7 @@
         },
         {
           "alias": "Device MAC",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -173,6 +198,7 @@
         },
         {
           "alias": "Unifi Serial #",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -188,6 +214,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -203,6 +230,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": "value",
           "colors": [
             "#CA95E5",
@@ -220,6 +248,7 @@
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -235,6 +264,7 @@
         },
         {
           "alias": "Version",
+          "align": "auto",
           "colorMode": "value",
           "colors": [
             "rgba(50, 172, 45, 0.97)",
@@ -253,6 +283,7 @@
         },
         {
           "alias": "Controller",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -263,6 +294,40 @@
           "decimals": 2,
           "mappingType": 1,
           "pattern": "source",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "/Bytes/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
+        },
+        {
+          "alias": "Type",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "type",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -314,6 +379,12 @@
                 "source"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "type"
+              ],
+              "type": "tag"
             }
           ],
           "measurement": "usw",
@@ -339,6 +410,42 @@
                 ],
                 "type": "alias"
               }
+            ],
+            [
+              {
+                "params": [
+                  "rx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Rx Bytes"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Tx Bytes"
+                ],
+                "type": "alias"
+              }
             ]
           ],
           "tags": []
@@ -351,7 +458,10 @@
       "type": "table"
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "switch Temperature C": "dark-green",
+        "switch Temperature F": "dark-purple"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
@@ -361,7 +471,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 17,
         "x": 0,
         "y": 7
       },
@@ -562,23 +672,23 @@
     },
     {
       "aliasColors": {
-        "switch CPU %": "dark-purple"
+        "switch Total": "dark-purple"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
-      "decimals": null,
+      "decimals": 0,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
-        "x": 12,
+        "w": 7,
+        "x": 17,
         "y": 7
       },
       "hiddenSeries": false,
-      "id": 1169,
+      "id": 1170,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -636,7 +746,7 @@
             [
               {
                 "params": [
-                  "cpu"
+                  "mem"
                 ],
                 "type": "field"
               },
@@ -646,7 +756,7 @@
               },
               {
                 "params": [
-                  "CPU %"
+                  "Total"
                 ],
                 "type": "alias"
               }
@@ -671,7 +781,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Switch CPU Usage",
+      "title": "Switch Memory",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -687,9 +797,9 @@
       },
       "yaxes": [
         {
-          "decimals": null,
+          "decimals": 0,
           "format": "percent",
-          "label": "CPU %",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -711,6 +821,9 @@
     },
     {
       "aliasColors": {
+        "switch Load 1": "dark-green",
+        "switch Load 15": "dark-purple",
+        "switch Load 5": "dark-blue",
         "switch load 1": "red",
         "switch load 5": "blue"
       },
@@ -722,8 +835,8 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
-        "w": 12,
+        "h": 8,
+        "w": 17,
         "x": 0,
         "y": 14
       },
@@ -755,6 +868,11 @@
           "alias": "/Load 15$/",
           "fill": 0,
           "linewidth": 6
+        },
+        {
+          "alias": "/Load 5$/",
+          "fill": 0,
+          "linewidth": 4
         }
       ],
       "spaceLength": 10,
@@ -902,22 +1020,24 @@
       }
     },
     {
-      "aliasColors": {},
+      "aliasColors": {
+        "switch CPU %": "dark-purple"
+      },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
-      "decimals": 0,
+      "decimals": null,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
+        "h": 8,
+        "w": 7,
+        "x": 17,
         "y": 14
       },
       "hiddenSeries": false,
-      "id": 1170,
+      "id": 1169,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -975,7 +1095,7 @@
             [
               {
                 "params": [
-                  "mem"
+                  "cpu"
                 ],
                 "type": "field"
               },
@@ -985,7 +1105,7 @@
               },
               {
                 "params": [
-                  "Total"
+                  "CPU %"
                 ],
                 "type": "alias"
               }
@@ -1010,7 +1130,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Switch Memory",
+      "title": "Switch CPU Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1026,9 +1146,9 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
+          "decimals": null,
           "format": "percent",
-          "label": "",
+          "label": "CPU %",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -1054,14 +1174,14 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
-      "description": "Shows data transferred for ports: $Port. TX on positive axis and RX on negative axis.",
+      "description": "Shows data transferred for ports: Selected Switch ports. Rx is on the negative axis.",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 17,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "hiddenSeries": false,
       "id": 135,
@@ -1242,12 +1362,13 @@
     {
       "columns": [],
       "datasource": "${DS_UNIFI_POLLER}",
+      "description": "This panel displays lifetime totals and current data as of now.",
       "fontSize": "90%",
       "gridPos": {
         "h": 21,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 39
       },
       "id": 214,
       "links": [],
@@ -1256,12 +1377,13 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": 7,
+        "col": 5,
         "desc": true
       },
       "styles": [
         {
-          "alias": "Port Name",
+          "alias": "Client",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1278,6 +1400,7 @@
         },
         {
           "alias": "",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1294,6 +1417,7 @@
         },
         {
           "alias": "Switch",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1310,6 +1434,7 @@
         },
         {
           "alias": "POE",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1321,11 +1446,12 @@
           "mappingType": 1,
           "pattern": "poe_mode",
           "thresholds": [],
-          "type": "number",
+          "type": "hidden",
           "unit": "short"
         },
         {
           "alias": "Port",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1342,6 +1468,7 @@
         },
         {
           "alias": "FlowCtrl RX",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1349,7 +1476,7 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
+          "decimals": null,
           "mappingType": 1,
           "pattern": "flowctrl_rx",
           "thresholds": [],
@@ -1358,6 +1485,7 @@
         },
         {
           "alias": "FlowCtrl TX",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -1365,12 +1493,97 @@
             "rgba(50, 172, 45, 0.97)"
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
+          "decimals": null,
           "mappingType": 1,
           "pattern": "flowctrl_tx",
           "thresholds": [],
           "type": "number",
           "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Amps",
+          "thresholds": [],
+          "type": "number",
+          "unit": "mamp"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Watts",
+          "thresholds": [],
+          "type": "number",
+          "unit": "watt"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "Volts",
+          "thresholds": [],
+          "type": "number",
+          "unit": "volt"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "/^[RT]x/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": null,
+          "mappingType": 1,
+          "pattern": "/^Bytes/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
         }
       ],
       "targets": [
@@ -1439,7 +1652,7 @@
               },
               {
                 "params": [
-                  "POE Current"
+                  "Amps"
                 ],
                 "type": "alias"
               }
@@ -1457,7 +1670,7 @@
               },
               {
                 "params": [
-                  "POE Voltage"
+                  "Volts"
                 ],
                 "type": "alias"
               }
@@ -1493,7 +1706,187 @@
               },
               {
                 "params": [
-                  "POE Power"
+                  "Watts"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "rx_errors"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Rx Errors"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_errors"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Tx Errors"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_dropped"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Tx Drops"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "rx_dropped"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Rx Drops"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_broadcast"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Tx Broadcast"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "rx_broadcast"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Rx Broadcast"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "rx_packets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Rx Packets"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_packets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Tx Packets"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "rx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Bytes Rx"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "tx_bytes"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Bytes Tx"
                 ],
                 "type": "alias"
               }
@@ -1526,7 +1919,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 60
       },
       "id": 4,
       "panels": [
@@ -1539,7 +1932,7 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 47
+            "y": 2
           },
           "id": 291,
           "links": [],
@@ -1560,7 +1953,8 @@
           },
           "styles": [
             {
-              "alias": "Port Name",
+              "alias": "Client",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1577,6 +1971,7 @@
             },
             {
               "alias": "",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1593,6 +1988,7 @@
             },
             {
               "alias": "Switch",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1609,25 +2005,7 @@
             },
             {
               "alias": "",
-              "colorMode": "cell",
-              "colors": [
-                "rgba(50, 172, 45, 0)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(245, 54, 54, 0.9)"
-              ],
-              "dateFormat": "YYYY-MM-DD HH:mm:ss",
-              "decimals": 0,
-              "mappingType": 1,
-              "pattern": "/Drops$|Errors$/",
-              "thresholds": [
-                "10",
-                "100"
-              ],
-              "type": "number",
-              "unit": "short"
-            },
-            {
-              "alias": "",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1637,10 +2015,78 @@
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "decimals": 1,
               "mappingType": 1,
-              "pattern": "/Bytes$/",
+              "pattern": "/^Bytes/",
               "thresholds": [],
               "type": "number",
               "unit": "decbytes"
+            },
+            {
+              "alias": "",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": null,
+              "mappingType": 1,
+              "pattern": "/^[TR]x/",
+              "thresholds": [],
+              "type": "number",
+              "unit": "short"
+            },
+            {
+              "alias": "",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Amps",
+              "thresholds": [],
+              "type": "number",
+              "unit": "mamp"
+            },
+            {
+              "alias": "",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 1,
+              "mappingType": 1,
+              "pattern": "Watts",
+              "thresholds": [],
+              "type": "number",
+              "unit": "watt"
+            },
+            {
+              "alias": "",
+              "align": "auto",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 0,
+              "mappingType": 1,
+              "pattern": "Volts",
+              "thresholds": [],
+              "type": "number",
+              "unit": "volt"
             }
           ],
           "targets": [
@@ -1650,12 +2096,6 @@
                 {
                   "params": [
                     "name"
-                  ],
-                  "type": "tag"
-                },
-                {
-                  "params": [
-                    "poe_mode"
                   ],
                   "type": "tag"
                 },
@@ -1703,7 +2143,7 @@
                   },
                   {
                     "params": [
-                      "POE Voltage"
+                      "Volts"
                     ],
                     "type": "alias"
                   }
@@ -1721,7 +2161,7 @@
                   },
                   {
                     "params": [
-                      "POE Power"
+                      "Watts"
                     ],
                     "type": "alias"
                   }
@@ -1739,7 +2179,7 @@
                   },
                   {
                     "params": [
-                      "RX Drops"
+                      "Rx Drops"
                     ],
                     "type": "alias"
                   }
@@ -1757,7 +2197,7 @@
                   },
                   {
                     "params": [
-                      "TX Drops"
+                      "Tx Drops"
                     ],
                     "type": "alias"
                   }
@@ -1775,7 +2215,7 @@
                   },
                   {
                     "params": [
-                      "RX Errors"
+                      "Rx Errors"
                     ],
                     "type": "alias"
                   }
@@ -1793,7 +2233,7 @@
                   },
                   {
                     "params": [
-                      "TX Errors"
+                      "Tx Errors"
                     ],
                     "type": "alias"
                   }
@@ -1811,7 +2251,7 @@
                   },
                   {
                     "params": [
-                      "RX Bytes"
+                      "Bytes Rx"
                     ],
                     "type": "alias"
                   }
@@ -1829,7 +2269,7 @@
                   },
                   {
                     "params": [
-                      "TX Bytes"
+                      "Bytes Tx"
                     ],
                     "type": "alias"
                   }
@@ -1847,7 +2287,7 @@
                   },
                   {
                     "params": [
-                      "TX Packets"
+                      "Tx Packets"
                     ],
                     "type": "alias"
                   }
@@ -1865,7 +2305,7 @@
                   },
                   {
                     "params": [
-                      "RX Packets"
+                      "Rx Packets"
                     ],
                     "type": "alias"
                   }
@@ -1883,7 +2323,7 @@
                   },
                   {
                     "params": [
-                      "RX Broadcast"
+                      "Rx Broadcast"
                     ],
                     "type": "alias"
                   }
@@ -1901,7 +2341,25 @@
                   },
                   {
                     "params": [
-                      "RX Multicast"
+                      "Rx Multicast"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "poe_current"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  },
+                  {
+                    "params": [
+                      "Amps"
                     ],
                     "type": "alias"
                   }
@@ -1933,7 +2391,10 @@
           "type": "table"
         },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "switch Port 13 (Camera: Car - Cable Box Punchdown) Bytes Rx": "dark-green",
+            "switch Port 13 (Camera: Car - Cable Box Punchdown) Bytes Tx": "dark-purple"
+          },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
@@ -1945,8 +2406,9 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 50
+            "y": 5
           },
+          "hiddenSeries": false,
           "id": 1396,
           "legend": {
             "alignAsTable": true,
@@ -2139,8 +2601,9 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 59
+            "y": 14
           },
+          "hiddenSeries": false,
           "id": 594,
           "legend": {
             "alignAsTable": true,
@@ -2358,8 +2821,9 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 59
+            "y": 14
           },
+          "hiddenSeries": false,
           "id": 367,
           "legend": {
             "alignAsTable": false,
@@ -2601,8 +3065,9 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 66
+            "y": 21
           },
+          "hiddenSeries": false,
           "id": 468,
           "legend": {
             "alignAsTable": true,
@@ -2795,8 +3260,9 @@
             "h": 7,
             "w": 4,
             "x": 12,
-            "y": 66
+            "y": 21
           },
+          "hiddenSeries": false,
           "id": 745,
           "legend": {
             "alignAsTable": true,
@@ -2948,8 +3414,9 @@
             "h": 7,
             "w": 4,
             "x": 16,
-            "y": 66
+            "y": 21
           },
+          "hiddenSeries": false,
           "id": 921,
           "legend": {
             "alignAsTable": true,
@@ -3101,8 +3568,9 @@
             "h": 7,
             "w": 4,
             "x": 20,
-            "y": 66
+            "y": 21
           },
+          "hiddenSeries": false,
           "id": 922,
           "legend": {
             "alignAsTable": true,
@@ -3248,7 +3716,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -3258,7 +3726,7 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
         "definition": "show tag values from \"usw\" with key=\"source\"",
@@ -3280,7 +3748,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": "",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
         "definition": "show tag values from \"usw\" with key=\"site_name\" WHERE source =~ /^$Controller$/",
@@ -3302,7 +3770,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": "",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
         "definition": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^$Site$/",
@@ -3324,7 +3792,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
         "definition": "show tag values from \"usw_ports\" with key=\"port_id\" where device_name =~ /^$Switch$/ AND site_name =~ /^$Site$/",
@@ -3377,5 +3845,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USW Insights - InfluxDB",
   "uid": "HIKZ98GZz",
-  "version": 4
+  "version": 15
 }

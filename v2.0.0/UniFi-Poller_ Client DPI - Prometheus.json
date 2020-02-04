@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.5.1"
+      "version": "6.6.0"
     },
     {
       "type": "panel",
@@ -45,6 +45,12 @@
       "id": "table",
       "name": "Table",
       "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
     }
   ],
   "annotations": {
@@ -65,7 +71,7 @@
   "gnetId": 11315,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1577607786161,
+  "iteration": 1580616041365,
   "links": [
     {
       "asDropdown": true,
@@ -77,37 +83,77 @@
       ],
       "title": "UniFi Poller",
       "type": "dashboards"
+    },
+    {
+      "icon": "question",
+      "tags": [],
+      "title": "Help",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/issues"
+    },
+    {
+      "icon": "doc",
+      "tags": [],
+      "title": "Wiki",
+      "type": "link",
+      "url": "https://golift.io/unifi-poller/wiki"
+    },
+    {
+      "icon": "bolt",
+      "tags": [],
+      "title": "Discord",
+      "type": "link",
+      "url": "https://discord.gg/KnyKYt2"
     }
   ],
   "panels": [
     {
+      "content": "This dashboard is very new and may contain errors. Please help me make it better. If you spot things that are inaccurate, [please report](https://github.com/unifi-poller/dashboards/issues/new) them! ",
+      "datasource": "${DS_PROMETHEUS}",
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3409,
+      "mode": "markdown",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Help Wanted",
+      "type": "text"
+    },
+    {
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
-      "description": "This is \"lifetime\" totals per category. The filters at the top of this page control _all_ of the graphs, and in some cases control the visibility of graphs. ie. Adding more clients displays more graphs under the collapsed Clients rows.",
+      "description": "This shows lifetime rx+tx total and totals accumulated during the selected time range. The filters at the top of this page control _all_ of the graphs, and in some cases control the visibility of graphs. ie. Adding more clients displays more graphs under the collapsed Clients rows.",
       "fontSize": "100%",
       "gridPos": {
         "h": 22,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 2
       },
       "id": 437,
       "options": {},
       "pageSize": null,
       "showHeader": true,
       "sort": {
-        "col": 5,
+        "col": 6,
         "desc": true
       },
       "styles": [
         {
           "alias": "Time",
+          "align": "auto",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "pattern": "Time",
           "type": "hidden"
         },
         {
-          "alias": "Rx Bytes",
+          "alias": "Bytes Rx",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -121,7 +167,8 @@
           "unit": "bytes"
         },
         {
-          "alias": "Tx Bytes",
+          "alias": "Bytes Tx",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -138,6 +185,7 @@
         },
         {
           "alias": "Rx Packets",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -154,6 +202,7 @@
         },
         {
           "alias": "Tx Packets",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -169,7 +218,8 @@
           "unit": "short"
         },
         {
-          "alias": "Rx+Tx Bytes",
+          "alias": "Bytes Tx TIOTAL",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -186,6 +236,7 @@
         },
         {
           "alias": "Site",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -202,6 +253,7 @@
         },
         {
           "alias": "Category",
+          "align": "auto",
           "colorMode": null,
           "colors": [
             "rgba(245, 54, 54, 0.9)",
@@ -216,11 +268,36 @@
           "thresholds": [],
           "type": "string",
           "unit": "short"
+        },
+        {
+          "alias": "Bytes Rx TOTAL",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "mappingType": 1,
+          "pattern": "Value #F",
+          "thresholds": [],
+          "type": "number",
+          "unit": "decbytes"
         }
       ],
       "targets": [
         {
-          "expr": "sum by (site_name, category) (unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}+unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (site_name, category) (unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "F"
+        },
+        {
+          "expr": "sum by (site_name, category) (unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -228,7 +305,7 @@
           "refId": "E"
         },
         {
-          "expr": "sum by (site_name, category) (unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (site_name, category) (increase(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -236,7 +313,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (site_name, category) (unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (site_name, category) (increase(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -244,7 +321,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum by (site_name, category)  (unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (site_name, category)  (increase(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -252,7 +329,7 @@
           "refId": "C"
         },
         {
-          "expr": "sum by (site_name, category)  (unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (site_name, category)  (increase(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -276,14 +353,14 @@
       },
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
-      "description": "Showing traffic for Sites $Site and Clients $Client. This updates with the variables on the dashboard.",
+      "description": "Showing traffic by category.\nThis updates with the variables on the dashboard.",
       "fontSize": "70%",
       "format": "bytes",
       "gridPos": {
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 22
+        "y": 24
       },
       "hideTimeOverride": false,
       "id": 9,
@@ -306,7 +383,7 @@
       "strokeWidth": "1",
       "targets": [
         {
-          "expr": "sum by (category) (unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}+unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (category) (increase(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range])+increase(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "instant": true,
           "legendFormat": "{{category}}",
           "refId": "A"
@@ -328,14 +405,14 @@
       },
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
-      "description": "Showing traffic for Sites $Site and Clients $Client. This updates with the variables on the dashboard.",
+      "description": "Showing traffic by application for selected clients. This updates with the variables on the dashboard.",
       "fontSize": "70%",
       "format": "bytes",
       "gridPos": {
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 22
+        "y": 24
       },
       "hideTimeOverride": false,
       "id": 10,
@@ -358,7 +435,7 @@
       "strokeWidth": "1",
       "targets": [
         {
-          "expr": " sum by (category, application) (unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}+unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"})",
+          "expr": " sum by (category, application) (increase(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range])+increase(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", name=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "instant": true,
           "interval": "",
           "legendFormat": "{{application}} ({{category}})",
@@ -384,7 +461,7 @@
         "h": 17,
         "w": 24,
         "x": 0,
-        "y": 34
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 304,
@@ -490,7 +567,7 @@
         "h": 17,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 53
       },
       "hiddenSeries": false,
       "id": 305,
@@ -585,12 +662,11 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 68
+        "y": 70
       },
       "id": 2191,
       "panels": [
@@ -641,8 +717,8 @@
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "00:50:b6:96:76:6e",
-              "value": "00:50:b6:96:76:6e"
+              "text": "00:5b:94:33:87:8c",
+              "value": "00:5b:94:33:87:8c"
             }
           },
           "seriesOverrides": [],
@@ -714,7 +790,7 @@
             "y": 79
           },
           "hiddenSeries": false,
-          "id": 2776,
+          "id": 3194,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -742,7 +818,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -820,7 +896,7 @@
             "y": 89
           },
           "hiddenSeries": false,
-          "id": 2777,
+          "id": 3195,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -848,7 +924,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -926,7 +1002,7 @@
             "y": 99
           },
           "hiddenSeries": false,
-          "id": 2778,
+          "id": 3196,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -954,7 +1030,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -1032,7 +1108,7 @@
             "y": 109
           },
           "hiddenSeries": false,
-          "id": 2779,
+          "id": 3197,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1060,7 +1136,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -1138,7 +1214,7 @@
             "y": 119
           },
           "hiddenSeries": false,
-          "id": 2780,
+          "id": 3198,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1166,7 +1242,113 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "0c:c4:7a:04:ca:cf",
+              "value": "0c:c4:7a:04:ca:cf"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 129
+          },
+          "hiddenSeries": false,
+          "id": 3199,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -1241,10 +1423,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 129
+            "y": 139
           },
           "hiddenSeries": false,
-          "id": 2781,
+          "id": 3200,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1272,7 +1454,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -1347,10 +1529,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 139
+            "y": 149
           },
           "hiddenSeries": false,
-          "id": 2782,
+          "id": 3201,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1378,7 +1560,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -1453,10 +1635,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 149
+            "y": 159
           },
           "hiddenSeries": false,
-          "id": 2783,
+          "id": 3202,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1484,13 +1666,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "18:65:71:70:c6:48",
-              "value": "18:65:71:70:c6:48"
+              "text": "18:65:71:71:89:98",
+              "value": "18:65:71:71:89:98"
             }
           },
           "seriesOverrides": [],
@@ -1559,10 +1741,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 159
+            "y": 169
           },
           "hiddenSeries": false,
-          "id": 2784,
+          "id": 3203,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1590,7 +1772,113 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "28:3a:4d:e9:12:eb",
+              "value": "28:3a:4d:e9:12:eb"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 179
+          },
+          "hiddenSeries": false,
+          "id": 3204,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -1665,222 +1953,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 169
-          },
-          "hiddenSeries": false,
-          "id": 2785,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "30:63:6b:bd:cd:62",
-              "value": "30:63:6b:bd:cd:62"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 179
-          },
-          "hiddenSeries": false,
-          "id": 2786,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "34:ea:34:e4:09:98",
-              "value": "34:ea:34:e4:09:98"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
             "y": 189
           },
           "hiddenSeries": false,
-          "id": 2787,
+          "id": 3205,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1908,13 +1984,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "34:ea:34:f5:c8:16",
-              "value": "34:ea:34:f5:c8:16"
+              "text": "2c:cc:44:ad:72:d2",
+              "value": "2c:cc:44:ad:72:d2"
             }
           },
           "seriesOverrides": [],
@@ -1986,7 +2062,7 @@
             "y": 199
           },
           "hiddenSeries": false,
-          "id": 2788,
+          "id": 3206,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2014,7 +2090,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -2092,7 +2168,7 @@
             "y": 209
           },
           "hiddenSeries": false,
-          "id": 2789,
+          "id": 3207,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2120,13 +2196,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "40:cb:c0:32:8d:c7",
-              "value": "40:cb:c0:32:8d:c7"
+              "text": "60:30:d4:e3:64:de",
+              "value": "60:30:d4:e3:64:de"
             }
           },
           "seriesOverrides": [],
@@ -2198,7 +2274,7 @@
             "y": 219
           },
           "hiddenSeries": false,
-          "id": 2790,
+          "id": 3208,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2226,219 +2302,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "4c:32:75:9e:3c:fb",
-              "value": "4c:32:75:9e:3c:fb"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 229
-          },
-          "hiddenSeries": false,
-          "id": 2791,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "4c:ef:c0:4d:0d:26",
-              "value": "4c:ef:c0:4d:0d:26"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 239
-          },
-          "hiddenSeries": false,
-          "id": 2792,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -2513,10 +2377,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 249
+            "y": 229
           },
           "hiddenSeries": false,
-          "id": 2793,
+          "id": 3209,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2544,7 +2408,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -2619,10 +2483,222 @@
             "h": 10,
             "w": 24,
             "x": 0,
+            "y": 239
+          },
+          "hiddenSeries": false,
+          "id": 3210,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "6c:8d:c1:d2:5b:68",
+              "value": "6c:8d:c1:d2:5b:68"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 249
+          },
+          "hiddenSeries": false,
+          "id": 3211,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "80:2a:a8:10:ae:0c",
+              "value": "80:2a:a8:10:ae:0c"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
             "y": 259
           },
           "hiddenSeries": false,
-          "id": 2794,
+          "id": 3212,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2650,219 +2726,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "64:70:33:dc:ca:80",
-              "value": "64:70:33:dc:ca:80"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 269
-          },
-          "hiddenSeries": false,
-          "id": 2795,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "84:d6:d0:8f:01:2b",
-              "value": "84:d6:d0:8f:01:2b"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 279
-          },
-          "hiddenSeries": false,
-          "id": 2796,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -2937,10 +2801,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 289
+            "y": 269
           },
           "hiddenSeries": false,
-          "id": 2797,
+          "id": 3213,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2968,13 +2832,225 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "88e9fe766535",
-              "value": "88e9fe766535"
+              "text": "88:64:40:76:79:a2",
+              "value": "88:64:40:76:79:a2"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 279
+          },
+          "hiddenSeries": false,
+          "id": 3214,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "88:e9:fe:76:65:35",
+              "value": "88:e9:fe:76:65:35"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 289
+          },
+          "hiddenSeries": false,
+          "id": 3215,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "8c:89:a5:17:24:f8",
+              "value": "8c:89:a5:17:24:f8"
             }
           },
           "seriesOverrides": [],
@@ -3046,7 +3122,7 @@
             "y": 299
           },
           "hiddenSeries": false,
-          "id": 2798,
+          "id": 3216,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3074,13 +3150,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "8c:2d:aa:c0:55:d7",
-              "value": "8c:2d:aa:c0:55:d7"
+              "text": "AlexisNlsiPhone",
+              "value": "AlexisNlsiPhone"
             }
           },
           "seriesOverrides": [],
@@ -3152,7 +3228,7 @@
             "y": 309
           },
           "hiddenSeries": false,
-          "id": 2799,
+          "id": 3217,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3180,7 +3256,113 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "Alexiss-MBP",
+              "value": "Alexiss-MBP"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 319
+          },
+          "hiddenSeries": false,
+          "id": 3218,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -3255,10 +3437,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 319
+            "y": 329
           },
           "hiddenSeries": false,
-          "id": 2800,
+          "id": 3219,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3286,7 +3468,113 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "Office TV",
+              "value": "Office TV"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 339
+          },
+          "hiddenSeries": false,
+          "id": 3220,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -3361,10 +3649,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 329
+            "y": 349
           },
           "hiddenSeries": false,
-          "id": 2801,
+          "id": 3221,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3392,7 +3680,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -3467,10 +3755,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 339
+            "y": 359
           },
           "hiddenSeries": false,
-          "id": 2802,
+          "id": 3222,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3498,7 +3786,325 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "a4:83:e7:d5:e4:f3",
+              "value": "a4:83:e7:d5:e4:f3"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 369
+          },
+          "hiddenSeries": false,
+          "id": 3223,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "a4:b8:05:af:4c:4f",
+              "value": "a4:b8:05:af:4c:4f"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 379
+          },
+          "hiddenSeries": false,
+          "id": 3224,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "ac:63:be:b9:99:06",
+              "value": "ac:63:be:b9:99:06"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 389
+          },
+          "hiddenSeries": false,
+          "id": 3225,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -3573,10 +4179,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 349
+            "y": 399
           },
           "hiddenSeries": false,
-          "id": 2803,
+          "id": 3226,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3604,7 +4210,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -3679,10 +4285,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 359
+            "y": 409
           },
           "hiddenSeries": false,
-          "id": 2804,
+          "id": 3227,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3710,113 +4316,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "amazon-252693b12",
-              "value": "amazon-252693b12"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 369
-          },
-          "hiddenSeries": false,
-          "id": 2805,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -3891,10 +4391,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 379
+            "y": 419
           },
           "hiddenSeries": false,
-          "id": 2806,
+          "id": 3228,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3922,7 +4422,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -3997,10 +4497,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 389
+            "y": 429
           },
           "hiddenSeries": false,
-          "id": 2807,
+          "id": 3229,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4028,7 +4528,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4103,10 +4603,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 399
+            "y": 439
           },
           "hiddenSeries": false,
-          "id": 2808,
+          "id": 3230,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4134,7 +4634,113 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "amazon-91f7a568d",
+              "value": "amazon-91f7a568d"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 449
+          },
+          "hiddenSeries": false,
+          "id": 3231,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4209,10 +4815,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 409
+            "y": 459
           },
           "hiddenSeries": false,
-          "id": 2809,
+          "id": 3232,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4240,7 +4846,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4315,10 +4921,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 419
+            "y": 469
           },
           "hiddenSeries": false,
-          "id": 2810,
+          "id": 3233,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4346,7 +4952,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4421,10 +5027,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 429
+            "y": 479
           },
           "hiddenSeries": false,
-          "id": 2811,
+          "id": 3234,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4452,7 +5058,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4527,10 +5133,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 439
+            "y": 489
           },
           "hiddenSeries": false,
-          "id": 2812,
+          "id": 3235,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4558,7 +5164,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4633,10 +5239,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 449
+            "y": 499
           },
           "hiddenSeries": false,
-          "id": 2813,
+          "id": 3236,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4664,7 +5270,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4739,10 +5345,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 459
+            "y": 509
           },
           "hiddenSeries": false,
-          "id": 2814,
+          "id": 3237,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4770,7 +5376,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4845,10 +5451,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 469
+            "y": 519
           },
           "hiddenSeries": false,
-          "id": 2815,
+          "id": 3238,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4876,7 +5482,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -4951,10 +5557,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 479
+            "y": 529
           },
           "hiddenSeries": false,
-          "id": 2816,
+          "id": 3239,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4982,7 +5588,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -5057,10 +5663,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 489
+            "y": 539
           },
           "hiddenSeries": false,
-          "id": 2817,
+          "id": 3240,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5088,13 +5694,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "c4:b3:01:d2:e1:5f",
-              "value": "c4:b3:01:d2:e1:5f"
+              "text": "bl-outlet",
+              "value": "bl-outlet"
             }
           },
           "seriesOverrides": [],
@@ -5163,10 +5769,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 499
+            "y": 549
           },
           "hiddenSeries": false,
-          "id": 2818,
+          "id": 3241,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5194,7 +5800,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -5269,10 +5875,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 509
+            "y": 559
           },
           "hiddenSeries": false,
-          "id": 2819,
+          "id": 3242,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5300,7 +5906,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -5375,10 +5981,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 519
+            "y": 569
           },
           "hiddenSeries": false,
-          "id": 2820,
+          "id": 3243,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5406,7 +6012,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -5481,10 +6087,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 529
+            "y": 579
           },
           "hiddenSeries": false,
-          "id": 2821,
+          "id": 3244,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5512,7 +6118,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -5587,10 +6193,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 539
+            "y": 589
           },
           "hiddenSeries": false,
-          "id": 2822,
+          "id": 3245,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5618,7 +6224,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -5693,10 +6299,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 549
+            "y": 599
           },
           "hiddenSeries": false,
-          "id": 2823,
+          "id": 3246,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5724,13 +6330,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "d8:13:99:7d:94:c1",
-              "value": "d8:13:99:7d:94:c1"
+              "text": "dc:a9:71:ee:72:0d",
+              "value": "dc:a9:71:ee:72:0d"
             }
           },
           "seriesOverrides": [],
@@ -5799,10 +6405,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 559
+            "y": 609
           },
           "hiddenSeries": false,
-          "id": 2824,
+          "id": 3247,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5830,7 +6436,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -5905,10 +6511,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 569
+            "y": 619
           },
           "hiddenSeries": false,
-          "id": 2825,
+          "id": 3248,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5936,13 +6542,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "e4:9a:79:6c:07:aa",
-              "value": "e4:9a:79:6c:07:aa"
+              "text": "dns-rtn",
+              "value": "dns-rtn"
             }
           },
           "seriesOverrides": [],
@@ -6011,10 +6617,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 579
+            "y": 629
           },
           "hiddenSeries": false,
-          "id": 2826,
+          "id": 3249,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6042,7 +6648,431 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "dns-twt-wired",
+              "value": "dns-twt-wired"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 639
+          },
+          "hiddenSeries": false,
+          "id": 3250,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "e8:36:17:6e:f7:52",
+              "value": "e8:36:17:6e:f7:52"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 649
+          },
+          "hiddenSeries": false,
+          "id": 3251,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "f0:81:73:59:89:19",
+              "value": "f0:81:73:59:89:19"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 659
+          },
+          "hiddenSeries": false,
+          "id": 3252,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "ha",
+              "value": "ha"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 669
+          },
+          "hiddenSeries": false,
+          "id": 3253,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -6117,10 +7147,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 589
+            "y": 679
           },
           "hiddenSeries": false,
-          "id": 2827,
+          "id": 3254,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6148,7 +7178,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -6223,10 +7253,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 599
+            "y": 689
           },
           "hiddenSeries": false,
-          "id": 2828,
+          "id": 3255,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6254,7 +7284,113 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "iPhone",
+              "value": "iPhone"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 699
+          },
+          "hiddenSeries": false,
+          "id": 3256,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -6329,10 +7465,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 609
+            "y": 709
           },
           "hiddenSeries": false,
-          "id": 2829,
+          "id": 3257,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6360,13 +7496,13 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
-              "text": "rzr",
-              "value": "rzr"
+              "text": "sp3-01",
+              "value": "sp3-01"
             }
           },
           "seriesOverrides": [],
@@ -6435,10 +7571,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 619
+            "y": 719
           },
           "hiddenSeries": false,
-          "id": 2830,
+          "id": 3258,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6466,113 +7602,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
-          "repeatPanelId": 2325,
-          "scopedVars": {
-            "Client": {
-              "selected": false,
-              "text": "security",
-              "value": "security"
-            }
-          },
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
-              "interval": "$Smooth",
-              "legendFormat": "{{application}} ({{category}})",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Receive Packets - $Client",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Receive Packets per Application for $Client",
-          "fill": 0,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 629
-          },
-          "hiddenSeries": false,
-          "id": 2831,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "hideEmpty": true,
-            "hideZero": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -6647,10 +7677,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 639
+            "y": 729
           },
           "hiddenSeries": false,
-          "id": 2832,
+          "id": 3259,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6678,7 +7708,113 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "ubuntu",
+              "value": "ubuntu"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 739
+          },
+          "hiddenSeries": false,
+          "id": 3260,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
@@ -6753,10 +7889,10 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 649
+            "y": 749
           },
           "hiddenSeries": false,
-          "id": 2833,
+          "id": 3261,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6784,13 +7920,119 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "v",
-          "repeatIteration": 1577533280988,
+          "repeatIteration": 1580279266844,
           "repeatPanelId": 2325,
           "scopedVars": {
             "Client": {
               "selected": false,
               "text": "wap-upper",
               "value": "wap-upper"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", name=~\"$Client\"}[$__interval])",
+              "interval": "$Smooth",
+              "legendFormat": "{{application}} ({{category}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Receive Packets - $Client",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "pps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Receive Packets per Application for $Client",
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 759
+          },
+          "hiddenSeries": false,
+          "id": 3262,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "sort": "max",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "v",
+          "repeatIteration": 1580279266844,
+          "repeatPanelId": 2325,
+          "scopedVars": {
+            "Client": {
+              "selected": false,
+              "text": "zackbox",
+              "value": "zackbox"
             }
           },
           "seriesOverrides": [],
@@ -6852,12 +8094,11 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 69
+        "y": 71
       },
       "id": 2189,
       "panels": [
@@ -13119,12 +14360,11 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_UNIFI_POLLER}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 72
       },
       "id": 894,
       "panels": [
@@ -19386,12 +20626,11 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_UNIFI_POLLER}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 71
+        "y": 73
       },
       "id": 569,
       "panels": [
@@ -25654,12 +26893,11 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_UNIFI_POLLER}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 72
+        "y": 74
       },
       "id": 12,
       "panels": [
@@ -26076,7 +27314,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 21,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "unifi",
@@ -26085,7 +27323,7 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(source)",
@@ -26107,12 +27345,12 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_client_uptime_seconds{source=~\"$Controller\"},site_name)",
         "hide": 0,
-        "includeAll": true,
+        "includeAll": false,
         "label": null,
         "multi": true,
         "name": "Site",
@@ -26129,7 +27367,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},name)",
@@ -26151,7 +27389,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},category)",
@@ -26262,5 +27500,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Client DPI - Prometheus",
   "uid": "w3usaHLZk",
-  "version": 28
+  "version": 38
 }

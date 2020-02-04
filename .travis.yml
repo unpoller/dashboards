@@ -1,7 +1,7 @@
 script: ./dashboards.sh check
 deploy:
   - provider: script
-    script: ./dashboards.sh deploy
+    script: bash ./dashboards.sh deploy
     on:
       branch: master
 env:

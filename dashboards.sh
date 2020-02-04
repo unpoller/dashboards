@@ -86,12 +86,8 @@ function check2 {
   done
 }
 
-function isChanged {
-  true
-}
-
 # check if a dashboard (or file) has been modified
-function isChangedO {
+function isChanged {
   local changed=false
   local filename=$1
   local file=""

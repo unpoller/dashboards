@@ -32,6 +32,7 @@ IFS=$(echo -en "\n\b")
 
 # Simple function to make sure no stray files got uploaded.
 function check {
+  echo
   echo -n "Checking dashboards in: "
   pushd "${WHERE}"
   local file=""
@@ -62,6 +63,7 @@ function check {
 
 # Simple function to make sure no expected files are missing.
 function check2 {
+  echo
   echo -n "Checking file existence in: "
   pushd "${WHERE}"
   local files=$(ls)

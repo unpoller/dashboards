@@ -134,6 +134,7 @@ if [ "$1" = "deploy" ]; then
 elif [ "$1" = "check" ]; then
   check
   check2
+  echo
 else
   echo "provide command: deploy or check"
   exit 1

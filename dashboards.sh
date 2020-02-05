@@ -6,7 +6,8 @@ if [ "$TRAVIS_COMMIT_RANGE" = "" ]; then
 fi
 
 CHANGES=$(git diff --name-only --diff-filter=AM $TRAVIS_COMMIT_RANGE)
-echo "CHANGED: $CHANGES"
+echo "CHANGED (per git):"
+echo "$CHANGES"
 
 declare -a DASHMAP
 
@@ -121,6 +122,8 @@ function deploy {
 
     curl -H "Content-Type: multipart/form-data" -H "Authorization: Bearer ${GRAFANA_API_KEY}" \
     "https://grafana.com/api/dashboards/$i/revisions" --form "json=@${WHERE}${DASHMAP[$i]};type=application/json"
+    echo
+
   done
 }
 

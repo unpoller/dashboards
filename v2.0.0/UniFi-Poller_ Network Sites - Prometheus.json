@@ -30,12 +30,6 @@
     },
     {
       "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
-    },
-    {
-      "type": "datasource",
       "id": "prometheus",
       "name": "Prometheus",
       "version": "1.0.0"

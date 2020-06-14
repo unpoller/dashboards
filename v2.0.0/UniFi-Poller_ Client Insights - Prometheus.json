@@ -14,13 +14,13 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.6.0"
+      "version": "7.0.3"
     },
     {
       "type": "panel",
       "id": "grafana-piechart-panel",
       "name": "Pie Chart",
-      "version": "1.3.9"
+      "version": "1.5.0"
     },
     {
       "type": "panel",
@@ -36,8 +36,8 @@
     },
     {
       "type": "panel",
-      "id": "table",
-      "name": "Table",
+      "id": "table-old",
+      "name": "Table (old)",
       "version": ""
     }
   ],
@@ -54,12 +54,12 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0 Displays detailed information for clients in a UniFi network using Prometheus.",
+  "description": "UniFi Poller v2.0.1 Displays detailed information for clients in a UniFi network using Prometheus.",
   "editable": true,
   "gnetId": 11315,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1580615170679,
+  "iteration": 1592125485014,
   "links": [
     {
       "asDropdown": true,
@@ -99,6 +99,12 @@
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
       "description": "This table represents current (latest) data.\nBytes columns are lifetime totals.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "80%",
       "gridPos": {
         "h": 13,
@@ -108,7 +114,6 @@
       },
       "id": 21,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -623,12 +628,18 @@
       "timeFrom": null,
       "title": "Wireless Devices",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
       "description": "This table represents current (latest) data.\nBytes columns are lifetime totals.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "80%",
       "gridPos": {
         "h": 12,
@@ -639,7 +650,6 @@
       "hideTimeOverride": false,
       "id": 22,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -1025,7 +1035,7 @@
       "timeFrom": null,
       "title": "Wired Devices",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {},
@@ -1038,6 +1048,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
       "description": "Visualize wireless channel usage w/ wired client counts.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "70%",
       "format": "short",
       "gridPos": {
@@ -1059,7 +1075,6 @@
       "links": [],
       "maxDataPoints": 3,
       "nullPointMode": "connected",
-      "options": {},
       "pieType": "pie",
       "strokeWidth": "2",
       "targets": [
@@ -1094,6 +1109,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
       "description": "Visualize how many clients are connected to which radios/APs.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "70%",
       "format": "short",
       "gridPos": {
@@ -1115,7 +1136,6 @@
       "links": [],
       "maxDataPoints": 3,
       "nullPointMode": "connected",
-      "options": {},
       "pieType": "pie",
       "strokeWidth": "3",
       "targets": [
@@ -1144,6 +1164,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
       "description": "This shows an OUI breakdown from Unifi's perspective. e = wired, w = wireless",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "70%",
       "format": "short",
       "gridPos": {
@@ -1168,7 +1194,6 @@
       "links": [],
       "maxDataPoints": 3,
       "nullPointMode": "connected",
-      "options": {},
       "pieType": "pie",
       "strokeWidth": 1,
       "targets": [
@@ -1202,6 +1227,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "Bandwidth usage per wireless devices as reported by the UAPs. Rx is on the negative axis. Does not include amazon devices.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1240,6 +1271,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:323",
           "alias": "/Rx$/",
           "transform": "negative-Y"
         }
@@ -1249,17 +1281,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
           "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}} Tx",
+          "legendFormat": "{{name}} {{mac}} Tx",
           "refId": "B"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
           "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}} Rx",
+          "legendFormat": "{{name}} {{mac}} Rx",
           "refId": "C"
         }
       ],
@@ -1311,6 +1343,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "Wired TX / RX bytes per second (calculated in 30 second buckets). Rx is on the negative axis. Does not include amazon and camera devices. Unaffected by the AP setting.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1348,6 +1386,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:398",
           "alias": "/Rx$/",
           "transform": "negative-Y"
         }
@@ -1357,17 +1396,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
           "interval": "$Smooth",
-          "legendFormat": "{{name}} Tx",
+          "legendFormat": "{{name}} {{mac}} Tx",
           "refId": "A"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
           "intervalFactor": 1,
-          "legendFormat": "{{name}} Rx",
+          "legendFormat": "{{name}} {{mac}} Rx",
           "refId": "B"
         }
       ],
@@ -1420,6 +1459,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "Amazon Devices TX / RX bytes per second. Rx is on the negative axis. My home network has a ton of Amazon devices, so I broke them out separately. If you don't have Amazon devices, or they have different names, you can edit the query to use a different name. e = wired, w = wireless",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1456,6 +1501,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:469",
           "alias": "/Rx$/",
           "transform": "negative-Y"
         }
@@ -1465,31 +1511,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "w {{name}} Tx",
+          "legendFormat": "w {{name}} {{mac}} Tx",
           "refId": "A"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "w {{name}} Rx",
+          "legendFormat": "w {{name}} {{mac}} Rx",
           "refId": "B"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "e {{name}} Tx",
+          "legendFormat": "e {{name}} {{mac}} Tx",
           "refId": "C"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "e {{name}} Rx",
+          "legendFormat": "e {{name}} {{mac}} Rx",
           "refId": "D"
         }
       ],
@@ -1541,6 +1587,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "Cameras TX / RX bytes per second. Rx is on the negative axis. This graph shows any device with the word \"camera\" in its name and has nothing to do with UniFi Protect/video products. e = wired, w = wireless",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1578,6 +1630,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:510",
           "alias": "/Rx$/",
           "transform": "negative-Y"
         }
@@ -1587,32 +1640,32 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_transmit_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
           "hide": false,
           "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "w {{name}} Tx",
+          "legendFormat": "w {{name}} {{mac}} Tx",
           "refId": "A"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_receive_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "w {{name}} Rx",
+          "legendFormat": "w {{name}} {{mac}} Rx",
           "refId": "B"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_transmit_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_transmit_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "e {{name}} Tx",
+          "legendFormat": "e {{name}} {{mac}} Tx",
           "refId": "C"
         },
         {
-          "expr": "sum by (name) (rate(unifipoller_client_receive_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_receive_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
           "hide": false,
           "interval": "$Smooth",
-          "legendFormat": "e {{name}} Rx",
+          "legendFormat": "e {{name}} {{mac}} Rx",
           "refId": "D"
         }
       ],
@@ -1664,6 +1717,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1706,9 +1765,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_rssi_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_rssi_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "1m",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -1762,6 +1821,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1804,11 +1869,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_radio_signal_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_radio_signal_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "instant": false,
           "interval": "$Smooth",
           "intervalFactor": 1,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -1862,6 +1927,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -1904,10 +1975,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_noise_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_noise_db{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -1960,6 +2031,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "Client reported transmit rate.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2000,9 +2077,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_radio_transmit_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_radio_transmit_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2055,6 +2132,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2097,9 +2180,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_wifi_attempts_transmit_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval])",
+          "expr": "avg by ($Identifier) (rate(unifipoller_client_wifi_attempts_transmit_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval]))",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2153,6 +2236,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "Client reported receive rate.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2195,9 +2284,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_radio_receive_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_radio_receive_rate_bps{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2251,6 +2340,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2293,9 +2388,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_client_transmit_retries_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval])",
+          "expr": "sum by ($Identifier) (rate(unifipoller_client_transmit_retries_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval]))",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2348,6 +2443,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2390,9 +2491,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_radio_transmit_power_dbm{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_radio_transmit_power_dbm{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2445,6 +2546,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2487,9 +2594,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_anomalies{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_anomalies{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2543,6 +2650,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2585,9 +2698,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_satisfaction_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_satisfaction_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2641,6 +2754,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2683,9 +2802,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_roam_count_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_roam_count_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2738,6 +2857,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -2780,9 +2905,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name) (unifipoller_client_ccq_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
+          "expr": "sum by ($Identifier) (unifipoller_client_ccq_ratio{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
         }
       ],
@@ -2830,7 +2955,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [
     "unifi",
@@ -2989,12 +3114,12 @@
             "value": "30s"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "1m",
             "value": "1m"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "2m",
             "value": "2m"
           },
@@ -3027,11 +3152,40 @@
         "query": "30s,1m,2m,5m,10m,15m,30m,1h",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "name",
+          "value": "name"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "Identifier",
+        "options": [
+          {
+            "selected": true,
+            "text": "name",
+            "value": "name"
+          },
+          {
+            "selected": false,
+            "text": "name,mac",
+            "value": "name,mac"
+          }
+        ],
+        "query": "name, name\\,mac",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -3060,5 +3214,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Client Insights - Prometheus",
   "uid": "jMfvAjxWz",
-  "version": 25
+  "version": 30
 }

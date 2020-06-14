@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.6.0"
+      "version": "7.0.3"
     },
     {
       "type": "panel",
@@ -30,8 +30,8 @@
     },
     {
       "type": "panel",
-      "id": "table",
-      "name": "Table",
+      "id": "table-old",
+      "name": "Table (old)",
       "version": ""
     }
   ],
@@ -48,12 +48,12 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0 Displays detailed information for network switches in a UniFi network using Prometheus.",
+  "description": "UniFi Poller v2.0.1 Displays detailed information for network switches in a UniFi network using Prometheus.",
   "editable": true,
   "gnetId": 11312,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1580615469479,
+  "iteration": 1592125490470,
   "links": [
     {
       "asDropdown": true,
@@ -91,6 +91,7 @@
   "panels": [
     {
       "collapsed": false,
+      "datasource": "${DS_UNIFI_POLLER}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -105,8 +106,15 @@
     {
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
+      "description": "If you have access points and gateways they will also show up here because they have switch ports.",
       "editable": true,
       "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 6,
@@ -117,7 +125,6 @@
       "id": 2297,
       "isNew": true,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": false,
       "showHeader": true,
@@ -127,6 +134,7 @@
       },
       "styles": [
         {
+          "$$hashKey": "object:10978",
           "alias": "",
           "align": "auto",
           "colorMode": null,
@@ -143,6 +151,7 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:10979",
           "alias": "",
           "align": "auto",
           "colorMode": null,
@@ -153,12 +162,13 @@
           ],
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
-          "pattern": "Value",
+          "pattern": "Value #A",
           "thresholds": [],
           "type": "hidden",
           "unit": "dtdurations"
         },
         {
+          "$$hashKey": "object:10980",
           "alias": "Name",
           "align": "auto",
           "colorMode": null,
@@ -180,22 +190,7 @@
           "unit": "short"
         },
         {
-          "alias": "ID",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "pattern": "id",
-          "thresholds": [],
-          "type": "string",
-          "unit": "short"
-        },
-        {
+          "$$hashKey": "object:10982",
           "alias": "Model",
           "align": "auto",
           "colorMode": null,
@@ -212,6 +207,7 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:10983",
           "alias": "Device MAC",
           "align": "auto",
           "colorMode": null,
@@ -228,7 +224,8 @@
           "unit": "short"
         },
         {
-          "alias": "Unifi Serial #",
+          "$$hashKey": "object:10984",
+          "alias": "UniFi Serial #",
           "align": "auto",
           "colorMode": null,
           "colors": [
@@ -244,6 +241,7 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:10985",
           "alias": "Site",
           "align": "auto",
           "colorMode": null,
@@ -260,6 +258,7 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:10986",
           "alias": "Version",
           "align": "auto",
           "colorMode": null,
@@ -276,57 +275,7 @@
           "unit": "short"
         },
         {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "__name__",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "instance",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "job",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        },
-        {
+          "$$hashKey": "object:10990",
           "alias": "IP",
           "align": "auto",
           "colorMode": null,
@@ -344,6 +293,7 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:10991",
           "alias": "Type",
           "align": "auto",
           "colorMode": null,
@@ -361,6 +311,7 @@
           "unit": "short"
         },
         {
+          "$$hashKey": "object:10992",
           "alias": "Data",
           "align": "auto",
           "colorMode": null,
@@ -372,12 +323,13 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "bytes",
+          "pattern": "Value #C",
           "thresholds": [],
           "type": "number",
           "unit": "decbytes"
         },
         {
+          "$$hashKey": "object:10993",
           "alias": "Uptime",
           "align": "auto",
           "colorMode": null,
@@ -389,12 +341,13 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "uptime",
+          "pattern": "Value #B",
           "thresholds": [],
           "type": "number",
           "unit": "s"
         },
         {
+          "$$hashKey": "object:10994",
           "alias": "Controller",
           "align": "auto",
           "colorMode": null,
@@ -408,22 +361,40 @@
           "mappingType": 1,
           "pattern": "source",
           "thresholds": [],
-          "type": "string",
+          "type": "hidden",
           "unit": "short"
         }
       ],
       "targets": [
         {
-          "expr": "unifipoller_device_info{site_name=~\"$Site\", name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unifipoller_device_info{site_name=~\"$Site\", name=~\"$Switch\"})",
           "format": "table",
           "instant": true,
+          "interval": "",
+          "legendFormat": "",
           "refId": "A"
+        },
+        {
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unifipoller_device_uptime_seconds{site_name=~\"$Site\", name=~\"$Switch\"})",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        },
+        {
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unifipoller_device_bytes_total{site_name=~\"$Site\", name=~\"$Switch\"})",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "C"
         }
       ],
       "timeFrom": null,
       "title": "Switch Details",
       "transform": "table",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {
@@ -435,6 +406,13 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -470,6 +448,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:11469",
           "alias": "/F$/",
           "yaxis": 2
         }
@@ -479,15 +458,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "sum by (name,temp_area,temp_type) (unifipoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\"})",
           "interval": "$Smooth",
-          "legendFormat": "{{name}} C",
+          "legendFormat": "{{name}} {{temp_area}} {{temp_type}} C ",
           "refId": "A"
         },
         {
-          "expr": "unifipoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}*9/5+32",
+          "expr": "sum by (name,temp_area,temp_type) (unifipoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\"}*9/5+32)",
+          "hide": false,
+          "instant": false,
           "interval": "$Smooth",
-          "legendFormat": "{{name}} F",
+          "legendFormat": "{{name}} {{temp_area}} {{temp_type}} F",
           "refId": "B"
         }
       ],
@@ -495,9 +476,9 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Switch Tmperature",
+      "title": "Device Temperature(s)",
       "tooltip": {
-        "shared": false,
+        "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
@@ -511,6 +492,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:11514",
           "decimals": 1,
           "format": "celsius",
           "label": "Celcius",
@@ -520,7 +502,8 @@
           "show": true
         },
         {
-          "decimals": null,
+          "$$hashKey": "object:11515",
+          "decimals": 1,
           "format": "fahrenheit",
           "label": "Farenheit",
           "logBase": 1,
@@ -545,6 +528,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -645,6 +634,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "editable": true,
       "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -697,19 +692,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_load_average_1{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "unifipoller_device_load_average_1{site_name=~\"$Site\",name=~\"$Switch\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} load1",
           "refId": "A"
         },
         {
-          "expr": "unifipoller_device_load_average_5{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "unifipoller_device_load_average_5{site_name=~\"$Site\",name=~\"$Switch\"}",
+          "hide": true,
           "interval": "$Smooth",
           "legendFormat": "{{name}} load5",
           "refId": "B"
         },
         {
-          "expr": "unifipoller_device_load_average_15{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "unifipoller_device_load_average_15{site_name=~\"$Site\",name=~\"$Switch\"}",
+          "hide": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} load15",
           "refId": "C"
@@ -719,7 +716,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "USW Load Average",
+      "title": "Device Load Average",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -737,6 +734,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:13149",
           "format": "none",
           "label": null,
           "logBase": 1,
@@ -745,6 +743,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:13150",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -769,6 +768,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 0,
       "fillGradient": 0,
       "gridPos": {
@@ -863,6 +868,12 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "description": "Shows data transferred for selected switch ports.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -968,6 +979,12 @@
       "columns": [],
       "datasource": "${DS_PROMETHEUS}",
       "description": "This panel displays lifetime totals and current data as of now.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "90%",
       "gridPos": {
         "h": 21,
@@ -977,7 +994,6 @@
       },
       "id": 214,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -1490,10 +1506,11 @@
       "title": "All Port Information",
       "transform": "table",
       "transparent": true,
-      "type": "table"
+      "type": "table-old"
     },
     {
       "collapsed": true,
+      "datasource": "${DS_UNIFI_POLLER}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1506,6 +1523,12 @@
           "columns": [],
           "datasource": "${DS_PROMETHEUS}",
           "description": "These are total \"lifetime\" counters.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fontSize": "90%",
           "gridPos": {
             "h": 3,
@@ -1515,13 +1538,10 @@
           },
           "id": 291,
           "links": [],
-          "options": {},
           "pageSize": null,
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "scroll": true,
@@ -1811,7 +1831,7 @@
           ],
           "title": "Switch $Port Information",
           "transform": "timeseries_to_columns",
-          "type": "table"
+          "type": "table-old"
         },
         {
           "aliasColors": {},
@@ -1820,6 +1840,12 @@
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
           "description": "Shows data transfer rate per second for Switch $Port. TX on positive axis and RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1854,9 +1880,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -1930,6 +1954,12 @@
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
           "description": "Shows broadcast and multicast packets per second for Switch $Port. TX on positive axis and RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -1964,9 +1994,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -2053,6 +2081,12 @@
           "datasource": "${DS_PROMETHEUS}",
           "decimals": null,
           "description": "Shows errors and dropped packets for Switch $Port. RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2088,9 +2122,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -2148,6 +2180,7 @@
           },
           "yaxes": [
             {
+              "$$hashKey": "object:4320",
               "decimals": null,
               "format": "pps",
               "label": "packets per second",
@@ -2157,6 +2190,7 @@
               "show": true
             },
             {
+              "$$hashKey": "object:4321",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2177,6 +2211,12 @@
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
           "description": "Shows packet counters for Switch $Port. TX on positive axis and RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2211,9 +2251,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -2287,6 +2325,12 @@
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
           "description": "Display POE Power for Switch $Port.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2321,9 +2365,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "seriesOverrides": [],
@@ -2386,6 +2428,12 @@
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
           "description": "Display POE Voltage for Switch $Port.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2421,9 +2469,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "seriesOverrides": [],
@@ -2486,6 +2532,12 @@
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
           "description": "Display POE Current for Switch $Port.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
@@ -2520,9 +2572,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 6",
-              "value": "switch Port 6"
+              "selected": false
             }
           },
           "seriesOverrides": [],
@@ -2585,11 +2635,12 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_UNIFI_POLLER}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 61
+        "y": 85
       },
       "id": 2299,
       "panels": [],
@@ -2598,7 +2649,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [
     "unifi",
@@ -2611,14 +2662,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{type=\"usw\"},source)",
+        "definition": "label_values(unifipoller_device_info,source)",
         "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Controller",
         "options": [],
-        "query": "label_values(unifipoller_device_info{type=\"usw\"},source)",
+        "query": "label_values(unifipoller_device_info,source)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2630,17 +2681,59 @@
         "useTags": false
       },
       {
+        "allValue": "",
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "Devices",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "udm",
+            "value": "udm"
+          },
+          {
+            "selected": false,
+            "text": "usw",
+            "value": "usw"
+          },
+          {
+            "selected": false,
+            "text": "uap",
+            "value": "uap"
+          }
+        ],
+        "query": "udm,usw,uap",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{source=~\"$Controller\",type=~\"usw|udm|udmp\"},site_name)",
+        "definition": "label_values(unifipoller_device_info{source=~\"$Controller\"},site_name)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "label_values(unifipoller_device_info{source=~\"$Controller\",type=~\"usw|udm|udmp\"},site_name)",
+        "query": "label_values(unifipoller_device_info{source=~\"$Controller\"},site_name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2652,17 +2745,17 @@
         "useTags": false
       },
       {
-        "allValue": ".*",
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"usw|udm|udmp\"},name)",
+        "definition": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Switch",
         "options": [],
-        "query": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"usw|udm|udmp\"},name)",
+        "query": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2780,5 +2873,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USW Insights - Prometheus",
   "uid": "FsfxpWaZz",
-  "version": 26
+  "version": 35
 }

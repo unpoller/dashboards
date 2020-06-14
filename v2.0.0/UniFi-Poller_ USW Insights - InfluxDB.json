@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.6.0"
+      "version": "7.0.3"
     },
     {
       "type": "panel",
@@ -30,8 +30,8 @@
     },
     {
       "type": "panel",
-      "id": "table",
-      "name": "Table",
+      "id": "table-old",
+      "name": "Table (old)",
       "version": ""
     }
   ],
@@ -48,12 +48,12 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0 Displays detailed information for network switches in a UniFi network.",
+  "description": "UniFi Poller v2.0.1 Displays detailed information for network switches in a UniFi network.",
   "editable": true,
   "gnetId": 10417,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1580615240821,
+  "iteration": 1592125489578,
   "links": [
     {
       "asDropdown": true,
@@ -108,6 +108,12 @@
       "datasource": "${DS_UNIFI_POLLER}",
       "editable": true,
       "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 6,
@@ -118,7 +124,6 @@
       "id": 1857,
       "isNew": true,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": false,
       "showHeader": true,
@@ -455,7 +460,7 @@
       "title": "USW Details",
       "transform": "table",
       "transparent": true,
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {
@@ -467,6 +472,12 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 1,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -679,6 +690,12 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -832,6 +849,12 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1028,6 +1051,12 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1175,6 +1204,12 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "description": "Shows data transferred for ports: Selected Switch ports. Rx is on the negative axis.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1363,6 +1398,12 @@
       "columns": [],
       "datasource": "${DS_UNIFI_POLLER}",
       "description": "This panel displays lifetime totals and current data as of now.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "90%",
       "gridPos": {
         "h": 21,
@@ -1372,7 +1413,6 @@
       },
       "id": 214,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -1910,7 +1950,7 @@
       "title": "All Port Information",
       "transform": "table",
       "transparent": true,
-      "type": "table"
+      "type": "table-old"
     },
     {
       "collapsed": true,
@@ -1940,9 +1980,7 @@
           "pageSize": null,
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "scroll": true,
@@ -2388,7 +2426,7 @@
           ],
           "title": "Switch $Port Information",
           "transform": "table",
-          "type": "table"
+          "type": "table-old"
         },
         {
           "aliasColors": {
@@ -2434,9 +2472,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -2629,9 +2665,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -2849,9 +2883,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -3093,9 +3125,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "seriesOverrides": [
@@ -3288,9 +3318,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "seriesOverrides": [],
@@ -3442,9 +3470,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "seriesOverrides": [],
@@ -3596,9 +3622,7 @@
           "renderer": "flot",
           "scopedVars": {
             "Port": {
-              "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "selected": false
             }
           },
           "seriesOverrides": [],
@@ -3716,7 +3740,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [
     "unifi",
@@ -3729,14 +3753,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw\" with key=\"source\"",
+        "definition": "show tag values from \"usw_ports\" with key=\"source\"",
         "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Controller",
         "options": [],
-        "query": "show tag values from \"usw\" with key=\"source\"",
+        "query": "show tag values from \"usw_ports\" with key=\"source\"",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3751,14 +3775,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw\" with key=\"site_name\" WHERE source =~ /^$Controller$/",
+        "definition": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^$Controller$/",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "show tag values from \"usw\" with key=\"site_name\" WHERE source =~ /^$Controller$/",
+        "query": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^$Controller$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3845,5 +3869,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USW Insights - InfluxDB",
   "uid": "HIKZ98GZz",
-  "version": 15
+  "version": 18
 }

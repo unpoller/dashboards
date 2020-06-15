@@ -53,7 +53,7 @@
   "gnetId": 10417,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1592125489597,
+  "iteration": 1592179735404,
   "links": [
     {
       "asDropdown": true,
@@ -543,6 +543,7 @@
               "type": "fill"
             }
           ],
+          "hide": true,
           "measurement": "usw",
           "orderByTime": "ASC",
           "policy": "default",
@@ -577,7 +578,7 @@
           ]
         },
         {
-          "alias": "$tag_name Temperature F",
+          "alias": "$tag_name $col F",
           "groupBy": [
             {
               "params": [
@@ -598,7 +599,7 @@
               "type": "fill"
             }
           ],
-          "hide": true,
+          "hide": false,
           "measurement": "usw",
           "orderByTime": "ASC",
           "policy": "default",
@@ -621,6 +622,12 @@
                   "*9/5+32"
                 ],
                 "type": "math"
+              },
+              {
+                "params": [
+                  "General Temp"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -639,7 +646,7 @@
           ]
         },
         {
-          "alias": "$tag_name Temperature C",
+          "alias": "$tag_name $col F",
           "groupBy": [
             {
               "params": [
@@ -669,13 +676,171 @@
             [
               {
                 "params": [
-                  "temp_Local_board"
+                  "temp_Local"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
                 "type": "mean"
+              },
+              {
+                "params": [
+                  "*9/5+32"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Local Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_PHY"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "*9/5+32"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Physical Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_CPU"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "*9/5+32"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "CPU Temp"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name $col C",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "udm",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp_Local"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Local Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_PHY"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Physical Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_CPU"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "CPU Temp"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -721,7 +886,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         },
         {
           "$$hashKey": "object:1190",
@@ -4388,5 +4553,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USW Insights - InfluxDB",
   "uid": "HIKZ98GZz",
-  "version": 19
+  "version": 21
 }

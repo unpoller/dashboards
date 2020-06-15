@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.6.0"
+      "version": "7.0.3"
     },
     {
       "type": "panel",
@@ -30,8 +30,8 @@
     },
     {
       "type": "panel",
-      "id": "table",
-      "name": "Table",
+      "id": "table-old",
+      "name": "Table (old)",
       "version": ""
     }
   ],
@@ -48,12 +48,12 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0 Displays detailed information for network switches in a UniFi network.",
+  "description": "UniFi Poller v2.0.1 Displays detailed information for network switches in a UniFi network.",
   "editable": true,
   "gnetId": 10417,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1580615240821,
+  "iteration": 1592179735404,
   "links": [
     {
       "asDropdown": true,
@@ -108,6 +108,12 @@
       "datasource": "${DS_UNIFI_POLLER}",
       "editable": true,
       "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 6,
@@ -118,7 +124,6 @@
       "id": 1857,
       "isNew": true,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": false,
       "showHeader": true,
@@ -455,7 +460,7 @@
       "title": "USW Details",
       "transform": "table",
       "transparent": true,
-      "type": "table"
+      "type": "table-old"
     },
     {
       "aliasColors": {
@@ -467,10 +472,16 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 1,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
+        "h": 10,
         "w": 17,
         "x": 0,
         "y": 7
@@ -532,6 +543,7 @@
               "type": "fill"
             }
           ],
+          "hide": true,
           "measurement": "usw",
           "orderByTime": "ASC",
           "policy": "default",
@@ -566,7 +578,7 @@
           ]
         },
         {
-          "alias": "$tag_name Temperature F",
+          "alias": "$tag_name $col F",
           "groupBy": [
             {
               "params": [
@@ -587,6 +599,7 @@
               "type": "fill"
             }
           ],
+          "hide": false,
           "measurement": "usw",
           "orderByTime": "ASC",
           "policy": "default",
@@ -609,6 +622,225 @@
                   "*9/5+32"
                 ],
                 "type": "math"
+              },
+              {
+                "params": [
+                  "General Temp"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name $col F",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "udm",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp_Local"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "*9/5+32"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Local Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_PHY"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "*9/5+32"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Physical Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_CPU"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "*9/5+32"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "CPU Temp"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name $col C",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": true,
+          "measurement": "udm",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "temp_Local"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Local Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_PHY"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Physical Temp"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "temp_CPU"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "CPU Temp"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -647,15 +879,17 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1189",
           "decimals": 1,
           "format": "celsius",
           "label": "Celcius",
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         },
         {
+          "$$hashKey": "object:1190",
           "decimals": null,
           "format": "fahrenheit",
           "label": "Farenheit",
@@ -679,10 +913,16 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": 0,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
+        "h": 10,
         "w": 7,
         "x": 17,
         "y": 7
@@ -775,6 +1015,128 @@
               "value": "/^$Switch$/"
             }
           ]
+        },
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "uap",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "mem"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Total"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "udm",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "mem"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Total"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -797,6 +1159,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1330",
           "decimals": 0,
           "format": "percent",
           "label": "",
@@ -806,6 +1169,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:1331",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -832,13 +1196,19 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 17,
         "x": 0,
-        "y": 14
+        "y": 17
       },
       "hiddenSeries": false,
       "id": 1150,
@@ -928,7 +1298,7 @@
             [
               {
                 "params": [
-                  "loadavg_5"
+                  "loadavg_15"
                 ],
                 "type": "field"
               },
@@ -938,11 +1308,115 @@
               },
               {
                 "params": [
-                  "Load 5"
+                  "Load 15"
                 ],
                 "type": "alias"
               }
-            ],
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "uap",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "loadavg_15"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "Load 15"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "udm",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
             [
               {
                 "params": [
@@ -997,6 +1471,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:355",
           "decimals": null,
           "format": "short",
           "label": null,
@@ -1006,6 +1481,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:356",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1028,13 +1504,19 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 11,
         "w": 7,
         "x": 17,
-        "y": 14
+        "y": 17
       },
       "hiddenSeries": false,
       "id": 1169,
@@ -1124,6 +1606,128 @@
               "value": "/^$Switch$/"
             }
           ]
+        },
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "uap",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "CPU %"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
+        },
+        {
+          "alias": "$tag_name $col",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "name"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "udm",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cpu"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "CPU %"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "site_name",
+              "operator": "=~",
+              "value": "/^$Site$/"
+            },
+            {
+              "condition": "AND",
+              "key": "name",
+              "operator": "=~",
+              "value": "/^$Switch$/"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -1146,6 +1750,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1812",
           "decimals": null,
           "format": "percent",
           "label": "CPU %",
@@ -1155,6 +1760,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:1813",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1175,13 +1781,19 @@
       "dashes": false,
       "datasource": "${DS_UNIFI_POLLER}",
       "description": "Shows data transferred for ports: Selected Switch ports. Rx is on the negative axis.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
         "h": 17,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 28
       },
       "hiddenSeries": false,
       "id": 135,
@@ -1338,6 +1950,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:2225",
           "format": "Bps",
           "label": "Bytes Per Second",
           "logBase": 1,
@@ -1346,6 +1959,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:2226",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1363,16 +1977,21 @@
       "columns": [],
       "datasource": "${DS_UNIFI_POLLER}",
       "description": "This panel displays lifetime totals and current data as of now.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "90%",
       "gridPos": {
         "h": 21,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 45
       },
       "id": 214,
       "links": [],
-      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -1910,7 +2529,7 @@
       "title": "All Port Information",
       "transform": "table",
       "transparent": true,
-      "type": "table"
+      "type": "table-old"
     },
     {
       "collapsed": true,
@@ -1919,7 +2538,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 60
+        "y": 66
       },
       "id": 4,
       "panels": [
@@ -1927,22 +2546,27 @@
           "columns": [],
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "If you do not see data here, the port is probably not up!",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fontSize": "90%",
           "gridPos": {
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 2
+            "y": 61
           },
           "id": 291,
           "links": [],
-          "options": {},
           "pageSize": null,
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "scroll": true,
@@ -2388,7 +3012,7 @@
           ],
           "title": "Switch $Port Information",
           "transform": "table",
-          "type": "table"
+          "type": "table-old"
         },
         {
           "aliasColors": {
@@ -2400,13 +3024,19 @@
           "dashes": false,
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "Shows data transfer rate per second for Switch $Port. TX on positive axis and RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 5
+            "y": 64
           },
           "hiddenSeries": false,
           "id": 1396,
@@ -2435,8 +3065,8 @@
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "seriesOverrides": [
@@ -2595,13 +3225,19 @@
           "dashes": false,
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "Shows broadcast and multicast packets per second for Switch $Port. TX on positive axis and RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 14
+            "y": 73
           },
           "hiddenSeries": false,
           "id": 594,
@@ -2630,8 +3266,8 @@
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "seriesOverrides": [
@@ -2815,13 +3451,19 @@
           "datasource": "${DS_UNIFI_POLLER}",
           "decimals": 0,
           "description": "Shows errors and dropped packets for Switch $Port. RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 14
+            "y": 73
           },
           "hiddenSeries": false,
           "id": 367,
@@ -2850,8 +3492,8 @@
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "seriesOverrides": [
@@ -3059,13 +3701,19 @@
           "dashes": false,
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "Shows packet counters for Switch $Port. TX on positive axis and RX on negative axis.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 80
           },
           "hiddenSeries": false,
           "id": 468,
@@ -3094,8 +3742,8 @@
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "seriesOverrides": [
@@ -3254,13 +3902,19 @@
           "dashes": false,
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "Display POE Power for Switch $Port.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 4,
             "x": 12,
-            "y": 21
+            "y": 80
           },
           "hiddenSeries": false,
           "id": 745,
@@ -3289,8 +3943,8 @@
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "seriesOverrides": [],
@@ -3408,13 +4062,19 @@
           "dashes": false,
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "Display POE Voltage for Switch $Port.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 4,
             "x": 16,
-            "y": 21
+            "y": 80
           },
           "hiddenSeries": false,
           "id": 921,
@@ -3443,8 +4103,8 @@
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "seriesOverrides": [],
@@ -3562,13 +4222,19 @@
           "dashes": false,
           "datasource": "${DS_UNIFI_POLLER}",
           "description": "Display POE Current for Switch $Port.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 1,
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 4,
             "x": 20,
-            "y": 21
+            "y": 80
           },
           "hiddenSeries": false,
           "id": 922,
@@ -3597,8 +4263,8 @@
           "scopedVars": {
             "Port": {
               "selected": false,
-              "text": "switch Port 2",
-              "value": "switch Port 2"
+              "text": "switch Port 1",
+              "value": "switch Port 1"
             }
           },
           "seriesOverrides": [],
@@ -3716,7 +4382,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [
     "unifi",
@@ -3729,14 +4395,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw\" with key=\"source\"",
+        "definition": "show tag values from \"usw_ports\" with key=\"source\"",
         "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Controller",
         "options": [],
-        "query": "show tag values from \"usw\" with key=\"source\"",
+        "query": "show tag values from \"usw_ports\" with key=\"source\"",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3751,14 +4417,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw\" with key=\"site_name\" WHERE source =~ /^$Controller$/",
+        "definition": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "show tag values from \"usw\" with key=\"site_name\" WHERE source =~ /^$Controller$/",
+        "query": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3770,17 +4436,59 @@
         "useTags": false
       },
       {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "Devices",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "uap",
+            "value": "uap"
+          },
+          {
+            "selected": false,
+            "text": "udm",
+            "value": "udm"
+          },
+          {
+            "selected": false,
+            "text": "usw",
+            "value": "usw"
+          }
+        ],
+        "query": "uap,udm,usw",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
         "allValue": "",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^$Site$/",
+        "definition": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^$Site$/ AND type=~/^$Devices$/",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Switch",
         "options": [],
-        "query": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^$Site$/",
+        "query": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^$Site$/ AND type=~/^$Devices$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3845,5 +4553,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USW Insights - InfluxDB",
   "uid": "HIKZ98GZz",
-  "version": 15
+  "version": 21
 }

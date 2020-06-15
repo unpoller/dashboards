@@ -1,7 +1,7 @@
 #/bin/bash
 
 if [ "$TRAVIS_COMMIT_RANGE" = "" ]; then
-  echo "this only works in travis-ci"
+  echo "This only works in travis-ci. Branches need at least 2 commits."
   exit 1
 fi
 

@@ -73,7 +73,7 @@
         "iconColor": "#B877D9",
         "limit": 100,
         "name": "AP Events",
-        "query": "select \"key\" as \"title\", \"msg\",\"ssid\",\"hostname\",\"host\",\"radio\"  from \"unifi_events\" WHERE subsystem='wlan' AND $timeFilter ORDER BY time DESC LIMIT 100",
+        "query": "select \"key\" as \"title\", \"msg\",\"ssid\",\"hostname\",\"host\",\"radio\"  from \"unifi_events\" WHERE subsystem='wlan' AND source =~ /^$Controller$/ AND \"site_name\" =~ /^$site$/ AND $timeFilter ORDER BY time DESC LIMIT 100",
         "showIn": 0,
         "tags": [],
         "tagsColumn": "ssid,hostname,host,radio,title",
@@ -84,13 +84,27 @@
         "datasource": "${DS_UNIFI_POLLER}",
         "enable": false,
         "hide": false,
-        "iconColor": "rgba(255, 96, 96, 1)",
+        "iconColor": "#96D98D",
         "limit": 100,
         "name": "Other Events",
-        "query": "select \"key\" as \"title\", \"msg\",\"subsystem\",\"ssid\",\"network\",\"hostname\",\"host\" from \"unifi_events\" WHERE subsystem!='wlan' AND $timeFilter ORDER BY time DESC LIMIT 100",
+        "query": "select \"key\" as \"title\", \"msg\",\"subsystem\",\"ssid\",\"network\",\"hostname\",\"host\" from \"unifi_events\" WHERE subsystem!='wlan' AND source =~ /^$Controller$/ AND \"site_name\" =~ /^$site$/AND $timeFilter ORDER BY time DESC LIMIT 100",
         "showIn": 0,
         "tags": [],
         "tagsColumn": "subsystem,ssid,network,hostname,host",
+        "textColumn": "msg",
+        "type": "tags"
+      },
+      {
+        "datasource": "${DS_UNIFI_POLLER}",
+        "enable": false,
+        "hide": false,
+        "iconColor": "#C4162A",
+        "limit": 100,
+        "name": "IDS Events",
+        "query": "select \"key\", \"msg\",\"subsystem\",\"catname\",\"app_proto\",\"inner_alert_action\",\"dstip_country_name\" from \"unifi_ids\"  WHERE $timeFilter AND source =~ /^$Controller$/ AND \"site_name\" =~ /^$site$/ ORDER BY time DESC LIMIT 100",
+        "showIn": 0,
+        "tags": [],
+        "tagsColumn": "key,subsystem,catname,app_proto,inner_alert_action,dstip_country_name",
         "textColumn": "msg",
         "type": "tags"
       }
@@ -101,7 +115,7 @@
   "gnetId": 10414,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1592863440119,
+  "iteration": 1593063896147,
   "links": [
     {
       "asDropdown": true,
@@ -138,8 +152,9 @@
   ],
   "panels": [
     {
-      "content": "Each site contains 5 subsystems: wan, lan, wlan, www, vpn. \nEach subsystem contains data specific to that system, \nbut every subsystem shares the same fields. \nThis means that most fields you find appear empty. \nThat means the field is probably for a different subsystem.\nThe site metrics contain a lot of data about the local USG.\nNote: The three singlestat panels with thresholds do not have\na subsystem selected and they may not be entirely accurate.\n\nThe Events and AP Events selectors only work if save_events is \nturned on (and you have events to display). They display events\nfor all sites on all sites, sorry, but annotations can only be\nmade per-Dashboard. Use these as examples for your own dashboards.\n",
+      "content": "Each site contains 5 subsystems: wan, lan, wlan, www, vpn. \nEach subsystem contains data specific to that system, \nbut every subsystem shares the same fields. \nThis means that most fields you find appear empty. \nThat means the field is probably for a different subsystem.\nThe site metrics contain a lot of data about the local USG.\nNote: The three singlestat panels with thresholds do not have\na subsystem selected and they may not be entirely accurate.\n<br><br>\nThe three Events selectors only work if save_events and\nsave_ids (for IDS) is turned on (and you have events to\ndisplay). They display events for all sites on all sites,\nsorry, but annotations can only be made per-Dashboard. Use\nthese as examples for your own dashboards.\n",
       "datasource": "${DS_UNIFI_POLLER}",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -173,7 +188,7 @@
       "panels": [
         {
           "datasource": "${DS_UNIFI_POLLER}",
-          "description": "This only contains data if save_events is turned on in the UniFi Poller configuration.",
+          "description": "This only contains data if save_events and/or save_ids are set true in the poller configuration.",
           "fieldConfig": {
             "defaults": {
               "custom": {
@@ -181,7 +196,7 @@
               },
               "mappings": [],
               "thresholds": {
-                "mode": "absolute",
+                "mode": "percentage",
                 "steps": [
                   {
                     "color": "green",
@@ -203,31 +218,7 @@
                 "properties": [
                   {
                     "id": "custom.width",
-                    "value": 157
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "subsystem"
-                },
-                "properties": [
-                  {
-                    "id": "custom.width",
-                    "value": 86
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "key"
-                },
-                "properties": [
-                  {
-                    "id": "custom.width",
-                    "value": 173
+                    "value": 170
                   }
                 ]
               },
@@ -239,24 +230,58 @@
                 "properties": [
                   {
                     "id": "custom.width",
-                    "value": 235
-                  },
+                    "value": 189
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "subsystem"
+                },
+                "properties": [
                   {
-                    "id": "noValue",
-                    "value": "-"
+                    "id": "custom.width",
+                    "value": 87
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "key"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 186
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "host"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 136
                   }
                 ]
               }
             ]
           },
           "gridPos": {
-            "h": 10,
+            "h": 12,
             "w": 24,
             "x": 0,
             "y": 6
           },
           "id": 40,
+          "interval": "",
           "options": {
+            "frameIndex": 0,
             "showHeader": true,
             "sortBy": []
           },
@@ -270,15 +295,25 @@
           },
           "targets": [
             {
+              "alias": "as",
               "groupBy": [],
+              "hide": false,
               "measurement": "unifi_events",
-              "orderByTime": "DESC",
+              "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT \"site_name\", \"hostname\", \"hostname\" FROM \"unifi_events\" WHERE (\"site_name\" =~ /^$site$/) AND $timeFilter",
+              "query": "SELECT \"hostname\", \"subsystem\", \"key\", \"msg\" FROM \"unifi_events\" WHERE (\"site_name\" =~ /^$site$/) AND $timeFilter",
               "rawQuery": false,
               "refId": "A",
               "resultFormat": "table",
               "select": [
+                [
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "field"
+                  }
+                ],
                 [
                   {
                     "params": [
@@ -290,7 +325,52 @@
                 [
                   {
                     "params": [
-                      "hostname"
+                      "key"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "msg"
+                    ],
+                    "type": "field"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "site_name",
+                  "operator": "=~",
+                  "value": "/^$site$/"
+                }
+              ]
+            },
+            {
+              "alias": "as",
+              "groupBy": [],
+              "hide": false,
+              "measurement": "unifi_ids",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT \"subsystem\", \"hostname\", \"key\", \"msg\" FROM \"unifi_events\" WHERE (\"site_name\" =~ /^$site$/) AND $timeFilter ORDER BY time DESC",
+              "rawQuery": false,
+              "refId": "B",
+              "resultFormat": "table",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "host"
+                    ],
+                    "type": "field"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "subsystem"
                     ],
                     "type": "field"
                   }
@@ -323,7 +403,8 @@
           ],
           "timeFrom": null,
           "timeShift": null,
-          "title": " $site Events",
+          "title": "$site Events & IDS",
+          "transformations": [],
           "type": "table"
         },
         {
@@ -354,7 +435,7 @@
             "h": 4,
             "w": 3,
             "x": 0,
-            "y": 16
+            "y": 18
           },
           "id": 32,
           "interval": null,
@@ -474,7 +555,7 @@
             "h": 4,
             "w": 3,
             "x": 3,
-            "y": 16
+            "y": 18
           },
           "id": 33,
           "interval": null,
@@ -594,7 +675,7 @@
             "h": 4,
             "w": 3,
             "x": 6,
-            "y": 16
+            "y": 18
           },
           "id": 34,
           "interval": null,
@@ -714,7 +795,7 @@
             "h": 4,
             "w": 3,
             "x": 9,
-            "y": 16
+            "y": 18
           },
           "id": 35,
           "interval": null,
@@ -820,7 +901,7 @@
             "h": 4,
             "w": 12,
             "x": 12,
-            "y": 16
+            "y": 18
           },
           "id": 14,
           "links": [],
@@ -1017,7 +1098,7 @@
             "h": 2,
             "w": 2,
             "x": 0,
-            "y": 20
+            "y": 22
           },
           "id": 18,
           "interval": null,
@@ -1137,7 +1218,7 @@
             "h": 2,
             "w": 2,
             "x": 2,
-            "y": 20
+            "y": 22
           },
           "id": 19,
           "interval": null,
@@ -1257,7 +1338,7 @@
             "h": 2,
             "w": 2,
             "x": 4,
-            "y": 20
+            "y": 22
           },
           "id": 17,
           "interval": null,
@@ -1377,7 +1458,7 @@
             "h": 2,
             "w": 2,
             "x": 6,
-            "y": 20
+            "y": 22
           },
           "id": 24,
           "interval": null,
@@ -1497,7 +1578,7 @@
             "h": 2,
             "w": 2,
             "x": 8,
-            "y": 20
+            "y": 22
           },
           "id": 28,
           "interval": null,
@@ -1617,7 +1698,7 @@
             "h": 2,
             "w": 2,
             "x": 10,
-            "y": 20
+            "y": 22
           },
           "id": 29,
           "interval": null,
@@ -1737,7 +1818,7 @@
             "h": 2,
             "w": 2,
             "x": 12,
-            "y": 20
+            "y": 22
           },
           "id": 26,
           "interval": null,
@@ -1843,7 +1924,7 @@
             "h": 4,
             "w": 5,
             "x": 14,
-            "y": 20
+            "y": 22
           },
           "id": 10,
           "links": [],
@@ -1994,7 +2075,7 @@
             "h": 4,
             "w": 5,
             "x": 19,
-            "y": 20
+            "y": 22
           },
           "id": 11,
           "links": [],
@@ -2198,7 +2279,7 @@
             "h": 2,
             "w": 2,
             "x": 0,
-            "y": 22
+            "y": 24
           },
           "id": 30,
           "interval": null,
@@ -2319,7 +2400,7 @@
             "h": 2,
             "w": 2,
             "x": 2,
-            "y": 22
+            "y": 24
           },
           "id": 27,
           "interval": null,
@@ -2433,7 +2514,7 @@
             "h": 2,
             "w": 2,
             "x": 4,
-            "y": 22
+            "y": 24
           },
           "id": 22,
           "interval": null,
@@ -2547,7 +2628,7 @@
             "h": 2,
             "w": 2,
             "x": 6,
-            "y": 22
+            "y": 24
           },
           "id": 25,
           "interval": null,
@@ -2661,7 +2742,7 @@
             "h": 2,
             "w": 2,
             "x": 8,
-            "y": 22
+            "y": 24
           },
           "id": 20,
           "interval": null,
@@ -2775,7 +2856,7 @@
             "h": 2,
             "w": 2,
             "x": 10,
-            "y": 22
+            "y": 24
           },
           "id": 31,
           "interval": null,
@@ -2895,7 +2976,7 @@
             "h": 2,
             "w": 2,
             "x": 12,
-            "y": 22
+            "y": 24
           },
           "id": 21,
           "interval": null,
@@ -3001,7 +3082,7 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 24
+            "y": 26
           },
           "id": 12,
           "links": [],
@@ -3203,7 +3284,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 27
+            "y": 29
           },
           "hiddenSeries": false,
           "id": 15,
@@ -3388,7 +3469,7 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 35
+            "y": 37
           },
           "hiddenSeries": false,
           "id": 2,
@@ -3584,7 +3665,7 @@
             "h": 15,
             "w": 24,
             "x": 0,
-            "y": 42
+            "y": 44
           },
           "hiddenSeries": false,
           "id": 38,
@@ -3795,10 +3876,10 @@
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
         "definition": "show tag values from \"subsystems\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
-        "hide": 2,
+        "hide": 0,
         "includeAll": true,
-        "label": "",
-        "multi": false,
+        "label": "Sites",
+        "multi": true,
         "name": "site",
         "options": [],
         "query": "show tag values from \"subsystems\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
@@ -3866,5 +3947,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Network Sites - InfluxDB",
   "uid": "5_omrT7Zz",
-  "version": 34
+  "version": 47
 }

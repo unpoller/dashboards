@@ -367,7 +367,7 @@
       ],
       "targets": [
         {
-          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unifipoller_device_info{site_name=~\"$Site\", name=~\"$Switch\"})",
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unpoller_device_info{site_name=~\"$Site\", name=~\"$Switch\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -375,7 +375,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unifipoller_device_uptime_seconds{site_name=~\"$Site\", name=~\"$Switch\"})",
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unpoller_device_uptime_seconds{site_name=~\"$Site\", name=~\"$Switch\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -383,7 +383,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unifipoller_device_bytes_total{site_name=~\"$Site\", name=~\"$Switch\"})",
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version,source) (unpoller_device_bytes_total{site_name=~\"$Site\", name=~\"$Switch\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -458,13 +458,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (name,temp_area,temp_type) (unifipoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,temp_area,temp_type) (unpoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\"})",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{temp_area}} {{temp_type}} C ",
           "refId": "A"
         },
         {
-          "expr": "sum by (name,temp_area,temp_type) (unifipoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\"}*9/5+32)",
+          "expr": "sum by (name,temp_area,temp_type) (unpoller_device_temperature_celsius{site_name=~\"$Site\",name=~\"$Switch\"}*9/5+32)",
           "hide": false,
           "instant": false,
           "interval": "$Smooth",
@@ -573,7 +573,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_memory_utilization_ratio{type=\"usw\", site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "unpoller_device_memory_utilization_ratio{type=\"usw\", site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -692,20 +692,20 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_load_average_1{site_name=~\"$Site\",name=~\"$Switch\"}",
+          "expr": "unpoller_device_load_average_1{site_name=~\"$Site\",name=~\"$Switch\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} load1",
           "refId": "A"
         },
         {
-          "expr": "unifipoller_device_load_average_5{site_name=~\"$Site\",name=~\"$Switch\"}",
+          "expr": "unpoller_device_load_average_5{site_name=~\"$Site\",name=~\"$Switch\"}",
           "hide": true,
           "interval": "$Smooth",
           "legendFormat": "{{name}} load5",
           "refId": "B"
         },
         {
-          "expr": "unifipoller_device_load_average_15{site_name=~\"$Site\",name=~\"$Switch\"}",
+          "expr": "unpoller_device_load_average_15{site_name=~\"$Site\",name=~\"$Switch\"}",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} load15",
@@ -813,7 +813,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_cpu_utilization_ratio{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "unpoller_device_cpu_utilization_ratio{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -921,13 +921,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unifipoller_device_port_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__interval])",
+          "expr": "rate(unpoller_device_port_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__interval])",
           "interval": "$Smooth",
           "legendFormat": "{{port_id}} {{port_name}} Tx",
           "refId": "A"
         },
         {
-          "expr": "rate(unifipoller_device_port_receive_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__interval])",
+          "expr": "rate(unpoller_device_port_receive_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__interval])",
           "interval": "$Smooth",
           "legendFormat": "{{port_id}} {{port_name}} Rx",
           "refId": "B"
@@ -1413,90 +1413,90 @@
       ],
       "targets": [
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_receive_bytes_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_receive_bytes_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "instant": true,
           "refId": "A"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_transmit_bytes_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_transmit_bytes_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "B"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_receive_dropped_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_receive_dropped_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "D"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_transmit_dropped_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_transmit_dropped_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "C"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_receive_broadcast_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_receive_broadcast_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "F"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_transmit_broadcast_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_transmit_broadcast_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "E"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_receive_errors_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_receive_errors_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "H"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_transmit_errors_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_transmit_errors_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "G"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_receive_packets_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_receive_packets_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "J"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_transmit_packets_total{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_transmit_packets_total{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "I"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_poe_amperes{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_poe_amperes{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "K"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_poe_volts{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_poe_volts{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
           "refId": "L"
         },
         {
-          "expr": "sum by (name,port_num,port_name,site_name,source) (unifipoller_device_port_poe_watts{site_name=~\"$Site\",name=~\"$Switch\"})",
+          "expr": "sum by (name,port_num,port_name,site_name,source) (unpoller_device_port_poe_watts{site_name=~\"$Site\",name=~\"$Switch\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1710,7 +1710,7 @@
           ],
           "targets": [
             {
-              "expr": "unifipoller_device_port_port_speed_bps{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_port_speed_bps{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -1718,7 +1718,7 @@
               "refId": "A"
             },
             {
-              "expr": "unifipoller_device_port_poe_amperes{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_poe_amperes{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1727,7 +1727,7 @@
               "refId": "B"
             },
             {
-              "expr": "unifipoller_device_port_poe_volts{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_poe_volts{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1736,7 +1736,7 @@
               "refId": "C"
             },
             {
-              "expr": "unifipoller_device_port_poe_watts{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_poe_watts{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1745,7 +1745,7 @@
               "refId": "D"
             },
             {
-              "expr": "unifipoller_device_port_transmit_broadcast_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_transmit_broadcast_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -1753,7 +1753,7 @@
               "refId": "E"
             },
             {
-              "expr": "unifipoller_device_port_transmit_multicast_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_transmit_multicast_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -1761,7 +1761,7 @@
               "refId": "F"
             },
             {
-              "expr": "unifipoller_device_port_receive_dropped_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_receive_dropped_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -1769,7 +1769,7 @@
               "refId": "G"
             },
             {
-              "expr": "unifipoller_device_port_transmit_dropped_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_transmit_dropped_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -1777,7 +1777,7 @@
               "refId": "N"
             },
             {
-              "expr": "unifipoller_device_port_transmit_errors_total+unifipoller_device_port_receive_errors_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_transmit_errors_total+unpoller_device_port_receive_errors_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -1785,7 +1785,7 @@
               "refId": "H"
             },
             {
-              "expr": "unifipoller_device_port_receive_packets_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_receive_packets_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -1793,7 +1793,7 @@
               "refId": "I"
             },
             {
-              "expr": "unifipoller_device_port_transmit_packets_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_transmit_packets_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1802,7 +1802,7 @@
               "refId": "J"
             },
             {
-              "expr": "unifipoller_device_port_receive_bytes_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_receive_bytes_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1811,7 +1811,7 @@
               "refId": "K"
             },
             {
-              "expr": "unifipoller_device_port_transmit_bytes_total{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_transmit_bytes_total{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1820,7 +1820,7 @@
               "refId": "L"
             },
             {
-              "expr": "unifipoller_device_port_satisfaction_percent{port_id=\"$Port\", site_name=~\"$Site\"}",
+              "expr": "unpoller_device_port_satisfaction_percent{port_id=\"$Port\", site_name=~\"$Site\"}",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1894,13 +1894,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_device_port_receive_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": " {{port_id}} ({{port_name}}) Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unifipoller_device_port_transmit_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": " {{port_id}} ({{port_name}}) Tx",
               "refId": "B"
@@ -2008,25 +2008,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_device_port_receive_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Broadcast Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unifipoller_device_port_transmit_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Broadcast Tx",
               "refId": "B"
             },
             {
-              "expr": "rate(unifipoller_device_port_receive_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Multicast Rx",
               "refId": "C"
             },
             {
-              "expr": "rate(unifipoller_device_port_transmit_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Multicast Tx",
               "refId": "D"
@@ -2136,25 +2136,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_device_port_receive_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Drops Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unifipoller_device_port_transmit_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Drops Tx",
               "refId": "B"
             },
             {
-              "expr": "rate(unifipoller_device_port_transmit_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Errors Tx",
               "refId": "C"
             },
             {
-              "expr": "rate(unifipoller_device_port_receive_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Errors Rx",
               "refId": "D"
@@ -2265,13 +2265,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_device_port_receive_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unifipoller_device_port_transmit_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Tx",
               "refId": "B"
@@ -2374,7 +2374,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "unifipoller_device_port_poe_watts{site_name=~\"$Site\", port_id=~\"$Port\"}",
+              "expr": "unpoller_device_port_poe_watts{site_name=~\"$Site\", port_id=~\"$Port\"}",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}}  Watts",
               "refId": "A"
@@ -2478,7 +2478,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "unifipoller_device_port_poe_volts{site_name=~\"$Site\", port_id=~\"$Port\"}",
+              "expr": "unpoller_device_port_poe_volts{site_name=~\"$Site\", port_id=~\"$Port\"}",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} Volts",
               "refId": "A"
@@ -2581,7 +2581,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "unifipoller_device_port_poe_amperes{site_name=~\"$Site\", port_id=~\"$Port\"}",
+              "expr": "unpoller_device_port_poe_amperes{site_name=~\"$Site\", port_id=~\"$Port\"}",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} Amps",
               "refId": "A"
@@ -2662,14 +2662,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info,source)",
+        "definition": "label_values(unpoller_device_info,source)",
         "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Controller",
         "options": [],
-        "query": "label_values(unifipoller_device_info,source)",
+        "query": "label_values(unpoller_device_info,source)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2726,14 +2726,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{source=~\"$Controller\"},site_name)",
+        "definition": "label_values(unpoller_device_info{source=~\"$Controller\"},site_name)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "label_values(unifipoller_device_info{source=~\"$Controller\"},site_name)",
+        "query": "label_values(unpoller_device_info{source=~\"$Controller\"},site_name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2748,14 +2748,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
+        "definition": "label_values(unpoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Switch",
         "options": [],
-        "query": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
+        "query": "label_values(unpoller_device_info{site_name=~\"$Site\", type=~\"$Devices\"},name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2770,14 +2770,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_port_port_speed_bps{site_name=~\"$Site\", name=~\"$Switch\"},port_id)",
+        "definition": "label_values(unpoller_device_port_port_speed_bps{site_name=~\"$Site\", name=~\"$Switch\"},port_id)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Port",
         "options": [],
-        "query": "label_values(unifipoller_device_port_port_speed_bps{site_name=~\"$Site\", name=~\"$Switch\"},port_id)",
+        "query": "label_values(unpoller_device_port_port_speed_bps{site_name=~\"$Site\", name=~\"$Switch\"},port_id)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

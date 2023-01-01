@@ -18,7 +18,7 @@
     },
     {
       "type": "panel",
-      "id": "grafana-piechart-panel",
+      "id": "piechart",
       "name": "Pie Chart",
       "version": "1.5.0"
     },
@@ -929,7 +929,7 @@
       "timeShift": null,
       "title": "Clients / Channel",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -1016,7 +1016,7 @@
       "timeFrom": "5m",
       "title": "Clients / AP Radio",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -1104,7 +1104,7 @@
       "timeFrom": "5m",
       "title": "Client MAC OUI Breakdown",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -1190,7 +1190,7 @@
       "timeFrom": "5m",
       "title": "OS/Dev Class/ID Breakdown",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {

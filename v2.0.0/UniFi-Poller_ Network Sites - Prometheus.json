@@ -167,7 +167,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(unifipoller_site_switches)",
+          "expr": "sum(unpoller_site_switches)",
           "format": "time_series",
           "instant": true,
           "interval": "$Smooth",
@@ -255,7 +255,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(unifipoller_site_aps)",
+          "expr": "sum(unpoller_site_aps)",
           "format": "time_series",
           "instant": true,
           "interval": "$Smooth",
@@ -343,7 +343,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(unifipoller_site_gateways)",
+          "expr": "sum(unpoller_site_gateways)",
           "format": "time_series",
           "instant": true,
           "interval": "$Smooth",
@@ -431,7 +431,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(unifipoller_site_stations)",
+          "expr": "sum(unpoller_site_stations)",
           "format": "time_series",
           "instant": false,
           "interval": "$Smooth",
@@ -553,7 +553,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "unifipoller_site_uptime_seconds",
+              "expr": "unpoller_site_uptime_seconds",
               "format": "time_series",
               "instant": true,
               "interval": "$Smooth",
@@ -633,49 +633,49 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "unifipoller_site_iots{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_iots{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} IoT",
               "refId": "A"
             },
             {
-              "expr": "unifipoller_site_adopted{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_adopted{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Adopted",
               "refId": "B"
             },
             {
-              "expr": "unifipoller_site_disabled{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_disabled{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Disabled",
               "refId": "C"
             },
             {
-              "expr": "unifipoller_site_disconnected{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_disconnected{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Disconnected",
               "refId": "D"
             },
             {
-              "expr": "unifipoller_site_pending{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_pending{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Pending",
               "refId": "E"
             },
             {
-              "expr": "unifipoller_site_gateways{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_gateways{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Gateways",
               "refId": "F"
             },
             {
-              "expr": "unifipoller_site_switches{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_switches{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Switches",
               "refId": "G"
             },
             {
-              "expr": "unifipoller_site_intenet_drops_total{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_intenet_drops_total{site_name=~\"$Site\",subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Drops",
               "refId": "H"
@@ -793,7 +793,7 @@
           },
           "targets": [
             {
-              "expr": "unifipoller_site_latency_seconds{site_name=~\"$Site\"}",
+              "expr": "unpoller_site_latency_seconds{site_name=~\"$Site\"}",
               "instant": true,
               "interval": "$Smooth",
               "refId": "A"
@@ -873,7 +873,7 @@
           },
           "targets": [
             {
-              "expr": "unifipoller_site_speedtest_ping{site_name=~\"$Site\"}",
+              "expr": "unpoller_site_speedtest_ping{site_name=~\"$Site\"}",
               "interval": "$Smooth",
               "refId": "A"
             }
@@ -945,13 +945,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "unifipoller_site_transmit_rate_bytes{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_transmit_rate_bytes{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Tx",
               "refId": "A"
             },
             {
-              "expr": "unifipoller_site_receive_rate_bytes{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_receive_rate_bytes{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Rx",
               "refId": "B"
@@ -1056,31 +1056,31 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "unifipoller_site_users{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_users{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Users",
               "refId": "A"
             },
             {
-              "expr": "unifipoller_site_guests{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_guests{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Guests",
               "refId": "B"
             },
             {
-              "expr": "unifipoller_site_remote_user_active{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_remote_user_active{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Active",
               "refId": "C"
             },
             {
-              "expr": "unifipoller_site_remote_user_inactive{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_remote_user_inactive{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Inactive",
               "refId": "D"
             },
             {
-              "expr": "unifipoller_site_stations{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
+              "expr": "unpoller_site_stations{site_name=~\"$Site\", subsystem=~\"$Subsystem\"}",
               "interval": "$Smooth",
               "legendFormat": "{{subsystem}} Stations",
               "refId": "E"
@@ -1189,13 +1189,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_site_remote_user_transmit_bytes_total{site_name=~\"$Site\"}[$__interval])",
+              "expr": "rate(unpoller_site_remote_user_transmit_bytes_total{site_name=~\"$Site\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "VPN Users Tx",
               "refId": "A"
             },
             {
-              "expr": "rate(unifipoller_site_remote_user_receive_bytes_total{site_name=~\"$Site\"}[$__interval])",
+              "expr": "rate(unpoller_site_remote_user_receive_bytes_total{site_name=~\"$Site\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "VPN Users Rx",
               "refId": "B"
@@ -1306,14 +1306,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (category) (rate(unifipoller_site_dpi_receive_bytes{site_name=~\"$Site\"}[$__interval]))",
+              "expr": "sum by (category) (rate(unpoller_site_dpi_receive_bytes{site_name=~\"$Site\"}[$__interval]))",
               "hide": false,
               "interval": "$Smooth",
               "legendFormat": "{{category}} Rx",
               "refId": "A"
             },
             {
-              "expr": "sum by (category) (rate(unifipoller_site_dpi_transmit_bytes{site_name=~\"$Site\"}[$__interval]))",
+              "expr": "sum by (category) (rate(unpoller_site_dpi_transmit_bytes{site_name=~\"$Site\"}[$__interval]))",
               "hide": false,
               "interval": "$Smooth",
               "legendFormat": "{{category}} Tx",
@@ -1381,14 +1381,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_site_transmit_rate_bytes,source)",
+        "definition": "label_values(unpoller_site_transmit_rate_bytes,source)",
         "hide": 0,
         "includeAll": true,
         "label": "",
         "multi": true,
         "name": "Controller",
         "options": [],
-        "query": "label_values(unifipoller_site_transmit_rate_bytes,source)",
+        "query": "label_values(unpoller_site_transmit_rate_bytes,source)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1403,14 +1403,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_site_transmit_rate_bytes{source=~\"$Controller\"},site_name)",
+        "definition": "label_values(unpoller_site_transmit_rate_bytes{source=~\"$Controller\"},site_name)",
         "hide": 2,
         "includeAll": true,
         "label": "",
         "multi": false,
         "name": "Site",
         "options": [],
-        "query": "label_values(unifipoller_site_transmit_rate_bytes{source=~\"$Controller\"},site_name)",
+        "query": "label_values(unpoller_site_transmit_rate_bytes{source=~\"$Controller\"},site_name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

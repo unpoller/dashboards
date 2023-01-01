@@ -18,7 +18,7 @@
     },
     {
       "type": "panel",
-      "id": "grafana-piechart-panel",
+      "id": "piechart",
       "name": "Pie Chart",
       "version": "1.5.0"
     },
@@ -293,7 +293,7 @@
       ],
       "targets": [
         {
-          "expr": "sum by (site_name, category) (unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (site_name, category) (unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -301,7 +301,7 @@
           "refId": "F"
         },
         {
-          "expr": "sum by (site_name, category) (unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"})",
+          "expr": "sum by (site_name, category) (unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -309,7 +309,7 @@
           "refId": "E"
         },
         {
-          "expr": "sum by (site_name, category) (increase(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
+          "expr": "sum by (site_name, category) (increase(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -317,7 +317,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (site_name, category) (increase(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
+          "expr": "sum by (site_name, category) (increase(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -326,7 +326,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum by (site_name, category)  (increase(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
+          "expr": "sum by (site_name, category)  (increase(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -335,7 +335,7 @@
           "refId": "C"
         },
         {
-          "expr": "sum by (site_name, category)  (increase(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
+          "expr": "sum by (site_name, category)  (increase(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", category=~\"$Category\"}[$__range]))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -395,7 +395,7 @@
       "strokeWidth": "1",
       "targets": [
         {
-          "expr": "sum by (category) (increase(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__range])+increase(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__range]))",
+          "expr": "sum by (category) (increase(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__range])+increase(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__range]))",
           "instant": true,
           "interval": "",
           "legendFormat": "{{category}}",
@@ -405,7 +405,7 @@
       "timeFrom": null,
       "title": "Total Traffic by Category",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -453,7 +453,7 @@
       "strokeWidth": "1",
       "targets": [
         {
-          "expr": " sum by (category, application) (increase(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__range])+increase(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\",  category=~\"$Category\"}[$__range]))",
+          "expr": " sum by (category, application) (increase(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__range])+increase(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\",  category=~\"$Category\"}[$__range]))",
           "instant": true,
           "interval": "",
           "legendFormat": "{{application}} ({{category}})",
@@ -463,7 +463,7 @@
       "timeFrom": null,
       "title": "Total Traffic by Application",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -526,13 +526,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (category)(rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__interval]))",
+          "expr": "sum by (category)(rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__interval]))",
           "interval": "$Smooth",
           "legendFormat": " {{category}} Rx",
           "refId": "A"
         },
         {
-          "expr": "sum by (category)(rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\",  category=~\"$Category\"}[$__interval]))",
+          "expr": "sum by (category)(rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\",  category=~\"$Category\"}[$__interval]))",
           "interval": "$Smooth",
           "legendFormat": "{{category}} Tx",
           "refId": "B"
@@ -641,13 +641,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (category)(rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__interval]))",
+          "expr": "sum by (category)(rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__interval]))",
           "interval": "$Smooth",
           "legendFormat": " {{category}} Rx",
           "refId": "A"
         },
         {
-          "expr": "sum by (category)(rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__interval]))",
+          "expr": "sum by (category)(rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=~\"$Category\"}[$__interval]))",
           "interval": "$Smooth",
           "legendFormat": "{{category}} Tx",
           "refId": "B"
@@ -768,7 +768,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -880,7 +880,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -992,7 +992,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1104,7 +1104,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1216,7 +1216,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1328,7 +1328,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1440,7 +1440,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1552,7 +1552,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1664,7 +1664,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1776,7 +1776,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -1888,7 +1888,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2000,7 +2000,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2112,7 +2112,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2224,7 +2224,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2336,7 +2336,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2448,7 +2448,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2560,7 +2560,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2672,7 +2672,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2784,7 +2784,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -2896,7 +2896,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3008,7 +3008,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3120,7 +3120,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3232,7 +3232,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3344,7 +3344,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3456,7 +3456,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3568,7 +3568,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3680,7 +3680,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3792,7 +3792,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -3904,7 +3904,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4016,7 +4016,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4128,7 +4128,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4240,7 +4240,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4352,7 +4352,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4464,7 +4464,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4576,7 +4576,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4688,7 +4688,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4800,7 +4800,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -4912,7 +4912,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5024,7 +5024,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5136,7 +5136,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5248,7 +5248,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5360,7 +5360,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5472,7 +5472,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5584,7 +5584,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5696,7 +5696,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5808,7 +5808,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -5920,7 +5920,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6032,7 +6032,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6144,7 +6144,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6256,7 +6256,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6368,7 +6368,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6480,7 +6480,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6592,7 +6592,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6704,7 +6704,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6816,7 +6816,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -6928,7 +6928,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7040,7 +7040,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7152,7 +7152,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7264,7 +7264,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7376,7 +7376,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7488,7 +7488,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7600,7 +7600,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7712,7 +7712,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7824,7 +7824,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -7936,7 +7936,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8048,7 +8048,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8160,7 +8160,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8272,7 +8272,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8384,7 +8384,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8496,7 +8496,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8608,7 +8608,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8733,7 +8733,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8845,7 +8845,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -8957,7 +8957,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9069,7 +9069,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9181,7 +9181,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9293,7 +9293,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9405,7 +9405,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9517,7 +9517,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9629,7 +9629,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9741,7 +9741,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9853,7 +9853,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -9965,7 +9965,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10077,7 +10077,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10189,7 +10189,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10301,7 +10301,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10413,7 +10413,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10525,7 +10525,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10637,7 +10637,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10749,7 +10749,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10861,7 +10861,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -10973,7 +10973,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11085,7 +11085,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11197,7 +11197,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11309,7 +11309,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11421,7 +11421,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11533,7 +11533,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11645,7 +11645,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11757,7 +11757,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11869,7 +11869,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -11981,7 +11981,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12093,7 +12093,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12205,7 +12205,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12317,7 +12317,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12429,7 +12429,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12541,7 +12541,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12653,7 +12653,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12765,7 +12765,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12877,7 +12877,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -12989,7 +12989,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13101,7 +13101,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13213,7 +13213,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13325,7 +13325,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13437,7 +13437,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13549,7 +13549,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13661,7 +13661,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13773,7 +13773,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13885,7 +13885,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -13997,7 +13997,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14109,7 +14109,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14221,7 +14221,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14333,7 +14333,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14445,7 +14445,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14557,7 +14557,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14669,7 +14669,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14781,7 +14781,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -14893,7 +14893,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15005,7 +15005,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15117,7 +15117,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15229,7 +15229,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15341,7 +15341,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15453,7 +15453,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15565,7 +15565,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15677,7 +15677,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15802,7 +15802,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -15914,7 +15914,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16026,7 +16026,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16138,7 +16138,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16250,7 +16250,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16362,7 +16362,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16474,7 +16474,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16586,7 +16586,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16698,7 +16698,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16810,7 +16810,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -16922,7 +16922,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17034,7 +17034,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17146,7 +17146,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17258,7 +17258,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17370,7 +17370,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17482,7 +17482,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17594,7 +17594,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17706,7 +17706,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17818,7 +17818,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -17930,7 +17930,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18042,7 +18042,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18154,7 +18154,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18266,7 +18266,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18378,7 +18378,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18490,7 +18490,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18602,7 +18602,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18714,7 +18714,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18826,7 +18826,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -18938,7 +18938,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19050,7 +19050,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19162,7 +19162,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19274,7 +19274,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19386,7 +19386,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19498,7 +19498,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19610,7 +19610,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19722,7 +19722,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19834,7 +19834,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -19946,7 +19946,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20058,7 +20058,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20170,7 +20170,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20282,7 +20282,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20394,7 +20394,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20506,7 +20506,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20618,7 +20618,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20730,7 +20730,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20842,7 +20842,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -20954,7 +20954,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21066,7 +21066,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21178,7 +21178,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21290,7 +21290,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21402,7 +21402,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21514,7 +21514,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21626,7 +21626,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21738,7 +21738,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21850,7 +21850,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -21962,7 +21962,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22074,7 +22074,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22186,7 +22186,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22298,7 +22298,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22410,7 +22410,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22522,7 +22522,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22634,7 +22634,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22746,7 +22746,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
               "refId": "A"
@@ -22871,7 +22871,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]!~\"TOTAL\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -22984,7 +22984,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23097,7 +23097,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23210,7 +23210,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23323,7 +23323,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23436,7 +23436,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23549,7 +23549,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23662,7 +23662,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23775,7 +23775,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -23888,7 +23888,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24001,7 +24001,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24114,7 +24114,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24227,7 +24227,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24340,7 +24340,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24453,7 +24453,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24566,7 +24566,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24679,7 +24679,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24792,7 +24792,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -24905,7 +24905,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25018,7 +25018,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25131,7 +25131,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25244,7 +25244,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25357,7 +25357,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25470,7 +25470,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25583,7 +25583,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25696,7 +25696,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25809,7 +25809,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -25922,7 +25922,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26035,7 +26035,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26148,7 +26148,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26261,7 +26261,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26374,7 +26374,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26487,7 +26487,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26600,7 +26600,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26713,7 +26713,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26826,7 +26826,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -26939,7 +26939,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27052,7 +27052,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27165,7 +27165,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27278,7 +27278,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27391,7 +27391,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27504,7 +27504,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27617,7 +27617,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27730,7 +27730,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27843,7 +27843,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -27956,7 +27956,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28069,7 +28069,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28182,7 +28182,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28295,7 +28295,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28408,7 +28408,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28521,7 +28521,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28634,7 +28634,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28747,7 +28747,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28860,7 +28860,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -28973,7 +28973,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29086,7 +29086,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29199,7 +29199,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29312,7 +29312,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29425,7 +29425,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29538,7 +29538,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29651,7 +29651,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29764,7 +29764,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -29877,7 +29877,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
+              "expr": "rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\"}[$__interval])",
               "instant": false,
               "interval": "$Smooth",
               "legendFormat": "{{application}} ({{category}})",
@@ -30002,7 +30002,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by ($Identifier,application) (rate(unifipoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
+              "expr": "sum by ($Identifier,application) (rate(unpoller_client_dpi_receive_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{mac}} ({{application}})",
               "refId": "A"
@@ -30109,7 +30109,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by ($Identifier,application) (rate(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
+              "expr": "sum by ($Identifier,application) (rate(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{mac}} ({{application}})",
               "refId": "A"
@@ -30217,7 +30217,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by ($Identifier,application) (rate(unifipoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
+              "expr": "sum by ($Identifier,application) (rate(unpoller_client_dpi_receive_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{mac}} ({{application}})",
               "refId": "A"
@@ -30324,7 +30324,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by ($Identifier,application) (rate(unifipoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
+              "expr": "sum by ($Identifier,application) (rate(unpoller_client_dpi_transmit_packets{site_name=~\"$Site\", [[Identifier]]=~\"$Client\", [[Identifier]]!~\"TOTAL\", category=\"$Category\"}[$__interval]))",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{mac}} ({{application}})",
               "refId": "A"
@@ -30412,14 +30412,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_client_uptime_seconds{source=~\"$Controller\"},site_name)",
+        "definition": "label_values(unpoller_client_uptime_seconds{source=~\"$Controller\"},site_name)",
         "hide": 0,
         "includeAll": false,
         "label": null,
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "label_values(unifipoller_client_uptime_seconds{source=~\"$Controller\"},site_name)",
+        "query": "label_values(unpoller_client_uptime_seconds{source=~\"$Controller\"},site_name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -30463,14 +30463,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},[[Identifier]])",
+        "definition": "label_values(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},[[Identifier]])",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Client",
         "options": [],
-        "query": "label_values(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},[[Identifier]])",
+        "query": "label_values(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},[[Identifier]])",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -30485,14 +30485,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},category)",
+        "definition": "label_values(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},category)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Category",
         "options": [],
-        "query": "label_values(unifipoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},category)",
+        "query": "label_values(unpoller_client_dpi_transmit_bytes{site_name=~\"$Site\"},category)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

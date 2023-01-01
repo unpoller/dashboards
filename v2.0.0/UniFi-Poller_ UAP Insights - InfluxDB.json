@@ -24,7 +24,7 @@
     },
     {
       "type": "panel",
-      "id": "grafana-piechart-panel",
+      "id": "piechart",
       "name": "Pie Chart",
       "version": "1.3.9"
     },
@@ -210,7 +210,7 @@
       "timeFrom": "5m",
       "title": "Clients / Channel",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -295,7 +295,7 @@
       "timeFrom": "5m",
       "title": "Clients / AP Band",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -378,7 +378,7 @@
       "timeFrom": "5m",
       "title": "Client / MAC OUI",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {

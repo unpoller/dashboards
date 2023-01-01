@@ -18,7 +18,7 @@
     },
     {
       "type": "panel",
-      "id": "grafana-piechart-panel",
+      "id": "piechart",
       "name": "Pie Chart",
       "version": "1.5.0"
     },
@@ -405,7 +405,7 @@
       "timeFrom": null,
       "title": "Total Traffic by Category",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {
@@ -463,7 +463,7 @@
       "timeFrom": null,
       "title": "Total Traffic by Application",
       "transparent": true,
-      "type": "grafana-piechart-panel",
+      "type": "piechart",
       "valueName": "current"
     },
     {

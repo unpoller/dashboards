@@ -184,7 +184,7 @@
       "strokeWidth": "3",
       "targets": [
         {
-          "expr": "count by (channel) (unifipoller_client_roam_count_total{site_name=~\"$Site\", ap_name=~\"$AP\"})\n",
+          "expr": "count by (channel) (unpoller_client_roam_count_total{site_name=~\"$Site\", ap_name=~\"$AP\"})\n",
           "instant": false,
           "interval": "$Smooth",
           "legendFormat": "Ch {{channel}}",
@@ -246,7 +246,7 @@
       "strokeWidth": "3",
       "targets": [
         {
-          "expr": "count by (radio_desc) (unifipoller_client_uptime_seconds{site_name=~\"$Site\", ap_name=~\"$AP\"})",
+          "expr": "count by (radio_desc) (unpoller_client_uptime_seconds{site_name=~\"$Site\", ap_name=~\"$AP\"})",
           "instant": false,
           "interval": "$Smooth",
           "legendFormat": "{{radio_desc}}",
@@ -303,7 +303,7 @@
       "strokeWidth": 1,
       "targets": [
         {
-          "expr": "count by (oui) (unifipoller_client_uptime_seconds{site_name=~\"$Site\", ap_name=~\"$AP\"})",
+          "expr": "count by (oui) (unpoller_client_uptime_seconds{site_name=~\"$Site\", ap_name=~\"$AP\"})",
           "instant": false,
           "interval": "$Smooth",
           "legendFormat": "e {{oui}}",
@@ -387,7 +387,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(unifipoller_device_stations{site_name=~\"$Site\", name=~\"$AP\", station_type=\"user\"})",
+          "expr": "sum(unpoller_device_stations{site_name=~\"$Site\", name=~\"$AP\", station_type=\"user\"})",
           "instant": true,
           "refId": "A"
         }
@@ -471,7 +471,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(unifipoller_device_stations{site_name=~\"$Site\", name=~\"$AP\", station_type=\"guest\"})",
+          "expr": "sum(unpoller_device_stations{site_name=~\"$Site\", name=~\"$AP\", station_type=\"guest\"})",
           "instant": true,
           "refId": "A"
         }
@@ -823,7 +823,7 @@
       ],
       "targets": [
         {
-          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version) (unifipoller_device_info{site_name=~\"$Site\", name=~\"$AP\"})",
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version) (unpoller_device_info{site_name=~\"$Site\", name=~\"$AP\"})",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -831,7 +831,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version) (unifipoller_device_uptime_seconds{site_name=~\"$Site\", name=~\"$AP\"})",
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version) (unpoller_device_uptime_seconds{site_name=~\"$Site\", name=~\"$AP\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -840,7 +840,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version) (unifipoller_device_bytes_total{site_name=~\"$Site\", name=~\"$AP\"})",
+          "expr": "sum by (ip,mac,model,name,serial,site_name,type,version) (unpoller_device_bytes_total{site_name=~\"$Site\", name=~\"$AP\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1332,14 +1332,14 @@
       ],
       "targets": [
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_ccq_ratio{site_name=~\"$Site\", name=~\"$AP\"})",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_ccq_ratio{site_name=~\"$Site\", name=~\"$AP\"})",
           "format": "table",
           "instant": true,
           "interval": "",
           "refId": "A"
         },
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_average_client_signal{site_name=~\"$Site\", name=~\"$AP\"})",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_average_client_signal{site_name=~\"$Site\", name=~\"$AP\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1347,7 +1347,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_receive_dropped_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_receive_dropped_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1355,7 +1355,7 @@
           "refId": "C"
         },
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_transmit_dropped_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_transmit_dropped_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1363,7 +1363,7 @@
           "refId": "E"
         },
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_transmit_bytes_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_transmit_bytes_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1371,7 +1371,7 @@
           "refId": "F"
         },
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_receive_bytes_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_receive_bytes_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1379,7 +1379,7 @@
           "refId": "G"
         },
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_receive_packets_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_receive_packets_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1387,7 +1387,7 @@
           "refId": "H"
         },
         {
-          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unifipoller_device_vap_transmit_packets_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
+          "expr": "sum by (bssid,essid,ap_name,name,radio,radio_name,vap_name,site_name,usage,source) (unpoller_device_vap_transmit_packets_total{site_name=~\"$Site\", name=~\"$AP\"}) ",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1457,7 +1457,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_cpu_utilization_ratio{site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_cpu_utilization_ratio{site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -1560,7 +1560,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_memory_utilization_ratio{site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_memory_utilization_ratio{site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"
@@ -1675,20 +1675,20 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_load_average_1{site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_load_average_1{site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} load1",
           "refId": "A"
         },
         {
-          "expr": "unifipoller_device_load_average_5{site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_load_average_5{site_name=~\"$Site\",name=~\"$AP\"}",
           "hide": true,
           "interval": "$Smooth",
           "legendFormat": "{{name}} load5",
           "refId": "B"
         },
         {
-          "expr": "unifipoller_device_load_average_15{site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_load_average_15{site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} load15",
           "refId": "C"
@@ -1795,7 +1795,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "unifipoller_device_stations{site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_stations{site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} users",
           "refId": "A"
@@ -1903,13 +1903,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (unifipoller_client_receive_rate_bytes{site_name=~\"$Site\",ap_name=~\"$AP\"}) by (oui)",
+          "expr": "sum (unpoller_client_receive_rate_bytes{site_name=~\"$Site\",ap_name=~\"$AP\"}) by (oui)",
           "interval": "$Smooth",
           "legendFormat": "{{oui}} Rx",
           "refId": "A"
         },
         {
-          "expr": "sum (unifipoller_client_transmit_rate_bytes{site_name=~\"$Site\",ap_name=~\"$AP\"}) by (oui)",
+          "expr": "sum (unpoller_client_transmit_rate_bytes{site_name=~\"$Site\",ap_name=~\"$AP\"}) by (oui)",
           "interval": "$Smooth",
           "legendFormat": "{{oui}} Tx",
           "refId": "B"
@@ -2012,27 +2012,27 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (unifipoller_device_radio_stations{radio=\"ng\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"guest\"}) by  (radio,name)",
+          "expr": "sum (unpoller_device_radio_stations{radio=\"ng\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"guest\"}) by  (radio,name)",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} Guests 2,4GHz",
           "refId": "A"
         },
         {
-          "expr": "sum (unifipoller_device_radio_stations{radio=\"ng\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"user\"}) by (radio,name)",
+          "expr": "sum (unpoller_device_radio_stations{radio=\"ng\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"user\"}) by (radio,name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Users  2.4GHz",
           "refId": "B"
         },
         {
-          "expr": "sum (unifipoller_device_radio_stations{radio=\"na\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"user\"}) by (radio,name)",
+          "expr": "sum (unpoller_device_radio_stations{radio=\"na\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"user\"}) by (radio,name)",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} Users 5GHz",
           "refId": "C"
         },
         {
-          "expr": "sum (unifipoller_device_radio_stations{radio=\"na\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"guest\"}) by (radio,name)",
+          "expr": "sum (unpoller_device_radio_stations{radio=\"na\", site_name=~\"$Site\",name=~\"$AP\", station_type=\"guest\"}) by (radio,name)",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} Guests 5GHz",
@@ -2136,7 +2136,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_vap_average_client_signal{name=~\"$AP\"}",
+          "expr": "unpoller_device_vap_average_client_signal{name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{vap_name}} {{radio}}",
           "refId": "A"
@@ -2240,7 +2240,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(unifipoller_client_rssi_db{ap_name=~\"$AP\"}) by (ap_name, radio_name)",
+          "expr": "avg(unpoller_client_rssi_db{ap_name=~\"$AP\"}) by (ap_name, radio_name)",
           "interval": "$Smooth",
           "legendFormat": "{{ap_name}}  {{radio_name}}",
           "refId": "A"
@@ -2343,7 +2343,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_vap_ccq_ratio{site_name=~\"$Site\",name=~\"$AP\", radio=\"na\"}",
+          "expr": "unpoller_device_vap_ccq_ratio{site_name=~\"$Site\",name=~\"$AP\", radio=\"na\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{vap_name}}",
           "refId": "A"
@@ -2447,7 +2447,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_vap_ccq_ratio{site_name=~\"$Site\",name=~\"$AP\", radio=\"ng\"}",
+          "expr": "unpoller_device_vap_ccq_ratio{site_name=~\"$Site\",name=~\"$AP\", radio=\"ng\"}",
           "interval": "1m",
           "legendFormat": "{{name}} {{vap_name}}",
           "refId": "A"
@@ -2557,13 +2557,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_radio_channel_utilization_receive_ratio{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_radio_channel_utilization_receive_ratio{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Rx",
           "refId": "B"
         },
         {
-          "expr": "unifipoller_device_radio_channel_utilization_transmit_ratio{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_radio_channel_utilization_transmit_ratio{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Tx",
           "refId": "C"
@@ -2672,13 +2672,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "unifipoller_device_radio_channel_utilization_receive_ratio{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_radio_channel_utilization_receive_ratio{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{radio}} Rx",
           "refId": "B"
         },
         {
-          "expr": "unifipoller_device_radio_channel_utilization_transmit_ratio{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}",
+          "expr": "unpoller_device_radio_channel_utilization_transmit_ratio{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{radio}} Tx",
           "refId": "C"
@@ -2791,13 +2791,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_bytes_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_bytes_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Tx",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_bytes_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_bytes_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}}  Rx",
           "refId": "B"
@@ -2908,13 +2908,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_bytes_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_bytes_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Tx",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_bytes_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_bytes_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[5m])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Rx",
           "refId": "B"
@@ -3024,14 +3024,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} Out",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} In",
           "refId": "B"
@@ -3143,13 +3143,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Out",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} In",
           "refId": "B"
@@ -3261,49 +3261,49 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Rx",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Tx",
           "refId": "B"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Rx",
           "refId": "C"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Tx",
           "refId": "D"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_crypts_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_crypts_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Crypts Rx",
           "refId": "E"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_frags_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_frags_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Frags Rx",
           "refId": "F"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_nwids_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_nwids_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Nwids Rx",
           "refId": "G"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_retries_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_retries_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Retries Tx",
           "refId": "H"
@@ -3416,49 +3416,49 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Rx",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Tx",
           "refId": "B"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Rx",
           "refId": "C"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Tx",
           "refId": "D"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_crypts_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_crypts_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Crypts Rx",
           "refId": "E"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_frags_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_frags_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Frags Rx",
           "refId": "F"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_receive_nwids_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_nwids_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Nwids Rx",
           "refId": "G"
         },
         {
-          "expr": "sum (rate(unifipoller_device_vap_transmit_retries_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_retries_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Retries Tx",
           "refId": "H"
@@ -3523,14 +3523,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{type=\"uap\"},source)",
+        "definition": "label_values(unpoller_device_info{type=\"uap\"},source)",
         "hide": 2,
         "includeAll": true,
         "label": "",
         "multi": true,
         "name": "Controller",
         "options": [],
-        "query": "label_values(unifipoller_device_info{type=\"uap\"},source)",
+        "query": "label_values(unpoller_device_info{type=\"uap\"},source)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3545,14 +3545,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{source=~\"$Controller\", type=\"uap\"},site_name)",
+        "definition": "label_values(unpoller_device_info{source=~\"$Controller\", type=\"uap\"},site_name)",
         "hide": 0,
         "includeAll": true,
         "label": "",
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "label_values(unifipoller_device_info{source=~\"$Controller\", type=\"uap\"},site_name)",
+        "query": "label_values(unpoller_device_info{source=~\"$Controller\", type=\"uap\"},site_name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3567,14 +3567,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"uap|udm\",model!=\"UDMPRO\"},name)",
+        "definition": "label_values(unpoller_device_info{site_name=~\"$Site\", type=~\"uap|udm\",model!=\"UDMPRO\"},name)",
         "hide": 0,
         "includeAll": true,
         "label": "UniFi AP:",
         "multi": true,
         "name": "AP",
         "options": [],
-        "query": "label_values(unifipoller_device_info{site_name=~\"$Site\", type=~\"uap|udm\",model!=\"UDMPRO\"},name)",
+        "query": "label_values(unpoller_device_info{site_name=~\"$Site\", type=~\"uap|udm\",model!=\"UDMPRO\"},name)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

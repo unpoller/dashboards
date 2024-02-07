@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS_UNIFI_POLLER",
-      "label": "UniFi Poller",
+      "label": "Unpoller",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -48,7 +48,7 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0.1 Displays detailed information for network switches in a UniFi network.",
+  "description": "Unpoller v2.9  Displays detailed information for network switches in a UniFi network.",
   "editable": true,
   "gnetId": 10417,
   "graphTooltip": 1,
@@ -63,7 +63,7 @@
       "tags": [
         "unifi-poller"
       ],
-      "title": "UniFi Poller",
+      "title": "Unpoller",
       "type": "dashboards"
     },
     {
@@ -567,13 +567,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -635,13 +635,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -750,13 +750,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -848,13 +848,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         }
@@ -1006,13 +1006,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -1067,13 +1067,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -1128,13 +1128,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         }
@@ -1318,13 +1318,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -1379,13 +1379,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -1440,13 +1440,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         }
@@ -1597,13 +1597,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -1658,13 +1658,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         },
@@ -1719,13 +1719,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         }
@@ -1912,19 +1912,19 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             },
             {
               "condition": "AND",
               "key": "port_id",
               "operator": "=~",
-              "value": "/^$Port$/"
+              "value": "/^${Port:regex}$/"
             }
           ]
         }
@@ -2515,13 +2515,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         }
@@ -2993,19 +2993,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -3160,19 +3160,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -3385,19 +3385,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -3635,19 +3635,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -3837,19 +3837,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -3997,19 +3997,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -4157,19 +4157,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -4317,19 +4317,19 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "device_name",
                   "operator": "=~",
-                  "value": "/^$Switch$/"
+                  "value": "/^${Switch:regex}$/"
                 },
                 {
                   "condition": "AND",
                   "key": "port_id",
                   "operator": "=~",
-                  "value": "/^$Port$/"
+                  "value": "/^${Port:regex}$/"
                 }
               ]
             }
@@ -4417,14 +4417,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
+        "definition": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^${Controller:regex}$/ ",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
+        "query": "show tag values from \"usw_ports\" with key=\"site_name\" WHERE source =~ /^${Controller:regex}$/ ",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4481,14 +4481,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^$Site$/ AND type=~/^$Devices$/",
+        "definition": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^${Site:regex}$/ AND type =~ /^${Devices:regex}$/",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Switch",
         "options": [],
-        "query": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^$Site$/ AND type=~/^$Devices$/",
+        "query": "show tag values from \"usw_ports\" with key=\"device_name\" where site_name =~ /^${Site:regex}$/ AND type =~ /^${Devices:regex}$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4503,14 +4503,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usw_ports\" with key=\"port_id\" where device_name =~ /^$Switch$/ AND site_name =~ /^$Site$/",
+        "definition": "show tag values from \"usw_ports\" with key=\"port_id\" where device_name =~ /^${Switch:regex}$/ AND site_name =~ /^${Site:regex}$/",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Port",
         "options": [],
-        "query": "show tag values from \"usw_ports\" with key=\"port_id\" where device_name =~ /^$Switch$/ AND site_name =~ /^$Site$/",
+        "query": "show tag values from \"usw_ports\" with key=\"port_id\" where device_name =~ /^${Switch:regex}$/ AND site_name =~ /^${Site:regex}$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,

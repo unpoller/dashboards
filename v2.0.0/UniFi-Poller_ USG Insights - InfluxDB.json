@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS_UNIFI_POLLER",
-      "label": "UniFi Poller",
+      "label": "Unpoller",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -61,7 +61,7 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0 Displays detailed information for security gateways in a UniFi network.",
+  "description": "Unpoller v2.9  Displays detailed information for security gateways in a UniFi network.",
   "editable": true,
   "gnetId": 10416,
   "graphTooltip": 2,
@@ -76,7 +76,7 @@
       "tags": [
         "unifi-poller"
       ],
-      "title": "UniFi Poller",
+      "title": "Unpoller",
       "type": "dashboards"
     },
     {
@@ -594,7 +594,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -719,7 +719,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -845,7 +845,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -971,7 +971,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1095,7 +1095,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1219,7 +1219,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1343,7 +1343,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1470,7 +1470,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1597,7 +1597,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1723,7 +1723,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1847,7 +1847,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -1971,7 +1971,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -2315,7 +2315,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             },
@@ -2424,7 +2424,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -2569,7 +2569,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -2761,7 +2761,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             },
@@ -2836,7 +2836,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -3028,7 +3028,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -3223,7 +3223,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -3431,7 +3431,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -3682,7 +3682,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -3933,7 +3933,7 @@
                   "condition": "AND",
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$Site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -4201,14 +4201,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usg\" with key=\"site_name\" where source =~ /$Controller$/",
+        "definition": "show tag values from \"usg\" with key=\"site_name\" where source =~ /^${Controller:regex}$/",
         "hide": 0,
         "includeAll": true,
         "label": "",
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "show tag values from \"usg\" with key=\"site_name\" where source =~ /$Controller$/",
+        "query": "show tag values from \"usg\" with key=\"site_name\" where source =~ /^${Controller:regex}$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4223,14 +4223,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"usg\" with key=\"name\" where site_name =~ /$Site$/",
+        "definition": "show tag values from \"usg\" with key=\"name\" where site_name =~ /^${Site:regex}$/",
         "hide": 2,
         "includeAll": true,
         "label": "UniFi USG:",
         "multi": false,
         "name": "host",
         "options": [],
-        "query": "show tag values from \"usg\" with key=\"name\" where site_name =~ /$Site$/",
+        "query": "show tag values from \"usg\" with key=\"name\" where site_name =~ /^${Site:regex}$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4273,5 +4273,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USG Insights - InfluxDB",
   "uid": "WX6RJOMik",
-  "version": 12
+  "version": 13
 }

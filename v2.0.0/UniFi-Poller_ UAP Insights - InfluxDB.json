@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS_UNIFI_POLLER",
-      "label": "UniFi Poller",
+      "label": "Unpoller",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -72,7 +72,7 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0 Displays detailed information for wireless access points in a UniFi network.",
+  "description": "Unpoller v2.9  Displays detailed information for wireless access points in a UniFi network.",
   "editable": true,
   "gnetId": 10415,
   "graphTooltip": 1,
@@ -87,7 +87,7 @@
       "tags": [
         "unifi-poller"
       ],
-      "title": "UniFi Poller",
+      "title": "Unpoller",
       "type": "dashboards"
     },
     {
@@ -186,7 +186,7 @@
           "measurement": "uap",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE $timeFilter AND ap_name =~ /$AP$/ AND site_name =~ /$Site$/ GROUP BY \"channel\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE $timeFilter AND ap_name =~ /^${AP:regex}$/ AND site_name =~ /^${Site:regex}$/ GROUP BY \"channel\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -265,7 +265,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter  AND  ap_name =~ /$AP$/ AND site_name =~ /$Site$/) GROUP BY \"radio_proto\", \"ap_name\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter  AND  ap_name =~ /^${AP:regex}$/ AND site_name =~ /^${Site:regex}$/) GROUP BY \"radio_proto\", \"ap_name\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -348,7 +348,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE $timeFilter AND ap_name =~ /$AP$/ AND site_name =~ /$Site$/ GROUP BY \"oui\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE $timeFilter AND ap_name =~ /^${AP:regex}$/ AND site_name =~ /^${Site:regex}$/ GROUP BY \"oui\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -460,7 +460,7 @@
           "measurement": "uap_radios",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter AND ap_name =~ /$AP$/ AND site_name =~ /$Site$/)",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter AND ap_name =~ /^${AP:regex}$/ AND site_name =~ /^${Site:regex}$/)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -490,7 +490,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -588,7 +588,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter AND ap_name =~ /$AP$/ AND site_name =~ /$Site$/ AND is_guest = \"true\")",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE ($timeFilter AND ap_name =~ /^${AP:regex}$/ AND site_name =~ /^${Site:regex}$/ AND is_guest = \"true\")",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1150,13 +1150,13 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -1673,13 +1673,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -1763,13 +1763,13 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -1874,7 +1874,7 @@
           "measurement": "uap",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"mem_used\" FROM \"uap\" WHERE (\"name\" =~ /^$host$/ AND \"site_name\" =~ /^$Site$/) AND $timeFilter GROUP BY \"name\"",
+          "query": "SELECT \"mem_used\" FROM \"uap\" WHERE (\"name\" =~ /^$host$/ AND \"site_name\" =~ /^${Site:regex}$/) AND $timeFilter GROUP BY \"name\"",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1892,13 +1892,13 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -2062,13 +2062,13 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -2208,13 +2208,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -2384,13 +2384,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -2550,7 +2550,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -2562,7 +2562,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         },
@@ -2630,7 +2630,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -2642,7 +2642,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -2778,13 +2778,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -2918,13 +2918,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -3067,13 +3067,13 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
@@ -3224,13 +3224,13 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
@@ -3420,7 +3420,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -3432,7 +3432,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3615,7 +3615,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -3627,7 +3627,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3811,13 +3811,13 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -4001,7 +4001,7 @@
             {
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
@@ -4013,7 +4013,7 @@
               "condition": "AND",
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -4196,7 +4196,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -4208,7 +4208,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -4393,7 +4393,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -4405,7 +4405,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -4741,7 +4741,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -4753,7 +4753,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -5083,7 +5083,7 @@
             {
               "key": "device_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
@@ -5095,7 +5095,7 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -5181,14 +5181,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"uap\" with key=\"site_name\" where source =~ /$Controller$/",
+        "definition": "show tag values from \"uap\" with key=\"site_name\" where source =~ /^${Controller:regex}$/",
         "hide": 0,
         "includeAll": true,
         "label": "",
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "show tag values from \"uap\" with key=\"site_name\" where source =~ /$Controller$/",
+        "query": "show tag values from \"uap\" with key=\"site_name\" where source =~ /^${Controller:regex}$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -5203,14 +5203,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"uap\" with key=\"name\"  where site_name =~ /$Site$/",
+        "definition": "show tag values from \"uap\" with key=\"name\"  where site_name =~ /^${Site:regex}$/",
         "hide": 0,
         "includeAll": true,
         "label": "UniFi AP:",
         "multi": true,
         "name": "AP",
         "options": [],
-        "query": "show tag values from \"uap\" with key=\"name\"  where site_name =~ /$Site$/",
+        "query": "show tag values from \"uap\" with key=\"name\"  where site_name =~ /^${Site:regex}$/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -5253,5 +5253,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: UAP Insights - InfluxDB",
   "uid": "8nQ_RPZiz",
-  "version": 10
+  "version": 11
 }

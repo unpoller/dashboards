@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS_UNIFI_POLLER",
-      "label": "UniFi Poller",
+      "label": "Unpoller",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -60,7 +60,7 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0 Displays detailed information for network Sites in a UniFi controller.",
+  "description": "Unpoller v2.9  Displays detailed information for network Sites in a UniFi controller.",
   "editable": true,
   "gnetId": 10414,
   "graphTooltip": 1,
@@ -75,7 +75,7 @@
       "tags": [
         "unifi-poller"
       ],
-      "title": "UniFi Poller",
+      "title": "Unpoller",
       "type": "dashboards"
     },
     {
@@ -219,7 +219,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -334,7 +334,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -449,7 +449,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -564,7 +564,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -751,7 +751,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -857,7 +857,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -972,7 +972,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1087,7 +1087,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1202,7 +1202,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1317,7 +1317,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1432,7 +1432,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1547,7 +1547,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1702,7 +1702,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1887,7 +1887,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -1993,7 +1993,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -2109,7 +2109,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -2218,7 +2218,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -2327,7 +2327,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -2436,7 +2436,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -2545,7 +2545,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -2660,7 +2660,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -2860,7 +2860,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 },
                 {
                   "condition": "AND",
@@ -2963,7 +2963,7 @@
               "measurement": "subsystems",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT max(\"rx_bytes-r\") AS \"Bytes RX\", max(\"tx_bytes-r\") AS \"Bytes TX\" FROM \"subsystems\" WHERE (\"site_name\" =~ /^$site$/) AND $timeFilter GROUP BY time($__interval), \"subsystem\" fill(null)",
+              "query": "SELECT max(\"rx_bytes-r\") AS \"Bytes RX\", max(\"tx_bytes-r\") AS \"Bytes TX\" FROM \"subsystems\" WHERE (\"site_name\" =~ /^${Site:regex}$/) AND $timeFilter GROUP BY time($__interval), \"subsystem\" fill(null)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3009,7 +3009,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -3018,7 +3018,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Site $site Data Transfer",
+          "title": "Site $Site Data Transfer",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -3199,7 +3199,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -3208,7 +3208,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Site $site Client Counts",
+          "title": "Site $Site Client Counts",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -3253,7 +3253,7 @@
           "dashes": false,
           "datasource": "${DS_UNIFI_POLLER}",
           "decimals": 0,
-          "description": "This graph only works if DPI is enabled on the controller and DPI collection is enabled in UniFi Poller. Rx is on the negative axis.",
+          "description": "This graph only works if DPI is enabled on the controller and DPI collection is enabled in Unpoller. Rx is on the negative axis.",
           "fill": 0,
           "fillGradient": 0,
           "gridPos": {
@@ -3383,7 +3383,7 @@
                 {
                   "key": "site_name",
                   "operator": "=~",
-                  "value": "/^$site$/"
+                  "value": "/^${Site:regex}$/"
                 }
               ]
             }
@@ -3431,8 +3431,8 @@
           }
         }
       ],
-      "repeat": "site",
-      "title": "Site: $site",
+      "repeat": "Site",
+      "title": "Site: $Site",
       "type": "row"
     }
   ],
@@ -3470,14 +3470,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "show tag values from \"subsystems\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
+        "definition": "show tag values from \"subsystems\" with key=\"site_name\" WHERE source =~ /^${Controller:regex}$/ ",
         "hide": 2,
         "includeAll": true,
         "label": "",
         "multi": false,
-        "name": "site",
+        "name": "Site",
         "options": [],
-        "query": "show tag values from \"subsystems\" with key=\"site_name\" WHERE source =~ /^$Controller$/ ",
+        "query": "show tag values from \"subsystems\" with key=\"site_name\" WHERE source =~ /^${Controller:regex}$/ ",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3542,5 +3542,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Network Sites - InfluxDB",
   "uid": "5_omrT7Zz",
-  "version": 9
+  "version": 10
 }

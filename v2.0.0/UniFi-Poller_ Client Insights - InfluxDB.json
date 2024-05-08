@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS_UNIFI_POLLER",
-      "label": "UniFi Poller",
+      "label": "Unpoller",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -60,7 +60,7 @@
       }
     ]
   },
-  "description": "UniFi Poller v2.0.1 Displays detailed information for clients in a UniFi network.",
+  "description": "Unpoller v2.9  Displays detailed information for clients in a UniFi network.",
   "editable": true,
   "gnetId": 10418,
   "graphTooltip": 1,
@@ -75,7 +75,7 @@
       "tags": [
         "unifi-poller"
       ],
-      "title": "UniFi Poller",
+      "title": "Unpoller",
       "type": "dashboards"
     },
     {
@@ -370,7 +370,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"ip\") AS \"Address\", last(\"note\") AS \"Note\", last(\"network\") AS \"Network\" FROM \"clients\" WHERE (\"is_wired\" = 'false' AND \"ap_mac\" =~ /^$AP$/) AND $timeFilter GROUP BY \"mac\", \"oui\", \"channel\", \"radio\", \"name\", \"ap_mac\"",
+          "query": "SELECT last(\"ip\") AS \"Address\", last(\"note\") AS \"Note\", last(\"network\") AS \"Network\" FROM \"clients\" WHERE (\"is_wired\" = 'false' AND \"ap_mac\" =~ /^${AP:regex}$/) AND $timeFilter GROUP BY \"mac\", \"oui\", \"channel\", \"radio\", \"name\", \"ap_mac\"",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -470,13 +470,13 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -702,7 +702,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"ip\") AS \"Address\", last(\"note\") AS \"Note\", last(\"network\") AS \"Network\" FROM \"clients\" WHERE (\"is_wired\" != 'false' AND \"name\" =~ /^$Client$/ AND \"site_name\" =~ /$Site$/) AND $timeFilter GROUP BY \"sw_port\", \"mac\", \"oui\", \"use_fixedip\", \"name\"",
+          "query": "SELECT last(\"ip\") AS \"Address\", last(\"note\") AS \"Note\", last(\"network\") AS \"Network\" FROM \"clients\" WHERE (\"is_wired\" != 'false' AND \"name\" =~ /^${Client:regex}$/ AND \"site_name\" =~ /^${Site:regex}$/) AND $timeFilter GROUP BY \"sw_port\", \"mac\", \"oui\", \"use_fixedip\", \"name\"",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -790,13 +790,13 @@
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wired$/"
+              "value": "/^${Wired:regex}$/"
             },
             {
               "condition": "AND",
               "key": "sw_name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         }
@@ -861,7 +861,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /$Site$/ AND \"name\" =~ /^$Wired$/ AND sw_name =~ /$Switch$/ ) GROUP BY \"hostname\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /^${Site:regex}$/ AND \"name\" =~ /^${Wired:regex}$/ AND sw_name =~ /^${Switch:regex}$/ ) GROUP BY \"hostname\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -904,7 +904,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /$Site$/ AND \"name\" =~ /^$Wireless$/ AND ap_name =~ /$AP$/ ) GROUP BY \"channel\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /^${Site:regex}$/ AND \"name\" =~ /^${Wireless:regex}$/ AND ap_name =~ /^${AP:regex}$/ ) GROUP BY \"channel\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -986,7 +986,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"hostname\")) FROM \"clients\" WHERE  $timeFilter  AND \"ap_name\" =~ /$AP$/ AND \"site_name\" =~ /$Site$/  AND \"name\" =~ /^$Wireless$/ GROUP BY radio_proto",
+          "query": "SELECT count(distinct(\"hostname\")) FROM \"clients\" WHERE  $timeFilter  AND \"ap_name\" =~ /^${AP:regex}$/ AND \"site_name\" =~ /^${Site:regex}$/  AND \"name\" =~ /^${Wireless:regex}$/ GROUP BY radio_proto",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1074,7 +1074,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND site_name =~ /$Site$/ AND ((\"name\" =~ /^$Wireless$/ AND \"ap_name\" =~ /^$AP$/) OR (\"name\" =~ /^$Wired$/ AND \"sw_name\" =~ /$Switch$/ )) GROUP BY \"oui\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND site_name =~ /^${Site:regex}$/ AND ((\"name\" =~ /^${Wireless:regex}$/ AND \"ap_name\" =~ /^${AP:regex}$/) OR (\"name\" =~ /^${Wired:regex}$/ AND \"sw_name\" =~ /^${Switch:regex}$/ )) GROUP BY \"oui\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1160,7 +1160,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND site_name =~ /$Site$/ AND ((\"name\" =~ /^$Wireless$/ AND \"ap_name\" =~ /^$AP$/) OR (\"name\" =~ /^$Wired$/ AND \"sw_name\" =~ /$Switch$/ )) GROUP BY \"os_class\", \"os_name\", \"dev_cat\", \"dev_family\", \"dev_id\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND site_name =~ /^${Site:regex}$/ AND ((\"name\" =~ /^${Wireless:regex}$/ AND \"ap_name\" =~ /^${AP:regex}$/) OR (\"name\" =~ /^${Wired:regex}$/ AND \"sw_name\" =~ /^${Switch:regex}$/ )) GROUP BY \"os_class\", \"os_name\", \"dev_cat\", \"dev_family\", \"dev_id\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1282,7 +1282,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(sum(\"wired-rx_bytes\"), 1s) AS \"Rx\", derivative(sum(\"wired-tx_bytes\"), 1s) AS \"Tx\" FROM \"clients\" WHERE (\"name\" !~ /^amazon-|camera|cam$/ AND \"name\" =~ /^$Wired$/ AND \"site_name\" =~ /^$Site$/ AND \"sw_name\" =~ /^$Switch$/) AND $timeFilter GROUP BY time($__interval),\"name\",\"mac\"fill(none)",
+          "query": "SELECT derivative(sum(\"wired-rx_bytes\"), 1s) AS \"Rx\", derivative(sum(\"wired-tx_bytes\"), 1s) AS \"Tx\" FROM \"clients\" WHERE (\"name\" !~ /^amazon-|camera|cam$/ AND \"name\" =~ /^${Wired:regex}$/ AND \"site_name\" =~ /^${Site:regex}$/ AND \"sw_name\" =~ /^${Switch:regex}$/) AND $timeFilter GROUP BY time($__interval),\"name\",\"mac\"fill(none)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1346,19 +1346,19 @@
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wired$/"
+              "value": "/^${Wired:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "sw_name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             }
           ]
         }
@@ -1560,19 +1560,19 @@
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -1713,19 +1713,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -1880,7 +1880,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"ip\" FROM \"clients\" WHERE \"use_fixedip\" != 'true' AND \"name\" =~ /^$Client$/ AND (\"ap_name\" =~ /^$AP$/ OR \"sw_name\" =~ /$Switch$/) AND \"site_name\" =~ /^$Site$/ AND $timeFilter GROUP BY \"name\"",
+          "query": "SELECT \"ip\" FROM \"clients\" WHERE \"use_fixedip\" != 'true' AND \"name\" =~ /^${Client:regex}$/ AND (\"ap_name\" =~ /^${AP:regex}$/ OR \"sw_name\" =~ /^${Switch:regex}$/) AND \"site_name\" =~ /^${Site:regex}$/ AND $timeFilter GROUP BY \"name\"",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1898,19 +1898,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         },
@@ -1934,7 +1934,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"ip\" FROM \"clients\" WHERE \"use_fixedip\" != 'true' AND \"name\" =~ /^$Client$/ AND (\"ap_name\" =~ /^$AP$/ OR \"sw_name\" =~ /$Switch$/) AND \"site_name\" =~ /^$Site$/ AND $timeFilter GROUP BY \"name\"",
+          "query": "SELECT \"ip\" FROM \"clients\" WHERE \"use_fixedip\" != 'true' AND \"name\" =~ /^${Client:regex}$/ AND (\"ap_name\" =~ /^${AP:regex}$/ OR \"sw_name\" =~ /^${Switch:regex}$/) AND \"site_name\" =~ /^${Site:regex}$/ AND $timeFilter GROUP BY \"name\"",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
@@ -1952,19 +1952,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wired$/"
+              "value": "/^${Wired:regex}$/"
             },
             {
               "condition": "AND",
               "key": "sw_name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -2179,19 +2179,19 @@
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wired$/"
+              "value": "/^${Wired:regex}$/"
             },
             {
               "condition": "AND",
               "key": "sw_name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         },
@@ -2291,19 +2291,19 @@
               "condition": "AND",
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -2426,7 +2426,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT non_negative_derivative(sum(\"wired-rx_bytes\"), 1s) AS \"Rx\", non_negative_derivative(sum(\"wired-tx_bytes\"), 1s) AS \"Tx\" FROM \"clients\" WHERE \"name\" =~ /camera|cam$/ AND \"site_name\" =~ /^$Site$/ AND (\"sw_name\" =~ /^$Switch$/ OR \"ap_name\" =~ /^$AP$/) AND $timeFilter GROUP BY time($__interval), \"name\", \"mac\"",
+          "query": "SELECT non_negative_derivative(sum(\"wired-rx_bytes\"), 1s) AS \"Rx\", non_negative_derivative(sum(\"wired-tx_bytes\"), 1s) AS \"Tx\" FROM \"clients\" WHERE \"name\" =~ /camera|cam$/ AND \"site_name\" =~ /^${Site:regex}$/ AND (\"sw_name\" =~ /^${Switch:regex}$/ OR \"ap_name\" =~ /^${AP:regex}$/) AND $timeFilter GROUP BY time($__interval), \"name\", \"mac\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -2490,19 +2490,19 @@
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             },
             {
               "condition": "AND",
               "key": "sw_name",
               "operator": "=~",
-              "value": "/^$Switch$/"
+              "value": "/^${Switch:regex}$/"
             },
             {
               "condition": "OR",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             }
           ]
         }
@@ -2639,19 +2639,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -2789,19 +2789,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -2938,19 +2938,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3086,19 +3086,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3241,19 +3241,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3390,19 +3390,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3546,19 +3546,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3696,19 +3696,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3845,19 +3845,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -3995,19 +3995,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -4146,19 +4146,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -4301,19 +4301,19 @@
             {
               "key": "name",
               "operator": "=~",
-              "value": "/^$Wireless$/"
+              "value": "/^${Wireless:regex}$/"
             },
             {
               "condition": "AND",
               "key": "ap_name",
               "operator": "=~",
-              "value": "/^$AP$/"
+              "value": "/^${AP:regex}$/"
             },
             {
               "condition": "AND",
               "key": "site_name",
               "operator": "=~",
-              "value": "/^$Site$/"
+              "value": "/^${Site:regex}$/"
             }
           ]
         }
@@ -4396,14 +4396,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"site_name\"  WHERE source =~ /^$Controller$/ ",
+        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"site_name\"  WHERE source =~ /^${Controller:regex}$/ ",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Site",
         "options": [],
-        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"site_name\"  WHERE source =~ /^$Controller$/ ",
+        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"site_name\"  WHERE source =~ /^${Controller:regex}$/ ",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4418,14 +4418,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"ap_name\" WHERE site_name =~ /^$Site$/ ",
+        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"ap_name\" WHERE site_name =~ /^${Site:regex}$/ ",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "AP",
         "options": [],
-        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"ap_name\" WHERE site_name =~ /^$Site$/ ",
+        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"ap_name\" WHERE site_name =~ /^${Site:regex}$/ ",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -4440,14 +4440,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"sw_name\" WHERE site_name =~ /^$Site$/ ",
+        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"sw_name\" WHERE site_name =~ /^${Site:regex}$/ ",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Switch",
         "options": [],
-        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"sw_name\" WHERE site_name =~ /^$Site$/ ",
+        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"sw_name\" WHERE site_name =~ /^${Site:regex}$/ ",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4462,14 +4462,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND ap_name =~ /^$AP$/ AND is_wired=false",
+        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^${Site:regex}$/ AND ap_name =~ /^${AP:regex}$/ AND is_wired=false",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Wireless",
         "options": [],
-        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND ap_name =~ /^$AP$/ AND is_wired=false",
+        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^${Site:regex}$/ AND ap_name =~ /^${AP:regex}$/ AND is_wired=false",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4484,14 +4484,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_UNIFI_POLLER}",
-        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND sw_name =~ /^$Switch$/ AND is_wired=true",
+        "definition": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^${Site:regex}$/ AND sw_name =~ /^${Switch:regex}$/ AND is_wired=true",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "Wired",
         "options": [],
-        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^$Site$/ AND sw_name =~ /^$Switch$/ AND is_wired=true",
+        "query": "SHOW TAG VALUES FROM \"clients\" WITH KEY = \"name\" WHERE site_name =~ /^${Site:regex}$/ AND sw_name =~ /^${Switch:regex}$/ AND is_wired=true",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -4568,5 +4568,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Client Insights - InfluxDB",
   "uid": "YVR23BZiz",
-  "version": 16
+  "version": 17
 }

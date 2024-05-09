@@ -1189,13 +1189,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_site_remote_user_transmit_bytes_total{site_name=~\"$Site\"}[$__interval])",
+              "expr": "rate(unpoller_site_remote_user_transmit_bytes_total{site_name=~\"$Site\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "VPN Users Tx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_site_remote_user_receive_bytes_total{site_name=~\"$Site\"}[$__interval])",
+              "expr": "rate(unpoller_site_remote_user_receive_bytes_total{site_name=~\"$Site\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "VPN Users Rx",
               "refId": "B"
@@ -1306,14 +1306,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (category) (rate(unpoller_site_dpi_receive_bytes{site_name=~\"$Site\"}[$__interval]))",
+              "expr": "sum by (category) (rate(unpoller_site_dpi_receive_bytes{site_name=~\"$Site\"}[$__rate_interval]))",
               "hide": false,
               "interval": "$Smooth",
               "legendFormat": "{{category}} Rx",
               "refId": "A"
             },
             {
-              "expr": "sum by (category) (rate(unpoller_site_dpi_transmit_bytes{site_name=~\"$Site\"}[$__interval]))",
+              "expr": "sum by (category) (rate(unpoller_site_dpi_transmit_bytes{site_name=~\"$Site\"}[$__rate_interval]))",
               "hide": false,
               "interval": "$Smooth",
               "legendFormat": "{{category}} Tx",
@@ -1518,5 +1518,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Network Sites - Prometheus",
   "uid": "9WaGWZaZk",
-  "version": 9
+  "version": 10
 }

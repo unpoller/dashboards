@@ -1281,14 +1281,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__rate_interval]))",
           "instant": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{mac}} Tx",
           "refId": "B"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__rate_interval]))",
           "instant": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{mac}} Rx",
@@ -1396,13 +1396,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__rate_interval]))",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{mac}} Tx",
           "refId": "A"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name!~\".*camera.*|.*cam(era)?$\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "intervalFactor": 1,
@@ -1511,28 +1511,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "w {{name}} {{mac}} Tx",
           "refId": "A"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wireless\", site_name=~\"$Site\", ap_name=~\"$AP\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "w {{name}} {{mac}} Rx",
           "refId": "B"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "e {{name}} {{mac}} Tx",
           "refId": "C"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{name=~\"^amazon.*\", name=~\"$Wired\", site_name=~\"$Site\", sw_name=~\"$Switch\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "e {{name}} {{mac}} Rx",
@@ -1640,7 +1640,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__rate_interval]))",
           "hide": false,
           "instant": false,
           "interval": "$Smooth",
@@ -1648,21 +1648,21 @@
           "refId": "A"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{ap_name=~\"$AP\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "w {{name}} {{mac}} Rx",
           "refId": "B"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "e {{name}} {{mac}} Tx",
           "refId": "C"
         },
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_receive_bytes_total{sw_name=~\"$Switch\", name=~\".*camera.*|.*cam$\", site_name=~\"$Site\"}[$__rate_interval]))",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "e {{name}} {{mac}} Rx",
@@ -2180,7 +2180,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg by ($Identifier) (rate(unpoller_client_wifi_attempts_transmit_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval]))",
+          "expr": "avg by ($Identifier) (rate(unpoller_client_wifi_attempts_transmit_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__rate_interval]))",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
@@ -2388,7 +2388,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_retries_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__interval]))",
+          "expr": "sum by ($Identifier) (rate(unpoller_client_transmit_retries_total{ap_name=~\"$AP\", site_name=~\"$Site\", name=~\"$Wireless\"}[$__rate_interval]))",
           "interval": "$Smooth",
           "legendFormat": "{{name}} {{mac}}",
           "refId": "A"
@@ -3214,5 +3214,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: Client Insights - Prometheus",
   "uid": "jMfvAjxWz",
-  "version": 30
+  "version": 31
 }

@@ -921,13 +921,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(unpoller_device_port_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__interval])",
+          "expr": "rate(unpoller_device_port_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__rate_interval])",
           "interval": "$Smooth",
           "legendFormat": "{{port_id}} {{port_name}} Tx",
           "refId": "A"
         },
         {
-          "expr": "rate(unpoller_device_port_receive_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__interval])",
+          "expr": "rate(unpoller_device_port_receive_bytes_total{site_name=~\"$Site\", name=~\"$Switch\", port_id=~\"$Port\"}[$__rate_interval])",
           "interval": "$Smooth",
           "legendFormat": "{{port_id}} {{port_name}} Rx",
           "refId": "B"
@@ -1894,13 +1894,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_port_receive_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": " {{port_id}} ({{port_name}}) Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_port_transmit_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_bytes_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": " {{port_id}} ({{port_name}}) Tx",
               "refId": "B"
@@ -2008,25 +2008,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_port_receive_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Broadcast Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_port_transmit_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_broadcast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Broadcast Tx",
               "refId": "B"
             },
             {
-              "expr": "rate(unpoller_device_port_receive_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Multicast Rx",
               "refId": "C"
             },
             {
-              "expr": "rate(unpoller_device_port_transmit_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_multicast_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Multicast Tx",
               "refId": "D"
@@ -2136,25 +2136,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_port_receive_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Drops Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_port_transmit_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_dropped_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Drops Tx",
               "refId": "B"
             },
             {
-              "expr": "rate(unpoller_device_port_transmit_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Errors Tx",
               "refId": "C"
             },
             {
-              "expr": "rate(unpoller_device_port_receive_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_errors_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Errors Rx",
               "refId": "D"
@@ -2265,13 +2265,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_port_receive_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_receive_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_port_transmit_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__interval])",
+              "expr": "rate(unpoller_device_port_transmit_packets_total{site_name=~\"$Site\", port_id=~\"$Port\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{port_id}} ({{port_name}}) Tx",
               "refId": "B"
@@ -2873,5 +2873,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USW Insights - Prometheus",
   "uid": "FsfxpWaZz",
-  "version": 35
+  "version": 36
 }

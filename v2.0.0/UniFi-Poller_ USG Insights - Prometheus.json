@@ -1500,13 +1500,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_wan_receive_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_receive_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Bytes Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_wan_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Bytes Tx",
               "refId": "B"
@@ -1637,13 +1637,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_lan_receive_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_lan_receive_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Bytes Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_lan_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_lan_transmit_bytes_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Bytes Tx",
               "refId": "B"
@@ -1763,13 +1763,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_wan_receive_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_receive_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Packets Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_wan_transmit_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_transmit_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Packets Tx",
               "refId": "B"
@@ -1890,13 +1890,13 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_lan_receive_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_lan_receive_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Packets Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_lan_transmit_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_lan_transmit_packets_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Packets Tx",
               "refId": "B"
@@ -2018,25 +2018,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_wan_transmit_broadcast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_transmit_broadcast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Broadcast Tx",
               "refId": "D"
             },
             {
-              "expr": "rate(unpoller_device_wan_receive_broadcast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_receive_broadcast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Broadcast Rx",
               "refId": "C"
             },
             {
-              "expr": "rate(unpoller_device_wan_receive_multicast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_receive_multicast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}}  Multicast Rx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_wan_transmit_multicast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_transmit_multicast_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Multicast Tx",
               "refId": "B"
@@ -2158,25 +2158,25 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_wan_transmit_dropped_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_transmit_dropped_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Drops Tx",
               "refId": "A"
             },
             {
-              "expr": "rate(unpoller_device_wan_receive_dropped_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_receive_dropped_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Drops Rx",
               "refId": "B"
             },
             {
-              "expr": "rate(unpoller_device_wan_transmit_errors_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_transmit_errors_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Errors Tx",
               "refId": "C"
             },
             {
-              "expr": "rate(unpoller_device_wan_receive_errors_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_wan_receive_errors_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Errors Rx",
               "refId": "D"
@@ -2295,7 +2295,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(unpoller_device_lan_receive_dropped_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__interval])",
+              "expr": "rate(unpoller_device_lan_receive_dropped_total{site_name=~\"$Site\", name=~\"$Gateway\"}[$__rate_interval])",
               "hide": false,
               "interval": "$Smooth",
               "legendFormat": "{{name}} {{port}} Dropped Rx",
@@ -2522,5 +2522,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: USG Insights - Prometheus",
   "uid": "4Yo8IZ-Wk",
-  "version": 36
+  "version": 37
 }

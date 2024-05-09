@@ -3024,14 +3024,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "hide": false,
           "interval": "$Smooth",
           "legendFormat": "{{name}} Out",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_packets_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} In",
           "refId": "B"
@@ -3143,13 +3143,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Out",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_packets_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} In",
           "refId": "B"
@@ -3261,49 +3261,49 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Rx",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_dropped_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Tx",
           "refId": "B"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Rx",
           "refId": "C"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_errors_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Tx",
           "refId": "D"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_crypts_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_crypts_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Crypts Rx",
           "refId": "E"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_frags_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_frags_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Frags Rx",
           "refId": "F"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_nwids_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_nwids_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Nwids Rx",
           "refId": "G"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_retries_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_retries_total{radio=\"na\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Retries Tx",
           "refId": "H"
@@ -3416,49 +3416,49 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Rx",
           "refId": "A"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_dropped_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Drops Tx",
           "refId": "B"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Rx",
           "refId": "C"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_errors_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Errors Tx",
           "refId": "D"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_crypts_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_crypts_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Crypts Rx",
           "refId": "E"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_frags_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_frags_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Frags Rx",
           "refId": "F"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_receive_nwids_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_receive_nwids_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Nwids Rx",
           "refId": "G"
         },
         {
-          "expr": "sum (rate(unpoller_device_vap_transmit_retries_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__interval])) by (name)",
+          "expr": "sum (rate(unpoller_device_vap_transmit_retries_total{radio=\"ng\",site_name=~\"$Site\",name=~\"$AP\"}[$__rate_interval])) by (name)",
           "interval": "$Smooth",
           "legendFormat": "{{name}} Retries Tx",
           "refId": "H"
@@ -3676,5 +3676,5 @@
   "timezone": "browser",
   "title": "UniFi-Poller: UAP Insights - Prometheus",
   "uid": "g5wFWqxZk",
-  "version": 24
+  "version": 25
 }

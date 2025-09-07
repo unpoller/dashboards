@@ -850,7 +850,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "unpoller_device_memory_utilization_ratio{type=\"usw\", site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
+          "expr": "unpoller_device_memory_utilization_ratio{site_name=~\"$Site\",name=~\"$Switch\",type=~\"usw|udm|udmp\"}",
           "interval": "$Smooth",
           "legendFormat": "{{name}}",
           "refId": "A"

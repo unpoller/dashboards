@@ -229,7 +229,7 @@
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
           "decimals": 2,
           "mappingType": 1,
-          "pattern": "channel",
+          "pattern": "channel_name",
           "thresholds": [],
           "type": "string",
           "unit": "short"
@@ -326,7 +326,7 @@
             },
             {
               "params": [
-                "channel"
+                "channel_name"
               ],
               "type": "tag"
             },
@@ -364,7 +364,7 @@
           "measurement": "clients",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"ip\") AS \"Address\", last(\"note\") AS \"Note\", last(\"network\") AS \"Network\" FROM \"clients\" WHERE (\"is_wired\" = 'false' AND \"ap_mac\" =~ /^${AP:regex}$/) AND $timeFilter GROUP BY \"mac\", \"oui\", \"channel\", \"radio\", \"name\", \"ap_mac\"",
+          "query": "SELECT last(\"ip\") AS \"Address\", last(\"note\") AS \"Note\", last(\"network\") AS \"Network\" FROM \"clients\" WHERE (\"is_wired\" = 'false' AND \"ap_mac\" =~ /^${AP:regex}$/) AND $timeFilter GROUP BY \"mac\", \"oui\", \"channel_name\", \"radio\", \"name\", \"ap_mac\"",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -846,7 +846,7 @@
           "groupBy": [
             {
               "params": [
-                "channel"
+                "channel_name"
               ],
               "type": "tag"
             }
@@ -880,7 +880,7 @@
           "tags": []
         },
         {
-          "alias": "Channel $tag_channel",
+          "alias": "Channel $tag_channel_name",
           "groupBy": [
             {
               "params": [
@@ -898,7 +898,7 @@
           "hide": false,
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /^${Site:regex}$/ AND \"name\" =~ /^${Wireless:regex}$/ AND ap_name =~ /^${AP:regex}$/ ) GROUP BY \"channel\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE time > now() - 5m AND (\"site_name\" =~ /^${Site:regex}$/ AND \"name\" =~ /^${Wireless:regex}$/ AND ap_name =~ /^${AP:regex}$/ ) GROUP BY \"channel_name\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -972,7 +972,7 @@
           "groupBy": [
             {
               "params": [
-                "channel"
+                "channel_name"
               ],
               "type": "tag"
             }
@@ -1060,7 +1060,7 @@
           "groupBy": [
             {
               "params": [
-                "channel"
+                "channel_name"
               ],
               "type": "tag"
             }
@@ -1146,7 +1146,7 @@
           "groupBy": [
             {
               "params": [
-                "channel"
+                "channel_name"
               ],
               "type": "tag"
             }

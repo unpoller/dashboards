@@ -151,7 +151,7 @@
           "groupBy": [
             {
               "params": [
-                "channel"
+                "channel_name"
               ],
               "type": "tag"
             }
@@ -230,7 +230,7 @@
       "strokeWidth": 1,
       "targets": [
         {
-          "alias": "Chan $tag_channel",
+          "alias": "Chan $tag_channel_name",
           "groupBy": [
             {
               "params": [
@@ -248,7 +248,7 @@
           "measurement": "uap",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE $timeFilter AND ap_name =~ /$AP$/ AND site_name =~ /$Site$/ GROUP BY \"channel\"",
+          "query": "select count(distinct(hostname)) FROM \"clients\" WHERE $timeFilter AND ap_name =~ /$AP$/ AND site_name =~ /$Site$/ GROUP BY \"channel_name\"",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -316,7 +316,7 @@
           "groupBy": [
             {
               "params": [
-                "channel"
+                "channel_name"
               ],
               "type": "tag"
             }
@@ -443,7 +443,7 @@
             [
               {
                 "params": [
-                  "channel"
+                  "channel_num"
                 ],
                 "type": "field"
               }
@@ -1069,7 +1069,7 @@
             [
               {
                 "params": [
-                  "channel"
+                  "channel_num"
                 ],
                 "type": "field"
               },

@@ -2223,7 +2223,7 @@
           },
           "expr": "unpoller_device_mbb_info{site_name=~\"$Site\", name=~\"$Modem\"}",
           "interval": "$Smooth",
-          "legendFormat": "{{name}} {{operator}} {{rat}} {{band}} {{mbb_mode}} ({{mbb_state}})",
+          "legendFormat": "{{name}} {{operator}} {{rat}} {{band}} PCI {{pci}} {{failover_mode}} ({{mbb_state}})",
           "refId": "A"
         }
       ],

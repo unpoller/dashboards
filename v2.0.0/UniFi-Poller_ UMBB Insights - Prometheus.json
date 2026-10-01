@@ -2426,7 +2426,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "Reject age is reported as-is by the controller.",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2591,18 +2591,6 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Value #D"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Reject Age"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "Value #E"
             },
             "properties": [
@@ -2694,18 +2682,6 @@
           "interval": "",
           "legendFormat": "",
           "refId": "C",
-          "instant": true,
-          "format": "table"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "expr": "sum by (name,slot,esim,spn) (unpoller_device_mbb_sim_network_reject_age{site_name=~\"$Site\", name=~\"$Modem\"})",
-          "interval": "",
-          "legendFormat": "",
-          "refId": "D",
           "instant": true,
           "format": "table"
         },
